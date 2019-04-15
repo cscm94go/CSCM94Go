@@ -51,9 +51,9 @@ public class Main extends Application {
 
         Base.open();
         Users u = new Users();
-        u.set("firstname", "Zak");
-        u.set("lastname", "Ali");
-        u.set("username", "zakiali");
+        u.set("firstname", "Jdd");
+        u.set("lastname", "gfd");
+        u.set("username", "ddfd");
         u.saveIt();
     }
 }
