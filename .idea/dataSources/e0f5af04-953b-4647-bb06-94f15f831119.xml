@@ -1095,95 +1095,74 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
-    <table id="274" parent="2" name="Students"/>
-    <table id="275" parent="2" name="Users"/>
-    <table id="276" parent="2" name="playerhistory"/>
-    <column id="277" parent="274" name="Id">
+    <table id="274" parent="2" name="playerhistory"/>
+    <table id="275" parent="2" name="users"/>
+    <column id="276" parent="274" name="idplayerhistory">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="278" parent="274" name="firstName">
-      <Position>2</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <column id="279" parent="274" name="lastName">
-      <Position>3</Position>
-      <DataType>varchar(45)|0s</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="280" parent="274" name="PRIMARY">
+    <key id="277" parent="274" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>Id</ColNames>
+      <ColNames>idplayerhistory</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="281" parent="275" name="idusers">
+    <column id="278" parent="275" name="idusers">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
+      <DefaultExpression>1</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="282" parent="275" name="firstname">
+    <column id="279" parent="275" name="firstname">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="283" parent="275" name="lastname">
+    <column id="280" parent="275" name="lastname">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="275" name="username">
+    <column id="281" parent="275" name="username">
       <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="275" name="credit">
+    <column id="282" parent="275" name="credit">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="275" name="wins">
+    <column id="283" parent="275" name="wins">
       <Position>6</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="275" name="losses">
+    <column id="284" parent="275" name="losses">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="275" name="winlossPercentage">
+    <column id="285" parent="275" name="winlossPercentage">
       <Position>8</Position>
       <DataType>float|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="289" parent="275" name="currentLoginTime">
+    <column id="286" parent="275" name="currentLoginTime">
       <Position>9</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="290" parent="275" name="lastLoginTime">
+    <column id="287" parent="275" name="lastLoginTime">
       <Position>10</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="291" parent="275" name="PRIMARY">
+    <key id="288" parent="275" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idusers</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="292" parent="276" name="idplayerhistory">
-      <Position>1</Position>
-      <DataType>int(11)|0s</DataType>
-      <NotNull>1</NotNull>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="293" parent="276" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>idplayerhistory</ColNames>
       <Primary>1</Primary>
     </key>
   </database-model>
