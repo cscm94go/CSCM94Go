@@ -1,5 +1,6 @@
-package models;
+package application;
 
+import models.Users;
 import org.javalite.activejdbc.Base;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

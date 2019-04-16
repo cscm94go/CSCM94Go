@@ -20,7 +20,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CSCM94Go" target="7" />
+      <module name="CSCM94Go" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>
