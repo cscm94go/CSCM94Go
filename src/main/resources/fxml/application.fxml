@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import com.gn.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+   <children>
+      <AnchorPane layoutX="656.0" layoutY="191.0" prefHeight="440.0" prefWidth="342.0" style="-fx-background-color: #DED9B6;">
+         <children>
+            <JFXTextField focusColor="#050811" layoutX="77.0" layoutY="155.0" promptText="username">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </JFXTextField>
+            <JFXButton buttonType="RAISED" layoutX="81.0" layoutY="234.0" prefHeight="31.0" prefWidth="169.0" ripplerFill="BLACK" style="-fx-background-color: #F7F7E3;" text="Confirm" />
+            <Label alignment="CENTER" layoutX="78.0" layoutY="95.0" prefHeight="21.0" prefWidth="155.0" text="Sign In">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+         <opaqueInsets>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </opaqueInsets>
+      </AnchorPane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="49.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="480.0" fitWidth="614.0" layoutX="26.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Go-img.jpg" />
+         </image>
+      </ImageView>
+      <TilePane layoutX="343.0" layoutY="36.0" prefHeight="115.0" prefWidth="169.0" style="-fx-background-color: #DED9B6;">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="围棋">
+               <font>
+                  <Font size="83.0" />
+               </font>
+            </Text>
+         </children>
+      </TilePane>
+      <TilePane layoutX="512.0" layoutY="36.0" prefHeight="115.0" prefWidth="119.0" style="-fx-background-color: #000000;">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GO">
+               <font>
+                  <Font size="80.0" />
+               </font>
+            </Text>
+         </children></TilePane>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>
