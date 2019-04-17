@@ -10,7 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import models.Users;
 import org.javalite.activejdbc.Base;
-import static com.sun.activation.registries.LogSupport.log;
+//import static com.sun.activation.registries.LogSupport.log;
 
 public class AccountController {
 

@@ -11,8 +11,8 @@ import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
-import static com.sun.activation.registries.LogSupport.log;
+//
+//import static com.sun.activation.registries.LogSupport.log;
 
 public class Main extends Application {
 
@@ -33,18 +33,10 @@ public class Main extends Application {
             // broken Java implementations
 
             Class.forName("com.mysql.cj.jdbc.Driver");
-            log("seems like the driver is registered!");
             Connection myConn = DriverManager.getConnection("JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy",
                     "dTXt3FVdSy", "s4dL5PTH35");
-            if (myConn != null) {
-                log("connection: success!");
-            }
-            else {
-                log("Connection: failed!");
-            }
 
         } catch (SQLException | ClassNotFoundException e) {
-            log("mySQL connection failed!");
             e.printStackTrace();
             return;
             // handle the error
