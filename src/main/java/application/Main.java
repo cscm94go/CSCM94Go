@@ -1,16 +1,13 @@
 package application;
 
-import models.Users;
-import org.javalite.activejdbc.Base;
+import javafx.scene.input.KeyEvent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.io.IOException;
 //
 //import static com.sun.activation.registries.LogSupport.log;
 
@@ -20,8 +17,22 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/application.fxml"));
         primaryStage.setTitle("Go");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.show();
+        root.addEventFilter(KeyEvent.KEY_PRESSED, key  ->  {
+            if (key.getText().equals("g")) {
+                Scene board = null;
+                try {
+                    Parent p = FXMLLoader.load(getClass().getResource("/fxml/GameBoard.fxml"));
+                    board = new Scene(p, 600, 600);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                primaryStage.setScene(board);
+                primaryStage.show();
+            }
+        });
+
     }
 
 
