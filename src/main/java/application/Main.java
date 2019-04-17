@@ -1,5 +1,6 @@
 package application;
 
+import controllers.AccountController;
 import models.Users;
 import org.javalite.activejdbc.Base;
 import javafx.application.Application;
@@ -18,10 +19,27 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/application.fxml"));
+
+        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("/fxml/application.fxml"));
+        Parent firstPane = firstPaneLoader.load();
+        Scene firstScene = new Scene(firstPane, 300, 275);
+
+
+        //get loader and pane for 2nd scene
+        FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("/fxml/registerUser.fxml"));
+        Parent secondPane = secondPageLoader.load();
+        Scene secondScene = new Scene(secondPane, 300,275);
+
+        //inject scenes in to controller
+        AccountController firstPaneController = (AccountController) firstPaneLoader.getController();
+        AccountController secondPaneController = (AccountController) secondPageLoader.getController();
+        firstPaneController.setSecondScene(secondScene);
+        secondPaneController.setFirstScene(firstScene);
+
         primaryStage.setTitle("Go");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(firstScene);
         primaryStage.show();
+
     }
 
 

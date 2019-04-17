@@ -1171,17 +1171,23 @@
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="290" parent="275" name="users_idusers_uindex">
+    <column id="290" parent="275" name="image">
+      <Position>8</Position>
+      <DataType>varchar(45)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+      <Collation>utf8_general_ci</Collation>
+    </column>
+    <index id="291" parent="275" name="users_idusers_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="291" parent="275" name="PRIMARY">
+    <key id="292" parent="275" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="292" parent="275" name="users_idusers_uindex">
+    <key id="293" parent="275" name="users_idusers_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_idusers_uindex</UnderlyingIndexName>
     </key>
