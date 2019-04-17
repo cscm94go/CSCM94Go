@@ -1132,9 +1132,9 @@
       <ColNames>idplayerhistory</ColNames>
       <RefSchemaName>dTXt3FVdSy</RefSchemaName>
       <RefTableName>users</RefTableName>
-      <RefColNames>idusers</RefColNames>
+      <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="283" parent="275" name="idusers">
+    <column id="283" parent="275" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1172,17 +1172,17 @@
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="290" parent="275" name="users_idusers_uindex">
-      <ColNames>idusers</ColNames>
+      <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
     <key id="291" parent="275" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>idusers</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <key id="292" parent="275" name="users_idusers_uindex">
-      <ColNames>idusers</ColNames>
+      <ColNames>id</ColNames>
       <UnderlyingIndexName>users_idusers_uindex</UnderlyingIndexName>
     </key>
   </database-model>

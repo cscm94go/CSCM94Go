@@ -4,7 +4,9 @@
       <root url="file://$USER_HOME$/Downloads/DashboardFx-master/DashboardFx-master/lib" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ideaLibSources/jfoenix-8.0.7-sources.jar!/" />
+    </SOURCES>
     <jarDirectory url="file://$USER_HOME$/Downloads/DashboardFx-master/DashboardFx-master/lib" recursive="false" />
   </library>
 </component>

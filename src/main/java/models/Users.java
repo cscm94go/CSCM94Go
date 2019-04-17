@@ -1,5 +1,16 @@
 package models;
 
 import org.javalite.activejdbc.Model;
+import org.javalite.activejdbc.annotations.Table;
 
-public class Users extends Model {}
+@Table("users")
+
+public class Users extends Model {
+    public void setUserName(String userName){
+        set("username", userName);
+    }
+
+    public String getUserName() {
+        return getString("username");
+    }
+}

@@ -28,25 +28,25 @@ public class Main extends Application {
     public static void main(String[] args) {
 
         launch(args);
-        try {
-            // The newInstance() call is a work around for some
-            // broken Java implementations
-
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection myConn = DriverManager.getConnection("JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy",
-                    "dTXt3FVdSy", "s4dL5PTH35");
-
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-            return;
-            // handle the error
-        }
-
-        Base.open();
-        Users u = new Users();
-        u.set("firstname", "Jdd");
-        u.set("lastname", "gfd");
-        u.set("username", "ddfd");
-        u.saveIt();
+//        try {
+//            // The newInstance() call is a work around for some
+//            // broken Java implementations
+//
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//            Connection myConn = DriverManager.getConnection("JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy",
+//                    "dTXt3FVdSy", "s4dL5PTH35");
+//
+//        } catch (SQLException | ClassNotFoundException e) {
+//            e.printStackTrace();
+//            return;
+//            // handle the error
+//        }
+//
+//        Base.open();
+//        Users u = new Users();
+//        u.set("firstname", "Test");
+//        u.set("lastname", "Tester");
+//        u.set("username", "test01");
+//        u.saveIt();
     }
 }

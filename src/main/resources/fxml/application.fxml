@@ -13,7 +13,8 @@
 <?import javafx.scene.layout.*?>
 
 
-<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<GridPane fx:controller="controllers.AccountController" xmlns:fx="http://javafx.com/fxml" alignment="center"
+      hgap="10" vgap="10">
    <children>
       <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
          <center>
@@ -21,12 +22,13 @@
                <children>
                   <AnchorPane layoutX="656.0" layoutY="191.0" prefHeight="440.0" prefWidth="342.0" style="-fx-background-color: #DED9B6;">
                      <children>
-                        <JFXTextField focusColor="#050811" layoutX="77.0" layoutY="155.0" promptText="username">
+                        <TextField fx:id="usernameField" layoutX="77.0" layoutY="155.0" promptText="username">
                            <font>
                               <Font size="21.0" />
                            </font>
-                        </JFXTextField>
-                        <JFXButton buttonType="RAISED" layoutX="81.0" layoutY="234.0" prefHeight="31.0" prefWidth="169.0" ripplerFill="BLACK" style="-fx-background-color: #F7F7E3;" text="Confirm" />
+                        </TextField>
+                        <Button fx:id="submitButton" layoutX="81.0" layoutY="234.0" prefHeight="31.0" prefWidth="169.0"  style="-fx-background-color: #F7F7E3;" text="Confirm" onAction="#handleSubmitButtonAction"/>
+
                         <Label alignment="CENTER" layoutX="78.0" layoutY="95.0" prefHeight="21.0" prefWidth="155.0" text="Sign In">
                            <font>
                               <Font size="27.0" />
@@ -72,4 +74,4 @@
          </center>
       </BorderPane>
    </children>
-</Pane>
+</GridPane>
