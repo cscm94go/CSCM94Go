@@ -11,23 +11,27 @@ import java.sql.*;
 
 public class AdminController {
 
-    Users user = Users.findFirst("username = John");
+    public Admin admin;
+
+    public void makeAdmin(String userName){
+
+        String query = "username = "+userName;
+
+        Users user;
+        user = Users.findFirst(query);
+        SimpleObjectProperty<Date> joinDate = new SimpleObjectProperty<>(this, "joinDate", new Date());
+
+        admin = new Admin(user.getUserName(), joinDate.get());
+
+        user.delete();
+
+    }
+
+    public void showAdminDetails(Admin admin){
+
+        System.out.println("Name: " + admin.getUserName() );
 
 
-    String userName =  u.getUserName();
-
-
-    SimpleObjectProperty<Date> joinDate = new SimpleObjectProperty<>(this, "joinDate", new Date());
-
-
-    int adminNum = 1;
-
-    Admin admin = new Admin(userName, joinDate.get(), adminNum);
-
-
-    public void showAdminDetails(String adminName){
-
-        System.out.println("Name: " + adminName);
 
     }
 
