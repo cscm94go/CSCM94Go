@@ -17,6 +17,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
+
 
 
 //import static com.sun.activation.registries.LogSupport.log;
@@ -70,20 +72,20 @@ public class AccountController {
     }
 
     public boolean registerUser(String firstName, String lastName, String userName) {
+        int count;
         try {
             Base.open("com.mysql.cj.jdbc.Driver", "JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy", "dTXt3FVdSy", "s4dL5PTH35");
 //            String sql = "INSERT INTO USERS(firstName, lastName, userName)";
-            Users u = new Users();
-            u.set("firstname", firstName);
-            u.set("lastname", lastName);
-            u.set("username", userName);
-            u.saveIt();
-            String newUser = u.getId().toString();
-            if (newUser != null) {
+            List<Users> users = Users.where("username = 'userName'");
+            if (users.isEmpty()) {
+                Users u = new Users();
+                u.set("firstname", firstName);
+                u.set("lastname", lastName);
+                u.set("username", userName);
+                u.saveIt();
                 register_success = true;
             }
             Base.close();
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -148,7 +150,10 @@ public class AccountController {
         else if (registerUser(firstName, lastName, username) == true) {
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Success!",
                     "New user " + user_name.getText() + " has been created.");
-//            openFirstScene(event);
+        }
+        else  {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Registration Failure, user exists!",
+                    "Please enter a unique username");
         }
     }
 

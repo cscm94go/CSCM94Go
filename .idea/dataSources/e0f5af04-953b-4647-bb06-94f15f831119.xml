@@ -1182,14 +1182,23 @@
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="292" parent="275" name="PRIMARY">
+    <index id="292" parent="275" name="users_username_uindex">
+      <ColNames>username</ColNames>
+      <Unique>1</Unique>
+      <Type>btree</Type>
+    </index>
+    <key id="293" parent="275" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="293" parent="275" name="users_idusers_uindex">
+    <key id="294" parent="275" name="users_idusers_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_idusers_uindex</UnderlyingIndexName>
+    </key>
+    <key id="295" parent="275" name="users_username_uindex">
+      <ColNames>username</ColNames>
+      <UnderlyingIndexName>users_username_uindex</UnderlyingIndexName>
     </key>
   </database-model>
 </dataSource>
