@@ -101,7 +101,12 @@ public class AccountController {
     private Button submitButton;
 
     @FXML
+    private Button createButton;
+
+    @FXML
     private Hyperlink registerLink;
+
+
 
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) {
@@ -133,8 +138,8 @@ public class AccountController {
         String lastName = last_name.getText();
         String username = user_name.getText();
         registerUser(firstName, lastName, username);
-        openSecondScene(event);
-        Window owner = registerLink.getScene().getWindow();
+        Window owner = createButton.getScene().getWindow();
+        openFirstScene(event);
         if(firstName.isEmpty() || lastName.isEmpty() || username.isEmpty()) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!", "Please ensure all fields are right!");
             return;

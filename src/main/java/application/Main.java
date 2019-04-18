@@ -22,13 +22,13 @@ public class Main extends Application {
 
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("/fxml/application.fxml"));
         Parent firstPane = firstPaneLoader.load();
-        Scene firstScene = new Scene(firstPane, 300, 275);
+        Scene firstScene = new Scene(firstPane, 1100, 900);
 
 
         //get loader and pane for 2nd scene
         FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("/fxml/registerUser.fxml"));
         Parent secondPane = secondPageLoader.load();
-        Scene secondScene = new Scene(secondPane, 300,275);
+        Scene secondScene = new Scene(secondPane, 1100,900);
 
         //inject scenes in to controller
         AccountController firstPaneController = (AccountController) firstPaneLoader.getController();
@@ -39,7 +39,6 @@ public class Main extends Application {
         primaryStage.setTitle("Go");
         primaryStage.setScene(firstScene);
         primaryStage.show();
-
     }
 
 
