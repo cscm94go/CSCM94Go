@@ -7,12 +7,9 @@ import org.javalite.activejdbc.annotations.Table;
 
 public class Users extends Model {
 
-    public Users(Object o) { }
-
     public void setUserName(String userName){
         set("username", userName);
     }
-
     public String getUserName() {
         return getString("username");
     }

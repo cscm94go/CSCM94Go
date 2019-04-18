@@ -12,6 +12,8 @@
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="mysql-connector-java-8.0.15" level="project" />
+    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.15" level="project" />
+    <orderEntry type="library" name="Maven: com.google.protobuf:protobuf-java:3.6.1" level="project" />
     <orderEntry type="library" name="Maven: org.javalite:activejdbc:2.2" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.0" level="project" />
     <orderEntry type="library" name="Maven: org.javalite:javalite-common:2.2" level="project" />
