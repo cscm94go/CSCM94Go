@@ -8,7 +8,8 @@ public class Admin extends Users{
     boolean adminRole = true;
 
     public Admin(String userName, Date jDate) {
-        super(userName);
+        Users u = new Users();
+        userName= u.getString("username");
         joinDate = jDate;
     }
 
