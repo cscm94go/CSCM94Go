@@ -13,6 +13,10 @@ import javafx.scene.control.TextField;
 import org.javalite.activejdbc.Base;
 
 import javax.xml.soap.Text;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 
 //import static com.sun.activation.registries.LogSupport.log;
@@ -43,19 +47,21 @@ public class AccountController {
     }
 
 
-
-    public boolean login(String usernameField) {
+    public boolean login(String user) {
         try {
-            Base.open("com.mysql.cj.jdbc.Driver", "JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy", "dTXt3FVdSy", "s4dL5PTH35");
-            Users u = Users.findById(5);
-            String username = u.getUserName();
-            if (usernameField.equals(username))
-            {
-                username_exist="true";
-                login_success = true;
+            String url = "JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy";
+            Connection conn = DriverManager.getConnection(url, "dTXt3FVdSy", "s4dL5PTH35");
+            Statement st = conn.createStatement();
+            ResultSet rs;
+            rs = st.executeQuery("SELECT username from users");
+            while (rs.next()) {
+                String userName = rs.getString("username");
+                if (user.equals(userName)) {
+                    username_exist="true";
+                    login_success = true;
+                }
             }
-
-            Base.close();
+            conn.close();
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -102,11 +108,6 @@ public class AccountController {
 
     @FXML
     private Button createButton;
-
-    @FXML
-    private Hyperlink registerLink;
-
-
 
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) {
