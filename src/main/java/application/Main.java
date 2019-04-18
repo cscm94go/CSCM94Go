@@ -4,6 +4,7 @@ import controllers.AccountController;
 import javafx.scene.image.ImageView;
 import models.Users;
 import org.javalite.activejdbc.Base;
+import javafx.scene.input.KeyEvent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,16 +19,11 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.IOException;
 //
 //import static com.sun.activation.registries.LogSupport.log;
 
 public class Main extends Application {
-
-    private List<String> list = new ArrayList<String>();
-    int j = 0;
-    double orgCliskSceneX, orgReleaseSceneX;
-    Button lbutton, rButton;
-    ImageView imageView;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -51,6 +47,20 @@ public class Main extends Application {
         primaryStage.setTitle("Go");
         primaryStage.setScene(firstScene);
         primaryStage.show();
+        firstPane.addEventFilter(KeyEvent.KEY_PRESSED, key  ->  {
+            if (key.getText().equals("g")) {
+                Scene board = null;
+                try {
+                    Parent p = FXMLLoader.load(getClass().getResource("/fxml/GameBoard.fxml"));
+                    board = new Scene(p, 600, 600);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                primaryStage.setScene(board);
+                primaryStage.show();
+            }
+        });
+
     }
 
 
