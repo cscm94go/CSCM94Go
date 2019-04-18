@@ -1,6 +1,7 @@
 package application;
 
 import controllers.AccountController;
+import javafx.scene.image.ImageView;
 import models.Users;
 import org.javalite.activejdbc.Base;
 import javafx.application.Application;
@@ -9,16 +10,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.awt.*;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 //
 //import static com.sun.activation.registries.LogSupport.log;
 
 public class Main extends Application {
 
+    private List<String> list = new ArrayList<String>();
+    int j = 0;
+    double orgCliskSceneX, orgReleaseSceneX;
+    Button lbutton, rButton;
+    ImageView imageView;
+
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("/fxml/application.fxml"));
         Parent firstPane = firstPaneLoader.load();
@@ -28,7 +40,7 @@ public class Main extends Application {
         //get loader and pane for 2nd scene
         FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("/fxml/registerUser.fxml"));
         Parent secondPane = secondPageLoader.load();
-        Scene secondScene = new Scene(secondPane, 1100,900);
+        Scene secondScene = new Scene(secondPane, 1100, 900);
 
         //inject scenes in to controller
         AccountController firstPaneController = (AccountController) firstPaneLoader.getController();

@@ -1,7 +1,6 @@
 package controllers;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Hyperlink;
 import javafx.stage.Stage;
 import models.Users;
 import javafx.fxml.FXML;
@@ -10,15 +9,16 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import org.javalite.activejdbc.Base;
 
-import javax.xml.soap.Text;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
-
 
 
 //import static com.sun.activation.registries.LogSupport.log;
@@ -29,6 +29,8 @@ public class AccountController {
     private Scene secondScene;
     private Node node;
     private Boolean register_success =false;
+    private List<String> list = new ArrayList<String>();
+    ImageView imageView;
     String username_exist="false";
     Boolean login_success =false;
 
@@ -46,8 +48,15 @@ public class AccountController {
     public void openSecondScene(ActionEvent actionEvent) {
         Stage primaryStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(secondScene);
+
     }
 
+
+    public String[] getImages() {
+        File file = new File(String.valueOf(getClass().getResource("~/resources/fxml/images").getFile()));
+        String[] imagesList = file.list();
+        return imagesList;
+    }
 
     public boolean login(String user) {
         try {
@@ -75,8 +84,8 @@ public class AccountController {
         int count;
         try {
             Base.open("com.mysql.cj.jdbc.Driver", "JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy", "dTXt3FVdSy", "s4dL5PTH35");
-//            String sql = "INSERT INTO USERS(firstName, lastName, userName)";
             List<Users> users = Users.where("username = 'userName'");
+//            String[] imagesList = getImages();
             if (users.isEmpty()) {
                 Users u = new Users();
                 u.set("firstname", firstName);
@@ -157,5 +166,8 @@ public class AccountController {
         }
     }
 
-
+//
+//    protected void handleSelectImageAction(ActionEvent actionEvent) {
+//
+//    }
 }

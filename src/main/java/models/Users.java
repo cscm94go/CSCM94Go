@@ -13,7 +13,4 @@ public class Users extends Model {
     public String getUserName() {
         return getString("username");
     }
-    public void image(String image) {
-        get("").toString();
-        set().toString(); }
 }
