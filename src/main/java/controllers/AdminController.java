@@ -2,12 +2,19 @@ package controllers;
 import javafx.beans.property.SimpleObjectProperty;
 import models.Admin;
 import models.Users;
+import org.javalite.activejdbc.Model;
+
+import java.awt.*;
 import java.util.Date;
+import java.sql.*;
+
 
 public class AdminController {
 
+    Users user = Users.findFirst("username = John");
 
-    String userName =  "a";
+
+    String userName =  u.getUserName();
 
 
     SimpleObjectProperty<Date> joinDate = new SimpleObjectProperty<>(this, "joinDate", new Date());
@@ -23,6 +30,14 @@ public class AdminController {
         System.out.println("Name: " + adminName);
 
     }
+
+
+
+
+
+
+
+
 
 
 }

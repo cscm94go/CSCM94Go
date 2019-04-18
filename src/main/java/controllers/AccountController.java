@@ -19,6 +19,14 @@ public class AccountController {
     public boolean login(String usernameField) {
         try {
             Base.open("com.mysql.cj.jdbc.Driver", "JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy", "dTXt3FVdSy", "s4dL5PTH35");
+
+
+           //TODO: Try with this way.
+            //Users user = Users.findFirst("username = John");
+
+
+
+
             Users u = Users.findById(5);
             String username = u.getUserName();
             if (usernameField.equals(username))
