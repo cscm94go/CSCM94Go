@@ -68,8 +68,8 @@ public class GameController {
         List<Piece> selfPieces = isWhite ? whitePieces: blackPieces;
         List<Piece> opponentPieces = isWhite ? blackPieces: whitePieces;
 
-        opponentPieces
-
+//        opponentPieces
+        return null;
     }
 
     private void drawBroad(){
