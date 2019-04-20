@@ -34,6 +34,7 @@ public class Leaderboard extends Model {
     }
 
     public float getWinlossPercentage() {
+        winlossPercentage = (wins / (wins + losses)) * 100;
         return winlossPercentage;
     }
 
