@@ -34,11 +34,13 @@ public class GameController {
             Piece piece = calculatePiece(e.getX(), e.getY());
             if (piece == null) return;
 
-            isWhite = !isWhite;
+            boolean canPut = canPutPiece(whitePieces, blackPieces, piece, isWhite);
+            if (!canPut) return;
+
             if (isWhite) whitePieces.add(piece);
             else blackPieces.add(piece);
             drawBroad();
-
+            isWhite = !isWhite;
         });
 
         drawBroad();
@@ -54,6 +56,20 @@ public class GameController {
         int a = (int) Math.round((x - left) / unitWidth);
         int b = (int) Math.round((y - top) / unitWidth);
         return new Piece(a,b);
+    }
+
+    private boolean canPutPiece(List<Piece> whitePieces, List<Piece> blackPieces, Piece newPiece, boolean isWhite){
+        List<Piece> selfPieces = isWhite ? whitePieces: blackPieces;
+        List<Piece> opponentPieces = isWhite ? blackPieces: whitePieces;
+        if (selfPieces.contains(newPiece) || opponentPieces.contains(newPiece)) return false;
+        return true;
+    }
+    private List <Piece>[] adjustPiece(List<Piece> whitePieces, List<Piece> blackPieces, Piece newPiece, boolean isWhite){
+        List<Piece> selfPieces = isWhite ? whitePieces: blackPieces;
+        List<Piece> opponentPieces = isWhite ? blackPieces: whitePieces;
+
+        opponentPieces
+
     }
 
     private void drawBroad(){
@@ -78,14 +94,19 @@ public class GameController {
         whitePieces.forEach(piece -> gc.fillOval( l + piece.x * unitWidth, b + piece.y * unitWidth, r, r));
     }
 
+}
 
-    public static class Piece {
-        int x;
-        int y;
+class Piece {
+    public int x;
+    public int y;
 
-        public Piece(int i, int i1) {
-            x=i;y=i1;
-        }
+    public Piece(int i, int i1) {
+        x=i;y=i1;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return x==((Piece)obj).x && y==((Piece)obj).y;
     }
 }
 
