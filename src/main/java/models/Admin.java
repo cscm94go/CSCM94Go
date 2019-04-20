@@ -9,7 +9,7 @@ public class Admin extends Users{
 
     public Admin(String userName, Date jDate) {
         Users u = new Users();
-        userName= u.getString("username");
+        userName= u.username;
         joinDate = jDate;
     }
 

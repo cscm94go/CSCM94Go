@@ -1,5 +1,8 @@
 package controllers;
+import application.Main;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -14,12 +17,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import org.javalite.activejdbc.Base;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.*;
 
 
 //import static com.sun.activation.registries.LogSupport.log;
@@ -63,47 +72,50 @@ public class AccountController {
     }
 
     public boolean login(String user) {
-        try {
-            String url = "JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy";
-            Connection conn = DriverManager.getConnection(url, "dTXt3FVdSy", "s4dL5PTH35");
-            Statement st = conn.createStatement();
-            ResultSet rs;
-            rs = st.executeQuery("SELECT username from users");
-            while (rs.next()) {
-                String userName = rs.getString("username");
-                if (user.equals(userName)) {
-                    username_exist="true";
-                    login_success = true;
-                }
-            }
-            conn.close();
 
+        try {
+            Path thePath = Files.list(new File("users").toPath())
+                    .filter(path -> path.toString().equals("users/" + user + ".json")).findFirst().get();
+            String content = new String(Files.readAllBytes(thePath), "UTF-8");
+            Users u = new Users(content);
+            Users.currentUser = u;
+            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+            Scene home = new Scene(parent , 1100, 900);
+            Main.stage.setScene(home);
+            Main.stage.show();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return login_success;
+        return true;
     }
 
     public boolean registerUser(String firstName, String lastName, String userName) {
-        int count;
-        try {
-            Base.open("com.mysql.cj.jdbc.Driver", "JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy", "dTXt3FVdSy", "s4dL5PTH35");
-            List<Users> users = Users.where("username = 'userName'");
+//        int count;
+//        try {
+//            Base.open("com.mysql.cj.jdbc.Driver", "JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy", "dTXt3FVdSy", "s4dL5PTH35");
+//            List<Users> users = Users.where("username = 'userName'");
 //            String[] imagesList = getImages();
-            if (users.isEmpty()) {
+//            if (users.isEmpty()) {
                 Users u = new Users();
-                u.set("firstname", firstName);
-                u.set("lastname", lastName);
-                u.set("username", userName);
-                u.set("image", selectedImagePath);
-                u.saveIt();
-                register_success = true;
-            }
-            Base.close();
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return register_success;
+                u.firstname = firstName;
+                u.lastname = lastName;
+                u.username = userName;
+                u.image = selectedImagePath;
+
+                u.store();
+                return true;
+//                register_success = true;
+//            }
+
+
+
+
+
+//            Base.close();
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return register_success;
     }
 
     @FXML protected void avatar1Clicked(MouseEvent event) {

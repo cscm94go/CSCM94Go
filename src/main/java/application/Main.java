@@ -14,9 +14,11 @@ import java.io.IOException;
 
 public class Main extends Application {
 
+    public static Stage stage;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+        stage = primaryStage;
         FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("/fxml/application.fxml"));
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane, 1100, 900);
@@ -49,7 +51,6 @@ public class Main extends Application {
                 primaryStage.show();
             }
         });
-
     }
 
 
