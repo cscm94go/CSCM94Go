@@ -14,15 +14,15 @@
             <center>
                 <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" BorderPane.alignment="CENTER">
                     <children>
-                        <AnchorPane layoutX="651.0" layoutY="180.0" prefHeight="620.0" prefWidth="359.0" style="-fx-background-color: #DED9B6;">
+                        <AnchorPane layoutX="651.0" layoutY="112.0" prefHeight="620.0" prefWidth="359.0" style="-fx-background-color: #DED9B6;">
                             <children>
 
-                                <Label alignment="CENTER" layoutX="33.0" layoutY="64.0" prefHeight="39.0" prefWidth="292.0" text="Register">
+                                <Label alignment="CENTER" layoutX="33.0" layoutY="47.0" prefHeight="39.0" prefWidth="292.0" text="Register">
                                     <font>
                                         <Font size="27.0" />
                                     </font>
                                 </Label>
-                                <Separator layoutX="60.0" layoutY="103.0" prefHeight="3.0" prefWidth="238.0" />
+                                <Separator layoutX="60.0" layoutY="85.0" prefHeight="3.0" prefWidth="238.0" />
                                 <TextField fx:id="first_name" layoutX="48.0" layoutY="310.0" promptText="First Name">
                                 <font>
                                 <Font size="21.0" />
@@ -39,6 +39,65 @@
                                     </font>
                                 </TextField>
                                 <Button fx:id="createButton" layoutX="96.0" layoutY="515.0" onAction="#handleCreateButtonAction" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #F7F7E3;" text="Create" />
+                        <Text layoutX="93.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select your avatar" textAlignment="CENTER" wrappingWidth="175.6708984375" />
+                        <ScrollPane layoutX="185.0" layoutY="105.0" prefHeight="149.0" prefWidth="168.0">
+                           <content>
+                              <VBox prefHeight="1186.0" prefWidth="65.0">
+                                 <children>
+                                    <ImageView fitHeight="150.0" fitWidth="232.0" onMouseClicked="#avatar1Clicked" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../images/avataaars.png" />
+                                            </image>
+                                    </ImageView>
+                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar2Clicked" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../images/avataaars2.png" />
+                                         </image>
+                                     </ImageView>
+                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar3Clicked" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../images/avataaars3.png" />
+                                         </image>
+                                     </ImageView>
+                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar4Clicked" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../images/avataaars4.png" />
+                                         </image>
+                                     </ImageView>
+                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar5Clicked" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../images/avataaars5.png" />
+                                         </image>
+                                     </ImageView>
+                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar6Clicked" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../images/avataaars6.png" />
+                                         </image>
+                                     </ImageView>
+                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar7Clicked" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../images/avataaars7.png" />
+                                         </image>
+                                     </ImageView>
+                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar8Clicked" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../images/avataaars8.png" />
+                                         </image>
+                                     </ImageView>
+                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar9Clicked" preserveRatio="true">
+                                         <image>
+                                             <Image url="@../images/avataaars9.png" />
+                                         </image>
+                                     </ImageView>
+                                 </children>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                        <ImageView fx:id="userImage" fitHeight="148.0" fitWidth="161.0" layoutX="40.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/avataaars.png" />
+                           </image>
+                        </ImageView>
 
                             </children>
                             <padding>
@@ -51,7 +110,7 @@
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="49.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" />
                         <ImageView fitHeight="480.0" fitWidth="614.0" layoutX="26.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/Go-img.jpg" />
+                                <Image url="@../images/Go-img.jpg" />
                             </image>
                         </ImageView>
                         <TilePane layoutX="343.0" layoutY="36.0" prefHeight="115.0" prefWidth="169.0" style="-fx-background-color: #DED9B6;">

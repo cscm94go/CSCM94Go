@@ -40,7 +40,7 @@
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="49.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="480.0" fitWidth="614.0" layoutX="26.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/Go-img.jpg" />
+                        <Image url="@../images/Go-img.jpg" />
                      </image>
                   </ImageView>
                   <TilePane layoutX="343.0" layoutY="36.0" prefHeight="115.0" prefWidth="169.0" style="-fx-background-color: #DED9B6;">

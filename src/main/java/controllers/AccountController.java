@@ -1,6 +1,8 @@
 package controllers;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import models.Users;
 import javafx.fxml.FXML;
@@ -12,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import org.javalite.activejdbc.Base;
 
-import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -30,7 +31,8 @@ public class AccountController {
     private Node node;
     private Boolean register_success =false;
     private List<String> list = new ArrayList<String>();
-    ImageView imageView;
+    @FXML private ImageView userImage;
+
     String username_exist="false";
     Boolean login_success =false;
 
@@ -52,10 +54,12 @@ public class AccountController {
     }
 
 
-    public String[] getImages() {
-        File file = new File(String.valueOf(getClass().getResource("~/resources/fxml/images").getFile()));
-        String[] imagesList = file.list();
-        return imagesList;
+    private String selectedImagePath = "images/avataaars.png";
+
+    private void setUserImage(String imagePath) {
+        selectedImagePath = imagePath;
+        Image image = new Image(imagePath);
+        userImage.setImage(image);
     }
 
     public boolean login(String user) {
@@ -91,6 +95,7 @@ public class AccountController {
                 u.set("firstname", firstName);
                 u.set("lastname", lastName);
                 u.set("username", userName);
+                u.set("image", selectedImagePath);
                 u.saveIt();
                 register_success = true;
             }
@@ -100,6 +105,44 @@ public class AccountController {
         }
         return register_success;
     }
+
+    @FXML protected void avatar1Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars.png";
+        setUserImage(imagePath);
+    }
+    @FXML protected void avatar2Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars2.png";
+        setUserImage(imagePath);
+    }
+    @FXML protected void avatar3Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars3.png";
+        setUserImage(imagePath);
+    }
+    @FXML protected void avatar4Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars4.png";
+        setUserImage(imagePath);
+    }
+    @FXML protected void avatar5Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars5.png";
+        setUserImage(imagePath);
+    }
+    @FXML protected void avatar6Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars6.png";
+        setUserImage(imagePath);
+    }
+    @FXML protected void avatar7Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars7.png";
+        setUserImage(imagePath);
+    }
+    @FXML protected void avatar8Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars8.png";
+        setUserImage(imagePath);
+    }
+    @FXML protected void avatar9Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars9.png";
+        setUserImage(imagePath);
+    }
+
 
     @FXML
     private  TextField first_name;

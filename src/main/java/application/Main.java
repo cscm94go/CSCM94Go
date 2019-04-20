@@ -1,9 +1,6 @@
 package application;
 
 import controllers.AccountController;
-import javafx.scene.image.ImageView;
-import models.Users;
-import org.javalite.activejdbc.Base;
 import javafx.scene.input.KeyEvent;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,14 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.io.IOException;
 //
 //import static com.sun.activation.registries.LogSupport.log;
