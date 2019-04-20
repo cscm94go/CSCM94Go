@@ -1119,163 +1119,172 @@
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="281" parent="274" name="leaderboard__winlossPercentageindex">
+    <column id="281" parent="274" name="rank">
+      <Position>5</Position>
+      <DataType>int(11)|0s</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="282" parent="274" name="leaderboard__winlossPercentageindex">
       <ColNames>winlossPercentage</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="282" parent="274" name="leaderboard_playerhistory_winlossPercentage_fk">
+    <index id="283" parent="274" name="leaderboard_playerhistory_winlossPercentage_fk">
       <ColNames>winlossPercentage</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="283" parent="274" name="leaderboard_playerhistory_wins_fk">
+    <index id="284" parent="274" name="leaderboard_playerhistory_wins_fk">
       <ColNames>wins</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="284" parent="274" name="leaderboard_playerhistory_losses_fk">
+    <index id="285" parent="274" name="leaderboard_playerhistory_losses_fk">
       <ColNames>losses</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="285" parent="274" name="PRIMARY">
+    <index id="286" parent="274" name="leaderboard_rank_index">
+      <ColNames>rank</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="287" parent="274" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>username</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="286" parent="274" name="Leaderboard_users_username_fk">
+    <foreign-key id="288" parent="274" name="Leaderboard_users_username_fk">
       <ColNames>username</ColNames>
       <RefSchemaName>dTXt3FVdSy</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>username</RefColNames>
     </foreign-key>
-    <foreign-key id="287" parent="274" name="leaderboard_playerhistory_winlossPercentage_fk">
+    <foreign-key id="289" parent="274" name="leaderboard_playerhistory_winlossPercentage_fk">
       <ColNames>winlossPercentage</ColNames>
       <RefSchemaName>dTXt3FVdSy</RefSchemaName>
       <RefTableName>playerhistory</RefTableName>
       <RefColNames>winlossPercentage</RefColNames>
     </foreign-key>
-    <foreign-key id="288" parent="274" name="leaderboard_playerhistory_wins_fk">
+    <foreign-key id="290" parent="274" name="leaderboard_playerhistory_wins_fk">
       <ColNames>wins</ColNames>
       <RefSchemaName>dTXt3FVdSy</RefSchemaName>
       <RefTableName>playerhistory</RefTableName>
       <RefColNames>wins</RefColNames>
     </foreign-key>
-    <foreign-key id="289" parent="274" name="leaderboard_playerhistory_losses_fk">
+    <foreign-key id="291" parent="274" name="leaderboard_playerhistory_losses_fk">
       <ColNames>losses</ColNames>
       <RefSchemaName>dTXt3FVdSy</RefSchemaName>
       <RefTableName>playerhistory</RefTableName>
       <RefColNames>losses</RefColNames>
     </foreign-key>
-    <column id="290" parent="275" name="idplayerhistory">
+    <column id="292" parent="275" name="idplayerhistory">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="275" name="username">
+    <column id="293" parent="275" name="username">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="292" parent="275" name="wins">
+    <column id="294" parent="275" name="wins">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="293" parent="275" name="losses">
+    <column id="295" parent="275" name="losses">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="294" parent="275" name="winlossPercentage">
+    <column id="296" parent="275" name="winlossPercentage">
       <Position>5</Position>
       <DataType>float|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="295" parent="275" name="playerhistory_wins_index">
+    <index id="297" parent="275" name="playerhistory_wins_index">
       <ColNames>wins</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="296" parent="275" name="playerhistory_losses_index">
+    <index id="298" parent="275" name="playerhistory_losses_index">
       <ColNames>losses</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="297" parent="275" name="playerhistory_winlossPercentage_index">
+    <index id="299" parent="275" name="playerhistory_winlossPercentage_index">
       <ColNames>winlossPercentage</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="298" parent="275" name="PRIMARY">
+    <key id="300" parent="275" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>idplayerhistory</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="299" parent="275" name="playerhistory_users__fk">
+    <foreign-key id="301" parent="275" name="playerhistory_users__fk">
       <ColNames>idplayerhistory</ColNames>
       <RefSchemaName>dTXt3FVdSy</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="300" parent="276" name="id">
+    <column id="302" parent="276" name="id">
       <Position>1</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="276" name="firstname">
+    <column id="303" parent="276" name="firstname">
       <Position>2</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="276" name="lastname">
+    <column id="304" parent="276" name="lastname">
       <Position>3</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="276" name="username">
+    <column id="305" parent="276" name="username">
       <Position>4</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="304" parent="276" name="credit">
+    <column id="306" parent="276" name="credit">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="305" parent="276" name="currentLoginTime">
+    <column id="307" parent="276" name="currentLoginTime">
       <Position>6</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="306" parent="276" name="lastLoginTime">
+    <column id="308" parent="276" name="lastLoginTime">
       <Position>7</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="307" parent="276" name="image">
+    <column id="309" parent="276" name="image">
       <Position>8</Position>
       <DataType>varchar(45)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
       <Collation>utf8_general_ci</Collation>
     </column>
-    <index id="308" parent="276" name="users_idusers_uindex">
+    <index id="310" parent="276" name="users_idusers_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <index id="309" parent="276" name="users_username_uindex">
+    <index id="311" parent="276" name="users_username_uindex">
       <ColNames>username</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="310" parent="276" name="PRIMARY">
+    <key id="312" parent="276" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="311" parent="276" name="users_idusers_uindex">
+    <key id="313" parent="276" name="users_idusers_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_idusers_uindex</UnderlyingIndexName>
     </key>
-    <key id="312" parent="276" name="users_username_uindex">
+    <key id="314" parent="276" name="users_username_uindex">
       <ColNames>username</ColNames>
       <UnderlyingIndexName>users_username_uindex</UnderlyingIndexName>
     </key>
