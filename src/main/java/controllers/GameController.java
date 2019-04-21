@@ -26,28 +26,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
-
+/**
+ * This is the controller to control the running of the game
+ */
 public class GameController {
 
-    @FXML public Canvas canvas;
-    @FXML public Label opponentUserNameLabel;
-    @FXML public Label userNameLabel;
-    @FXML public Label whoseTurn;
-    @FXML public Button finishBtn;
+    @FXML Canvas canvas;
+    @FXML Label opponentUserNameLabel;
+    @FXML Label userNameLabel;
+    @FXML Label whoseTurn;
+    @FXML Button finishBtn;
 
-    public GraphicsContext gc;
-    public float width = 500;
+    GraphicsContext gc;
+    float width = 500;
     float left = 20;
     float top = 20;
     float r = 17;
     float unitWidth = width / 18;
-    
     Game game = new Game();
-
-    private Timer timer;
+    Timer timer;
 
     @FXML
-    public void initialize() throws Exception{
+    private void initialize() throws Exception{
         gc = canvas.getGraphicsContext2D();
         //Registering the event filter
         canvas.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
@@ -116,7 +116,7 @@ public class GameController {
         }
     }
 
-    public void updateFile(){
+    private void updateFile(){
 
         try {
             String content = new String(Files.readAllBytes( Paths.get("game.json")), "UTF-8");
@@ -191,8 +191,6 @@ public class GameController {
                 userNameLabel.setText(game.isWhitePlayer ? game.whitePlayerUserName : game.blackPlayerUserName);
             }
         });
-
     }
-
 }
 

@@ -1,5 +1,5 @@
-package application;
 
+package application;
 import controllers.AccountController;
 import javafx.scene.input.KeyEvent;
 import javafx.application.Application;
@@ -7,11 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-//
-//import static com.sun.activation.registries.LogSupport.log;
-
+/**
+ * This is the entry class
+ *
+ */
 public class Main extends Application {
 
     public static Stage stage;
@@ -53,29 +53,7 @@ public class Main extends Application {
         });
     }
 
-
     public static void main(String[] args) {
-
         launch(args);
-//        try {
-//            // The newInstance() call is a work around for some
-//            // broken Java implementations
-//
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//            Connection myConn = DriverManager.getConnection("JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy",
-//                    "dTXt3FVdSy", "s4dL5PTH35");
-//
-//        } catch (SQLException | ClassNotFoundException e) {
-//            e.printStackTrace();
-//            return;
-//            // handle the error
-//        }
-//
-//        Base.open();
-//        Users u = new Users();
-//        u.set("firstname", "Test");
-//        u.set("lastname", "Tester");
-//        u.set("username", "test01");
-//        u.saveIt();
     }
 }

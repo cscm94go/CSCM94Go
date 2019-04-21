@@ -1,33 +1,53 @@
 package models;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-
+/**
+ * This class holds game data
+ */
 public class Game {
+    /**
+     * Black pieces list
+     */
     public List<Piece> blackPieces = new ArrayList<>();
+    /**
+     * White pieces list
+     */
     public List<Piece> whitePieces = new ArrayList<>();
-
+    /**
+     * Indicate who is next to put piece
+     */
     public boolean isWhite;
+    /**
+     * Indicate whether game start
+     */
     public boolean gameStart;
-
+    /**
+     * Username of black player
+     */
     public String blackPlayerUserName;
+    /**
+     * Username of white player
+     */
     public String whitePlayerUserName;
-
+    /**
+     * Indicate whether current user is white player
+     */
     public boolean isWhitePlayer;
-
+    /**
+     * Check is it my turn, if not cant put piece
+     */
     public boolean meTurn(){
         return (isWhite && isWhitePlayer) || (!isWhite && !isWhitePlayer);
     }
-
+    /**
+     * Default init
+     */
     public Game(){
         try {
             JSONObject json;
@@ -59,5 +79,4 @@ public class Game {
         }
 
     }
-
 }

@@ -7,21 +7,47 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-@Table("users")
 
+/**
+ * This class represent user
+ */
 public class Users {
 
-    public String firstname;
-    public String lastname;
-    public String username;
-    public String image;
-    public long lastLogin;
-    public long registerTime;
-    public long position;
-
+    /**
+     * This static variable holds login user data
+     */
     public static Users currentUser;
 
-    public String toJson() {
+    /**
+     * user's first name
+     */
+    public String firstname;
+    /**
+     * user's last name
+     */
+    public String lastname;
+    /**
+     * user's user name
+     */
+    public String username;
+    /**
+     * user's avatar file path
+     */
+    public String image;
+    /**
+     * user's last login timestamp
+     */
+    public long lastLogin;
+    /**
+     * user's registered timestamp
+     */
+    public long registerTime;
+    /**
+     * user's lead board position
+     */
+    public long position;
+
+    private String toJson() {
         JSONObject json = new JSONObject();
         json.put("firstname",firstname);
         json.put("lastname",lastname);
@@ -30,10 +56,12 @@ public class Users {
         json.put("lastLogin",lastLogin);
         json.put("registerTime",registerTime);
         json.put("position",position);
-
         return json.toString();
     }
 
+    /**
+     * Init user from json string
+     */
     public Users(String jsonString) {
         JSONObject json = new JSONObject(jsonString);
         firstname = (String) json.get("firstname");
@@ -45,8 +73,14 @@ public class Users {
         position =  json.getLong("position");
     }
 
+    /**
+     * Default user initializer
+     */
     public Users() {}
 
+    /**
+     * Save user to local file
+     */
     public void store()  {
 
         try {
