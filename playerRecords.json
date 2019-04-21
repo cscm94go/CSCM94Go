@@ -1,0 +1,22 @@
+[
+  {
+  "player1": "lalala",
+  "player2": "kakaka",
+  "winner": "lalala"
+  },
+  {
+    "player1": "lalala",
+    "player2": "kakaka",
+    "winner": "lalala"
+  },
+  {
+    "player1": "lalala",
+    "player2": "kakaka",
+    "winner": "kakaka"
+  },
+  {
+    "player1": "lalala",
+    "player2": "kakaka",
+    "winner": "lalala"
+  }
+]

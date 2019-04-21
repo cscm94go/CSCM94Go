@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="center" xmlns="http://javafx.com/javafx/8" fx:id="vBox" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LeadBoardController">
+    <Label>leader board</Label>
+    <Button fx:id="btn1">by win percentage</Button>
+    <Button fx:id="btn2">by overall winnings</Button>
+<!--    <Button fx:id="leaderBoard">leader board</Button>-->
+
+<!--    <VBox fx:id="history"/>-->
+
+</VBox>
