@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="center" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InfoSinceLastLogin">
+    <Label>Info Since Last Login</Label>
+    <Label>Games:</Label>
+    <VBox fx:id="games"/>
+    <Label>position change:</Label>
+    <Label fx:id="positionChange"/>
+    <Label>New players:</Label>
+    <VBox fx:id="newPlayers"/>
+</VBox>

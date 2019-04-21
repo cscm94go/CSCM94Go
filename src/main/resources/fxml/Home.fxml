@@ -7,6 +7,8 @@
     <Label>Home</Label>
     <Button fx:id="btn">Start a game</Button>
     <Button fx:id="leaderBoard">leader board</Button>
+    <Button fx:id="infoSinceLastLogin">Info Since Last Login</Button>
+
 
     <VBox fx:id="history"/>
 

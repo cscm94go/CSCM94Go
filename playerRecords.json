@@ -2,21 +2,25 @@
   {
   "player1": "lalala",
   "player2": "kakaka",
-  "winner": "lalala"
+  "winner": "lalala",
+    "timeStamp": 1555815502456
   },
   {
     "player1": "lalala",
     "player2": "kakaka",
-    "winner": "lalala"
+    "winner": "lalala",
+    "timeStamp": 1555815502456
   },
   {
     "player1": "lalala",
     "player2": "kakaka",
-    "winner": "kakaka"
+    "winner": "kakaka",
+    "timeStamp": 1555815502456
   },
   {
     "player1": "lalala",
     "player2": "kakaka",
-    "winner": "lalala"
+    "winner": "lalala",
+    "timeStamp": 1555815502456
   }
 ]

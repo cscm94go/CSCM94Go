@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Record;
+import models.Users;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -17,10 +18,9 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class LeadBoardController {
 
@@ -28,6 +28,8 @@ public class LeadBoardController {
     Button btn1;
     @FXML
     Button btn2;
+    @FXML
+    Button back;
 //    @FXML
 //    Button leaderBoard;
     @FXML
@@ -51,10 +53,66 @@ public class LeadBoardController {
                 ex.printStackTrace();
             }
         });
+        back.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_CLICKED, a -> {
+
+                try {
+                    Parent p = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+                    Scene board = new Scene(p, 1100, 900);
+                    Main.stage.setScene(board);
+                    Main.stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+        });
+    }
+
+    public static List<String> sort(){
+        String content = null;
+        try {
+            content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        JSONArray json = new JSONArray(content);
+
+        List<Record> rs = new ArrayList<Record>();
+        json.forEach(e -> {
+            JSONObject j = (JSONObject) e;
+            Record r = new Record(j);
+            rs.add(r);
+        });
+
+        HashSet<String> users = new HashSet<>();
+        rs.stream().forEach(r -> {
+            users.add(r.player1);
+            users.add(r.player2);
+        });
+
+        List<String> us = users.stream().collect(Collectors.toList());
+        us.sort((u1, u2) -> {
+            AtomicInteger win = new AtomicInteger();
+            AtomicInteger lose = new AtomicInteger();
+            AtomicInteger win2 = new AtomicInteger();
+            AtomicInteger lose2 = new AtomicInteger();
+            rs.stream().forEach(r -> {
+                if (r.player1.equals(u1) || r.player2.equals(u1)) {
+                    if (r.winner.equals(u1)) win.getAndIncrement();
+                    else lose.getAndIncrement();
+                }
+                if (r.player1.equals(u2) || r.player2.equals(u2)) {
+                    if (r.winner.equals(u2)) win2.getAndIncrement();
+                    else lose2.getAndIncrement();
+                }
+            });
+            double percentage1 = win.doubleValue() / (win.doubleValue() + lose.doubleValue());
+            double percentage2 = win2.doubleValue() / (win2.doubleValue() + lose2.doubleValue());
+            return percentage1 > percentage2 ? 1 : -1;
+        });
+        return us;
     }
 
     void firstSort() throws IOException {
-
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
 
@@ -71,8 +129,7 @@ public class LeadBoardController {
             users.add(r.player2);
         });
 
-        users.stream().forEach(u -> {
-//            return 1;
+        sort().stream().forEach(u -> {
             AtomicInteger win = new AtomicInteger();
             AtomicInteger lose = new AtomicInteger();
             rs.stream().forEach(r -> {

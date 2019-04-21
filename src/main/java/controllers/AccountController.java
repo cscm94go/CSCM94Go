@@ -16,9 +16,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -79,29 +81,23 @@ public class AccountController {
     }
 
     public boolean registerUser(String firstName, String lastName, String userName) {
-//        int count;
-//        try {
-//            Base.open("com.mysql.cj.jdbc.Driver", "JDBC:mysql://remotemysql.com:3306/dTXt3FVdSy", "dTXt3FVdSy", "s4dL5PTH35");
-//            List<Users> users = Users.where("username = 'userName'");
-//            String[] imagesList = getImages();
-//            if (users.isEmpty()) {
-                Users u = new Users();
-                u.firstname = firstName;
-                u.lastname = lastName;
-                u.username = userName;
-                u.image = selectedImagePath;
 
-                u.store();
-                return true;
-//                register_success = true;
-//            }
+        try {
+            long count = Files.list(new File("users").toPath()).count();
+            Users u = new Users();
+            u.firstname = firstName;
+            u.lastname = lastName;
+            u.username = userName;
+            u.image = selectedImagePath;
+            u.lastLogin = 0;
+            u.registerTime = new Date().getTime();
+            u.position = count + 1;
+            u.store();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-
-//            Base.close();
-//        } catch (Exception e) {
-//            System.out.println(e.getMessage());
-//        }
-//        return register_success;
+        return true;
     }
 
     @FXML protected void avatar1Clicked(MouseEvent event) {

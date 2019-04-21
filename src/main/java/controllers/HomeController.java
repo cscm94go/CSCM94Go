@@ -29,6 +29,8 @@ public class HomeController {
     @FXML
     Button leaderBoard;
     @FXML
+    Button infoSinceLastLogin;
+    @FXML
     VBox history;
 
     @FXML
@@ -47,6 +49,16 @@ public class HomeController {
         leaderBoard.addEventFilter(MouseEvent.MOUSE_CLICKED, a -> {
             try {
                 Parent p = FXMLLoader.load(getClass().getResource("/fxml/LeadBoard.fxml"));
+                Scene board = new Scene(p, 1100, 900);
+                Main.stage.setScene(board);
+                Main.stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        infoSinceLastLogin.addEventFilter(MouseEvent.MOUSE_CLICKED, a -> {
+            try {
+                Parent p = FXMLLoader.load(getClass().getResource("/fxml/infoSinceLastLogin.fxml"));
                 Scene board = new Scene(p, 1100, 900);
                 Main.stage.setScene(board);
                 Main.stage.show();

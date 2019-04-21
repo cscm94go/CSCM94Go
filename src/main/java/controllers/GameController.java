@@ -1,7 +1,11 @@
 package controllers;
 
+import application.Main;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
@@ -21,6 +25,7 @@ import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
 import javafx.scene.control.Label;
+import javafx.scene.control.Button;
 
 public class GameController {
 
@@ -28,6 +33,7 @@ public class GameController {
     @FXML public Label opponentUserNameLabel;
     @FXML public Label userNameLabel;
     @FXML public Label whoseTurn;
+    @FXML public Button finishBtn;
 
     public GraphicsContext gc;
     public float width = 500;
@@ -57,6 +63,17 @@ public class GameController {
             game.isWhite = !game.isWhite;
             drawBroad();
             updateFile();
+        });
+
+        finishBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                Parent p = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+                Scene board = new Scene(p, 1100, 900);
+                Main.stage.setScene(board);
+                Main.stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         });
 
         drawBroad();

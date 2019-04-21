@@ -15,6 +15,9 @@ public class Users {
     public String lastname;
     public String username;
     public String image;
+    public long lastLogin;
+    public long registerTime;
+    public long position;
 
     public static Users currentUser;
 
@@ -24,6 +27,10 @@ public class Users {
         json.put("lastname",lastname);
         json.put("username",username);
         json.put("image",image);
+        json.put("lastLogin",lastLogin);
+        json.put("registerTime",registerTime);
+        json.put("position",position);
+
         return json.toString();
     }
 
@@ -33,6 +40,9 @@ public class Users {
         lastname = (String) json.get("lastname");
         username = (String) json.get("username");
         image = (String) json.get("image");
+        lastLogin =  json.getLong("lastLogin");
+        registerTime =  json.getLong("registerTime");
+        position =  json.getLong("position");
     }
 
     public Users() {}

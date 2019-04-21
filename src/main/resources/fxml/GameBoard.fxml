@@ -7,6 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <VBox fx:controller="controllers.GameController"
          xmlns:fx="http://javafx.com/fxml" alignment="center">
+    <Button fx:id="finishBtn">finish game</Button>
     <Canvas fx:id="canvas" width="600" height="600"/>
     <Label>my user name</Label>
     <Label fx:id="userNameLabel"/>
