@@ -161,18 +161,17 @@ public class AccountController {
     protected void handleSubmitButtonAction(ActionEvent event) {
         String user= usernameField.getText();
         login(user);
-        Window owner = submitButton.getScene().getWindow();
         if(usernameField.getText().isEmpty()) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!",
+            AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!",
                     "Please enter your name");
             return;
         }
         else if (login(user) == true) {
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Enter!",
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Enter!",
                     "Welcome " + usernameField.getText());
         }
         else
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!", "User can not be found! Try again.");
+            AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "User can not be found! Try again.");
     }
 
     @FXML

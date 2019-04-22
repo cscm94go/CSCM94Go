@@ -8,8 +8,4 @@
     <Button fx:id="btn1">by win percentage</Button>
     <Button fx:id="btn2">by overall winnings</Button>
     <Button fx:id="back">back to dashboard</Button>
-<!--    <Button fx:id="leaderBoard">leader board</Button>-->
-
-<!--    <VBox fx:id="history"/>-->
-
 </VBox>
