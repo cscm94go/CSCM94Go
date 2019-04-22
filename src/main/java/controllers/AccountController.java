@@ -1,6 +1,8 @@
 package controllers;
 import application.Main;
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -17,20 +19,40 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.ResourceBundle;
 
 
-public class AccountController {
+public class AccountController implements Initializable {
 
     private Scene firstScene;
     private Scene secondScene;
     private Node node;
     private Boolean register_success =false;
     private List<String> list = new ArrayList<String>();
+
+    private static AccountController instance;
+
+    //Constructor for Account Controller
+    public AccountController() {
+        instance = this;
+    }
+
+    //Instance method for Account Controller
+    public static AccountController getInstance()
+    {
+        return instance;
+    }
+
+    public String username() {
+        return  usernameField.getText();
+    }
+
     @FXML private ImageView userImage;
 
     String username_exist="false";
@@ -65,20 +87,35 @@ public class AccountController {
     public boolean login(String user) {
 
         try {
-            Path thePath = Files.list(new File("users").toPath())
-                    .filter(path -> path.toString().equals("users/" + user + ".json")).findFirst().get();
-            String content = new String(Files.readAllBytes(thePath), "UTF-8");
-            Users u = new Users(content);
-            Users.currentUser = u;
-            Parent parent = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
-            Scene home = new Scene(parent , 1100, 900);
-            Main.stage.setScene(home);
-            Main.stage.show();
+            userSearch(user);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return true;
     }
+
+    public Users loggedinUser(){
+        try{
+        String user = usernameField.getText();
+            userSearch(user);
+        } catch (Exception e) {
+        System.out.println(e.getMessage());
+        }
+        return Users.currentUser;
+    }
+
+    private void userSearch(String user) throws IOException {
+        Path thePath = Files.list(new File("users").toPath())
+                .filter(path -> path.toString().equals("users/" + user + ".json")).findFirst().get();
+        String content = new String(Files.readAllBytes(thePath), "UTF-8");
+        Users u = new Users(content);
+        Users.currentUser = u;
+    }
+
+//    public String userImage() {
+//        return loggedinUser().image;
+//    }
+
 
     public boolean registerUser(String firstName, String lastName, String userName) {
 
@@ -137,7 +174,6 @@ public class AccountController {
         setUserImage(imagePath);
     }
 
-
     @FXML
     private  TextField first_name;
 
@@ -158,7 +194,11 @@ public class AccountController {
     private Button createButton;
 
     @FXML
-    protected void handleSubmitButtonAction(ActionEvent event) {
+    private JFXButton log_out;
+
+
+    @FXML
+    protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
         String user= usernameField.getText();
         login(user);
         if(usernameField.getText().isEmpty()) {
@@ -167,11 +207,20 @@ public class AccountController {
             return;
         }
         else if (login(user) == true) {
+
+            LoadScene("/fxml/Home.fxml");
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Enter!",
                     "Welcome " + usernameField.getText());
         }
         else
             AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "User can not be found! Try again.");
+    }
+
+    private void LoadScene(String resource) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(resource));
+        Scene home = new Scene(parent , 1100, 900);
+        Main.stage.setScene(home);
+        Main.stage.show();
     }
 
     @FXML
@@ -200,6 +249,11 @@ public class AccountController {
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Registration Failure, user exists!",
                     "Please enter a unique username");
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
     }
 
 //

@@ -23,18 +23,6 @@ public class Main extends Application {
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane, 1100, 900);
 
-
-        //get loader and pane for 2nd scene
-        FXMLLoader secondPageLoader = new FXMLLoader(getClass().getResource("/fxml/registerUser.fxml"));
-        Parent secondPane = secondPageLoader.load();
-        Scene secondScene = new Scene(secondPane, 1100, 900);
-
-        //inject scenes in to controller
-        AccountController firstPaneController = (AccountController) firstPaneLoader.getController();
-        AccountController secondPaneController = (AccountController) secondPageLoader.getController();
-        firstPaneController.setSecondScene(secondScene);
-        secondPaneController.setFirstScene(firstScene);
-
         primaryStage.setTitle("Go");
         primaryStage.setScene(firstScene);
         primaryStage.show();

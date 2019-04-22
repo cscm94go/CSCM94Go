@@ -1,12 +1,109 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="center" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
-    <Label>Home</Label>
-    <Button fx:id="btn">Start a game</Button>
-    <Button fx:id="leaderBoard">leader board</Button>
-    <Button fx:id="infoSinceLastLogin">Info Since Last Login</Button>
-    <VBox fx:id="history"/>
-</VBox>
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+    <children>
+        <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
+            <center>
+                <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" BorderPane.alignment="CENTER">
+                </AnchorPane>
+            </center>
+        </BorderPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane prefHeight="800.0" prefWidth="326.0" style="-fx-background-color: #DED9B6;">
+               <children>
+                  <JFXButton id="leaderboard" fx:id="leaderBoard" buttonType="RAISED" layoutX="2.0" layoutY="431.0" onAction="#handleLeaderboardButtonAction" prefHeight="83.0" prefWidth="346.0" text="Leaderboard">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="my_stats" fx:id="my_stats" buttonType="RAISED" layoutX="2.0" layoutY="348.0" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="346.0" text="My Stats">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="infoSinceLastLogin" fx:id="infoSinceLastLogin" buttonType="RAISED" layoutX="2.0" layoutY="514.0" onAction="#handleInfoButtonAction" prefHeight="83.0" prefWidth="346.0" text="Info Since Last Login">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="log_out" fx:id="logout" buttonType="RAISED" layoutY="607.0" onAction="#handleLogoutButtonAction" prefHeight="83.0" prefWidth="346.0" text="Log Out">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="play" fx:id="play" buttonType="RAISED" layoutX="2.0" layoutY="265.0" onAction="#handlePlayButtonAction" prefHeight="83.0" prefWidth="346.0" text="Play">
+                     <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                     </font>
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <ImageView id="profile_image" fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="welcomeUser" layoutX="59.0" layoutY="181.0" prefHeight="62.0" prefWidth="200.0" text="Username">
+                     <font>
+                        <Font name="Dubai Medium" size="23.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>
