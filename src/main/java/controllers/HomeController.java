@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
 import javafx.stage.Window;
 import models.Record;
 import models.Users;
@@ -143,14 +144,13 @@ public class HomeController implements Initializable {
         this.welcomeUser.setText("Welcome, " + user);
     }
 
-    public void setUserimage(String userimage) {
-        String image_path = Users.currentUser.image;
-        profile_image = new ImageView(image_path);
+    public void setUserimage() {
+        profile_image.setImage(new Image(Users.currentUser.image));
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        setUserimage(AccountController.getInstance().userImage());
+        setUserimage();
         setUsername(AccountController.getInstance().username());
     }
 

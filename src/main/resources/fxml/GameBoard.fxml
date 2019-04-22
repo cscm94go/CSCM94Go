@@ -5,16 +5,30 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox fx:controller="controllers.GameController"
-         xmlns:fx="http://javafx.com/fxml" alignment="center">
+      xmlns:fx="http://javafx.com/fxml" alignment="center" style="-fx-background-color: gray;">
+
     <Button fx:id="finishBtn">finish game</Button>
-    <Canvas fx:id="canvas" width="600" height="600"/>
-    <Label>my user name</Label>
-    <Label fx:id="userNameLabel"/>
-
-
-    <Label>opponent user name</Label>
-    <Label fx:id="opponentUserNameLabel"/>
+    <HBox alignment="CENTER">
+        <ImageView fitHeight="50.0" fitWidth="75.0" fx:id="opponentImg" preserveRatio="true">
+            <image>
+            </image>
+        </ImageView>
+        <Label fx:id="opponentUserNameLabel"/>
+    </HBox>
+    <Canvas fx:id="canvas" width="550" height="550"/>
+    <HBox alignment="CENTER">
+        <ImageView fitHeight="50.0" fitWidth="75.0" fx:id="myImg" preserveRatio="true">
+            <Image fx:id="myImgSource" url="@../images/avataaars.png" />
+        </ImageView>
+        <Label fx:id="userNameLabel"/>
+    </HBox>
+    <HBox alignment="CENTER"  style="-fx-padding: 0 10 0 0;">
+        <Button fx:id="passBtn">pass</Button>
+        <Button fx:id="surrenderBtn">surrender</Button>
+    </HBox>
     <Label>whoseTurn</Label>
     <Label fx:id="whoseTurn"/>
 </VBox>
