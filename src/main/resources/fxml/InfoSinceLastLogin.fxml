@@ -1,14 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="center" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InfoSinceLastLogin">
-    <Label>Info Since Last Login</Label>
-    <Label>Games:</Label>
-    <VBox fx:id="games"/>
-    <Label>position change:</Label>
-    <Label fx:id="positionChange"/>
-    <Label>New players:</Label>
-    <VBox fx:id="newPlayers"/>
-</VBox>
+
+<?import javafx.scene.layout.VBox?>
+<FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InfoSinceLastLogin">
+    <children>
+        <Label alignment="CENTER" prefHeight="95.0" prefWidth="228.0" style="-fx-background-color: #DED9B6; -fx-: 10 10 10 10;" text="Leader Boader">
+            <font>
+                <Font size="27.0" />
+            </font>
+            <FlowPane.margin>
+                <Insets />
+            </FlowPane.margin>
+        </Label>
+        <TableView prefHeight="200.0" prefWidth="499.0">
+            <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+            </columns>
+            <FlowPane.margin>
+                <Insets top="100.0" />
+            </FlowPane.margin>
+        </TableView>
+        <VBox prefWidth="1024.0" prefHeight="800.0" style="-fx-background-color: #3E3429;">
+
+                <Label>Info Since Last Login</Label>
+                <Label>Games:</Label>
+                <VBox fx:id="games"/>
+                <Label>position change:</Label>
+                <Label fx:id="positionChange"/>
+                <Label>New players:</Label>
+                <VBox fx:id="newPlayers"/>
+            </VBox>
+    </children>
+</FlowPane>
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
+
+<!--<FlowPane alignment="CENTER" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InfoSinceLastLogin">-->
+<!--    <VBox prefWidth="1024.0" prefHeight="800.0" style="-fx-background-color: #3E3429;">-->
+
+<!--        <Label>Info Since Last Login</Label>-->
+<!--        <Label>Games:</Label>-->
+<!--        <VBox fx:id="games"/>-->
+<!--        <Label>position change:</Label>-->
+<!--        <Label fx:id="positionChange"/>-->
+<!--        <Label>New players:</Label>-->
+<!--        <VBox fx:id="newPlayers"/>-->
+<!--    </VBox>-->
+<!--</FlowPane>-->

@@ -1,7 +1,5 @@
 package models;
 
-import org.javalite.activejdbc.Model;
-import org.javalite.activejdbc.annotations.Table;
 import org.json.JSONObject;
 import java.io.BufferedWriter;
 import java.io.FileWriter;

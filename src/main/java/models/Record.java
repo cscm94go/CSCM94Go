@@ -1,6 +1,9 @@
 package models;
 
 import org.json.JSONObject;
+
+import java.util.Date;
+
 /**
  * This is a game record
  * @author John
@@ -32,5 +35,22 @@ public class Record {
         player1 = json.getString("player1");
         player2 = json.getString("player2");
         timeStamp = json.getLong("timeStamp");
+    }
+    /**
+     * Initialize from a game data
+     */
+    public Record(String _player1, String _player2, String _winner){
+        player1=_player1;
+        player2=_player2;
+        winner=_winner;
+        timeStamp=new Date().getTime();
+    }
+    public JSONObject toJSON() {
+        JSONObject json = new JSONObject();
+        json.put("player1", player1);
+        json.put("player2", player2);
+        json.put("winner", winner);
+        json.put("timeStamp", timeStamp);
+        return json;
     }
 }
