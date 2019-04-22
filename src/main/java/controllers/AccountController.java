@@ -80,7 +80,9 @@ public class AccountController implements Initializable {
     public String username() {
         return  usernameField.getText();
     }
-
+    /**
+     *The user's image.
+     */
     @FXML private ImageView userImage;
 
     String username_exist="false";
@@ -154,9 +156,8 @@ public class AccountController implements Initializable {
         return Users.currentUser;
     }
     /**
-     * Short one line description.
-     * @param  user Description text text text.
-     * @return Description text text text.
+     *
+     * @param  user User to be found.
      */
     private void userSearch(String user) throws IOException {
         Path thePath = Files.list(new File("users").toPath())
@@ -171,7 +172,9 @@ public class AccountController implements Initializable {
 //    }
     /**
      * Short one line description.
-     * @param  variable Description text text text.
+     * @param firstName The user's first name.
+     * @param lastName The user's last name.
+     * @param userName The user's name to login.
      * @return Description text text text.
      */
     public boolean registerUser(String firstName, String lastName, String userName) {
