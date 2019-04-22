@@ -51,7 +51,7 @@ public class Users {
      * This gives the information of the user.
      * @return Return the user data.
      */
-    private String toJson() {
+    public String toJson() {
         JSONObject json = new JSONObject();
         json.put("firstname",firstname);
         json.put("lastname",lastname);

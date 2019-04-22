@@ -5,23 +5,27 @@ import java.util.Date;
 
 /**
  * This class represents a user with administrator privileges.
- * @author
- * @version
- *
+ * @author Hector
+ * @version 1.1
  */
 public class Admin extends Users{
-
-    Date joinDate;
-    boolean adminRole = true;
-
-    public Admin(String userName, Date jDate) {
-        Users u = new Users();
-        u.username = userName;
-        joinDate = jDate;
+    /**
+     * This attribute denotes that the user is administrator.
+     */
+    private static final boolean isAdminRole = true ;
+    /**
+     *This method is the constructor.
+     * @param user
+     */
+    public Admin(Users user) {
+        super(user.toJson());
     }
-
-    public boolean Role(){
-        return  adminRole;
+    /**
+     * This method checks the admintrator's privileges.
+     * @param admin The administrator.
+     * @return true if the the user is administrator.
+     */
+    public boolean Role(Admin admin ){
+        return  admin.isAdminRole;
     }
-
 }
