@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import models.Admin;
 import models.Users;
 import javafx.fxml.FXML;
 import javafx.stage.Window;
@@ -118,9 +119,14 @@ public class AccountController implements Initializable {
         Users.currentUser = u;
     }
 
-//    public String userImage() {
-//        return loggedinUser().image;
-//    }
+    public Boolean isAdmin(String user) throws IOException {
+        Path thePath = Files.list(new File("admins").toPath())
+                .filter(path -> path.toString().equals("admins/" + user + ".json")).findFirst().get();
+        String content = new String(Files.readAllBytes(thePath), "UTF-8");
+        Users u = new Users(content);
+        Users.currentUser = u;
+        return isAdmin(user);
+    }
 
 
     public boolean registerUser(String firstName, String lastName, String userName) {
@@ -214,6 +220,9 @@ public class AccountController implements Initializable {
             return;
         }
         else if (login(user) == true) {
+            if (isAdmin(user) == true){
+                LoadScene("/fxml/AdminDashboard.fxml");
+            }
             LoadScene("/fxml/Home.fxml");
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Enter!",
                     "Welcome " + usernameField.getText());

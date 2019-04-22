@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
@@ -74,6 +75,8 @@ public class HomeController implements Initializable {
     @FXML
     ImageView profile_image;
 
+    @FXML
+    JFXButton Admin;
 
     @FXML
     protected void handleLeaderboardButtonAction(ActionEvent event) throws IOException {
@@ -101,6 +104,12 @@ public class HomeController implements Initializable {
         AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Logged out",
                 "Logged out successfully!");
         LoadScene("/fxml/application.fxml");
+    }
+
+
+    @FXML
+    void handleAdminButtonAction(ActionEvent event) {
+
     }
 
     private void LoadScene(String resource) throws IOException {
@@ -143,14 +152,13 @@ public class HomeController implements Initializable {
         this.welcomeUser.setText("Welcome, " + user);
     }
 
-    public void setUserimage(String userimage) {
-        String image_path = Users.currentUser.image;
-        profile_image = new ImageView(image_path);
+    public void setUserimage() {
+        profile_image.setImage(new Image(Users.currentUser.image));
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        setUserimage(AccountController.getInstance().userImage());
+//        setUserimage(AccountController.getInstance().loggedinUser().image);
         setUsername(AccountController.getInstance().username());
     }
 
