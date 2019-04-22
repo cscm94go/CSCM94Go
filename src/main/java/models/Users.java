@@ -10,43 +10,49 @@ import java.io.IOException;
 
 /**
  * This class represent user
+ * @author Zakariye Ali
  */
 public class Users {
 
     /**
-     * This static variable holds login user data
+     * This holds the logged user.
      */
     public static Users currentUser;
 
     /**
-     * user's first name
+     * User's first name
      */
     public String firstname;
     /**
-     * user's last name
+     * User's last name
      */
     public String lastname;
     /**
-     * user's user name
+     * User's user name
      */
     public String username;
     /**
-     * user's avatar file path
+     * User's avatar file path
      */
     public String image;
     /**
-     * user's last login timestamp
+     * User's last login timestamp
      */
     public long lastLogin;
     /**
-     * user's registered timestamp
+     * User's registered timestamp
      */
     public long registerTime;
     /**
-     * user's lead board position
+     * User's lead board position
      */
     public long position;
 
+
+    /**
+     * This gives the information of the user.
+     * @return Return the user data.
+     */
     private String toJson() {
         JSONObject json = new JSONObject();
         json.put("firstname",firstname);
@@ -60,7 +66,8 @@ public class Users {
     }
 
     /**
-     * Init user from json string
+     * This initializes user from a json string.
+     * @param jsonString Takes the user information.
      */
     public Users(String jsonString) {
         JSONObject json = new JSONObject(jsonString);
@@ -74,7 +81,7 @@ public class Users {
     }
 
     /**
-     * Default user initializer
+     * Default Users class constructor.
      */
     public Users() {}
 
@@ -90,6 +97,5 @@ public class Users {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
