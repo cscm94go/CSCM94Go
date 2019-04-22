@@ -3,6 +3,7 @@ package models;
 import org.json.JSONObject;
 /**
  * This is a game record
+ * @author John
  */
 public class Record {
     /**
@@ -23,6 +24,8 @@ public class Record {
     public long timeStamp;
     /**
      * Initialize from a json object
+     * @param json Information with the players names
+     * and the ending timestamp.
      */
     public Record(JSONObject json){
         winner = json.getString("winner");
