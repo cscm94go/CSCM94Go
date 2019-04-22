@@ -27,6 +27,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * Short one line description.
+ * @author Zak
+ * @version
+ *
+ */
 
 public class AccountController implements Initializable {
 

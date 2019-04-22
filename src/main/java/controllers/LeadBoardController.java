@@ -22,6 +22,12 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
+/**
+ * Short one line description.
+ * @author
+ * @version
+ *
+ */
 public class LeadBoardController {
 
     @FXML
