@@ -9,7 +9,7 @@ import java.io.IOException;
 
 
 /**
- * This class represent user
+ * This class represent a user.
  * @author Zakariye Ali
  */
 public class Users {

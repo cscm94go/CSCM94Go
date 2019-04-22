@@ -8,10 +8,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 /**
- * This class holds game data
- * @author
- *
- *
+ * This class holds the game's logic data,
+ * who is next to put a piece.
+ * @author John
  */
 public class Game {
     /**
@@ -43,7 +42,8 @@ public class Game {
      */
     public boolean isWhitePlayer;
     /**
-     * Check is it my turn, if not cant put piece
+     * Check is it my turn, if not, I cannot put piece.
+     * @return True if it is next to put piece.
      */
     public boolean meTurn(){
         return (isWhite && isWhitePlayer) || (!isWhite && !isWhitePlayer);
