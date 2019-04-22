@@ -1,12 +1,18 @@
 package controllers;
 
 import application.Main;
+import javafx.beans.property.ReadOnlyDoubleWrapper;
+import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.ReadOnlyStringProperty;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Record;
@@ -21,6 +27,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class LeadBoardController {
 
@@ -32,8 +39,7 @@ public class LeadBoardController {
     Button back;
 //    @FXML
 //    Button leaderBoard;
-    @FXML
-    VBox vBox;
+    @FXML TableView table;
 
     @FXML
     public void initialize() throws Exception{
@@ -65,9 +71,10 @@ public class LeadBoardController {
                 }
 
         });
+
     }
 
-    public static List<String> sort(){
+    public static List<String> sort(int type){
         String content = null;
         try {
             content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
@@ -107,12 +114,34 @@ public class LeadBoardController {
             });
             double percentage1 = win.doubleValue() / (win.doubleValue() + lose.doubleValue());
             double percentage2 = win2.doubleValue() / (win2.doubleValue() + lose2.doubleValue());
-            return percentage1 > percentage2 ? 1 : -1;
+            if (type == 0) return percentage1 < percentage2 ? 1 : -1;
+            else return win.get() < win2.get() ? 1: -1;
         });
         return us;
     }
 
     void firstSort() throws IOException {
+        table.getColumns().remove(0, table.getColumns().size());
+        table.getItems().remove(0, table.getItems().size());
+        TableColumn<WinPercentage, String> column1 = new TableColumn<>("Rank");
+        column1.setPrefWidth(100);
+        column1.setCellValueFactory(cell -> {
+            return new ReadOnlyStringWrapper(cell.getValue().rank.toString());
+        });
+        TableColumn<WinPercentage, String> column2 = new TableColumn<>("Win percentage");
+        column2.setPrefWidth(150);
+        column2.setCellValueFactory(cell -> {
+            return new ReadOnlyStringWrapper(cell.getValue().percentage.toString());
+        });
+        TableColumn<WinPercentage, String> column3 = new TableColumn<>("Name");
+        column3.setPrefWidth(250);
+        column3.setCellValueFactory(cell -> {
+            return new ReadOnlyStringWrapper(cell.getValue().name);
+        });
+        table.getColumns().add(column1);
+        table.getColumns().add(column2);
+        table.getColumns().add(column3);
+
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
 
@@ -129,7 +158,9 @@ public class LeadBoardController {
             users.add(r.player2);
         });
 
-        sort().stream().forEach(u -> {
+        List<String> us = sort(0);
+        for (int i = 0; i < us.size(); i++) {
+            String u = us.get(i);
             AtomicInteger win = new AtomicInteger();
             AtomicInteger lose = new AtomicInteger();
             rs.stream().forEach(r -> {
@@ -138,20 +169,56 @@ public class LeadBoardController {
                     else lose.getAndIncrement();
                 }
             });
-
-            HBox h = new HBox();
-            Label l1 = new Label();
-            l1.setText(u);
-            Label l2 = new Label();
             double percentage = win.doubleValue() / (win.doubleValue() + lose.doubleValue());
-            l2.setText(Double.toString(percentage));
-            h.getChildren().add(l1);
-            h.getChildren().add(l2);
-            vBox.getChildren().add(h);
-        });
+
+            table.getItems().add(new WinPercentage(percentage, i + 1, u));
+        }
     }
 
+    private class WinPercentage {
+        Double percentage;
+        Integer rank;
+        String name;
+        public WinPercentage(double p, int r, String n){
+            percentage=new Double(p);
+            rank=new Integer(r);
+            name=n;
+        }
+    }
+
+    private class TotalWin {
+        Integer winCount;
+        Integer rank;
+        String name;
+        public TotalWin(int c, int r, String n){
+            winCount=new Integer(c);
+            rank=new Integer(r);
+            name=n;
+        }
+    }
+
+
     void secondSort() throws IOException {
+        table.getColumns().remove(0, table.getColumns().size());
+        table.getItems().remove(0, table.getItems().size());
+        TableColumn<TotalWin, String> column1 = new TableColumn<>("Rank");
+        column1.setPrefWidth(100);
+        column1.setCellValueFactory(cell -> {
+            return new ReadOnlyStringWrapper(cell.getValue().rank.toString());
+        });
+        TableColumn<TotalWin, String> column2 = new TableColumn<>("Total win");
+        column2.setPrefWidth(100);
+        column2.setCellValueFactory(cell -> {
+            return new ReadOnlyStringWrapper(cell.getValue().winCount.toString());
+        });
+        TableColumn<TotalWin, String> column3 = new TableColumn<>("Name");
+        column3.setPrefWidth(300);
+        column3.setCellValueFactory(cell -> {
+            return new ReadOnlyStringWrapper(cell.getValue().name);
+        });
+        table.getColumns().add(column1);
+        table.getColumns().add(column2);
+        table.getColumns().add(column3);
 
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
@@ -169,20 +236,17 @@ public class LeadBoardController {
             users.add(r.player2);
         });
 
-        users.stream().forEach(u -> {
+        List<String> us = sort(1);
+        for (int i = 0; i < users.size(); i++) {
+            String u  = us.get(i);
             AtomicInteger win = new AtomicInteger();
             rs.stream().forEach(r -> {
                 if (r.winner.equals(u)) win.getAndIncrement();
             });
-            HBox h = new HBox();
-            Label l1 = new Label();
-            l1.setText(u);
-            Label l2 = new Label();
-            l2.setText(Integer.toHexString(win.get()));
-            h.getChildren().add(l1);
-            h.getChildren().add(l2);
-            vBox.getChildren().add(h);
-        });
+            table.getItems().add(new TotalWin(win.get(),i + 1, u));
+        }
+
+
     }
 
 }
