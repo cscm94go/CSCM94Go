@@ -29,32 +29,54 @@ import java.util.ResourceBundle;
 
 /**
  * Short one line description.
- * @author Zak
- * @version
+ * @author Zakariye Ali
+ * @version 1.0
  *
  */
-
 public class AccountController implements Initializable {
-
+    /**
+     * Short one line description.
+     */
     private Scene firstScene;
+    /**
+     * Short one line description.
+     */
     private Scene secondScene;
+    /**
+     * Short one line description.
+     */
     private Node node;
+    /**
+     * Short one line description.
+     */
     private Boolean register_success =false;
+    /**
+     * Short one line description.
+     */
     private List<String> list = new ArrayList<String>();
-
+    /**
+     * Short one line description.
+     */
     private static AccountController instance;
 
     //Constructor for Account Controller
+    /**
+     * Short one line description.
+     */
     public AccountController() {
         instance = this;
     }
 
-    //Instance method for Account Controller
+    /**
+     * @return A Account Controller class (no instance).
+     */
     public static AccountController getInstance()
     {
         return instance;
     }
-
+    /**
+     * @return The user's name.
+     */
     public String username() {
         return  usernameField.getText();
     }
@@ -63,33 +85,55 @@ public class AccountController implements Initializable {
 
     String username_exist="false";
     Boolean login_success =false;
-
+    /**
+     * Short one line description.
+     * @param  scene Description text text text.
+     */
     public void setFirstScene(Scene scene) {
         firstScene = scene;
     }
+    /**
+     * Short one line description.
+     * @param  scene Description text text text.
+     */
     public void setSecondScene(Scene scene) {
         secondScene = scene;
     }
+    /**
+     * Short one line description.
+     * @param actionEvent Description text text text.
+     */
     public void openFirstScene(ActionEvent actionEvent) {
         Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(firstScene);
     }
-
+    /**
+     * Short one line description.
+     * @param  actionEvent Description text text text.
+     */
     public void openSecondScene(ActionEvent actionEvent) {
         Stage primaryStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
         primaryStage.setScene(secondScene);
 
     }
-
-
+    /**
+     * Short one line description.
+     */
     private String selectedImagePath = "images/avataaars.png";
-
+    /**
+     * Short one line description.
+     * @param  imagePath Description text text text.
+     */
     private void setUserImage(String imagePath) {
         selectedImagePath = imagePath;
         Image image = new Image(imagePath);
         userImage.setImage(image);
     }
-
+    /**
+     * Short one line description.
+     * @param  user Description text text text.
+     * @return True if the user exists.
+     */
     public boolean login(String user) {
 
         try {
@@ -109,7 +153,11 @@ public class AccountController implements Initializable {
         }
         return Users.currentUser;
     }
-
+    /**
+     * Short one line description.
+     * @param  user Description text text text.
+     * @return Description text text text.
+     */
     private void userSearch(String user) throws IOException {
         Path thePath = Files.list(new File("users").toPath())
                 .filter(path -> path.toString().equals("users/" + user + ".json")).findFirst().get();
@@ -121,8 +169,11 @@ public class AccountController implements Initializable {
 //    public String userImage() {
 //        return loggedinUser().image;
 //    }
-
-
+    /**
+     * Short one line description.
+     * @param  variable Description text text text.
+     * @return Description text text text.
+     */
     public boolean registerUser(String firstName, String lastName, String userName) {
 
         try {
@@ -142,67 +193,119 @@ public class AccountController implements Initializable {
 
         return true;
     }
-
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
     @FXML protected void avatar1Clicked(MouseEvent event) {
         String imagePath = "images/avataaars.png";
         setUserImage(imagePath);
     }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
     @FXML protected void avatar2Clicked(MouseEvent event) {
         String imagePath = "images/avataaars2.png";
         setUserImage(imagePath);
     }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
     @FXML protected void avatar3Clicked(MouseEvent event) {
         String imagePath = "images/avataaars3.png";
         setUserImage(imagePath);
     }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
     @FXML protected void avatar4Clicked(MouseEvent event) {
         String imagePath = "images/avataaars4.png";
         setUserImage(imagePath);
     }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
     @FXML protected void avatar5Clicked(MouseEvent event) {
         String imagePath = "images/avataaars5.png";
         setUserImage(imagePath);
     }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
     @FXML protected void avatar6Clicked(MouseEvent event) {
         String imagePath = "images/avataaars6.png";
         setUserImage(imagePath);
     }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
     @FXML protected void avatar7Clicked(MouseEvent event) {
         String imagePath = "images/avataaars7.png";
         setUserImage(imagePath);
     }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
     @FXML protected void avatar8Clicked(MouseEvent event) {
         String imagePath = "images/avataaars8.png";
         setUserImage(imagePath);
     }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
     @FXML protected void avatar9Clicked(MouseEvent event) {
         String imagePath = "images/avataaars9.png";
         setUserImage(imagePath);
     }
-
+    /**
+     * Short one line description.
+     */
     @FXML
     private  TextField first_name;
-
+    /**
+     * Short one line description.
+     */
     @FXML
     private TextField last_name;
-
+    /**
+     * Short one line description.
+     */
     @FXML
     private  TextField user_name;
-
-
+    /**
+     * Short one line description.
+     */
     @FXML
     private TextField usernameField;
-
+    /**
+     * Short one line description.
+     */
     @FXML
     private Button submitButton;
-
+    /**
+     * Short one line description.
+     */
     @FXML
     private Button createButton;
-
+    /**
+     * Short one line description.
+     */
     @FXML
     private JFXButton log_out;
-
-
+    /**
+     * Short one line description.
+     * @param  event Description text text text.
+     * @return Description text text text.
+     * @throws IOException
+     */
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
         String user= usernameField.getText();
@@ -221,20 +324,33 @@ public class AccountController implements Initializable {
         else
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!", "User can not be found! Try again.");
     }
-
+    /**
+     * Short one line description.
+     * @param  resource Description text text text.
+     * @return Description text text text.
+     * @throws IOException
+     */
     private void LoadScene(String resource) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(resource));
         Scene home = new Scene(parent , 1100, 900);
         Main.stage.setScene(home);
         Main.stage.show();
     }
-
+    /**
+     * Short one line description.
+     * @param  actionEvent Description text text text.
+     * @return Description text text text.
+     */
     @FXML
     protected void handleClickAction(ActionEvent actionEvent) {
         System.out.println("Register a new user!");
         openSecondScene(actionEvent);
     }
-
+    /**
+     * Short one line description.
+     * @param  event Description text text text.
+     * @return Description text text text.
+     */
     @FXML
     protected void handleCreateButtonAction(ActionEvent event) {
         String firstName = first_name.getText();
@@ -256,7 +372,12 @@ public class AccountController implements Initializable {
                     "Please enter a unique username");
         }
     }
-
+    /**
+     * Short one line description.
+     * @param location Description text text text.
+     * @param resources
+     * @return Description text text text.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

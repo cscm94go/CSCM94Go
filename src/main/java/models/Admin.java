@@ -4,7 +4,7 @@ import java.util.Date;
 
 
 /**
- * Short one line description.
+ * This class represents a user with administrator privileges.
  * @author
  * @version
  *
