@@ -1,13 +1,19 @@
 package controllers;
 import application.Main;
+import com.jfoenix.controls.JFXButton;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.stage.Window;
 import models.Record;
 import models.Users;
 import org.json.JSONArray;
@@ -16,58 +22,87 @@ import org.json.JSONObject;
 import javax.jws.soap.SOAPBinding;
 import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Stream;
 
-public class HomeController {
+public class HomeController implements Initializable {
+
+    private static HomeController instance;
+
+    //Constructor for Account Controller
+    public HomeController() {
+        instance = this;
+    }
+
+    //Instance method for Account Controller
+    public static HomeController getInstance()
+    {
+        return instance;
+    }
 
     @FXML
-    Button btn;
+    JFXButton play;
     @FXML
-    Button leaderBoard;
+    JFXButton leaderBoard;
     @FXML
-    Button infoSinceLastLogin;
+    JFXButton my_stats;
+    @FXML
+    JFXButton infoSinceLastLogin;
     @FXML
     VBox history;
 
     @FXML
+    JFXButton logout;
+
+    @FXML
+    Label welcomeUser;
+
+    @FXML
+    ImageView profile_image;
+
+
+    @FXML
+    protected void handleLeaderboardButtonAction(ActionEvent event) throws IOException {
+        LoadScene("/fxml/LeadBoard.fxml");
+    }
+
+    @FXML
+    protected void handleMyStatsButtonAction(ActionEvent event) throws IOException {
+        LoadScene("/fxml/MyProfile.fxml");
+    }
+
+    @FXML
+    protected void handleInfoButtonAction(ActionEvent event) throws IOException {
+        LoadScene("/fxml/infoSinceLastLogin.fxml");
+    }
+
+    @FXML
+    protected void handlePlayButtonAction(ActionEvent event) throws IOException {
+        LoadScene("/fxml/GameBoard.fxml");
+    }
+
+    @FXML
+    protected void handleLogoutButtonAction(ActionEvent event) throws IOException {
+        Window owner = logout.getScene().getWindow();
+        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Logged out",
+                "Logged out successfully!");
+        LoadScene("/fxml/application.fxml");
+    }
+
+    private void LoadScene(String resource) throws IOException {
+        Parent parent = FXMLLoader.load(getClass().getResource(resource));
+        Scene home = new Scene(parent , 1100, 900);
+        Main.stage.setScene(home);
+        Main.stage.show();
+    }
+
+    @FXML
     public void initialize() throws Exception{
-
-        btn.addEventFilter(MouseEvent.MOUSE_CLICKED, a -> {
-            try {
-                Parent p = FXMLLoader.load(getClass().getResource("/fxml/GameBoard.fxml"));
-                Scene board = new Scene(p, 1100, 900);
-                Main.stage.setScene(board);
-                Main.stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        leaderBoard.addEventFilter(MouseEvent.MOUSE_CLICKED, a -> {
-            try {
-                Parent p = FXMLLoader.load(getClass().getResource("/fxml/LeadBoard.fxml"));
-                Scene board = new Scene(p, 1100, 900);
-                Main.stage.setScene(board);
-                Main.stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        infoSinceLastLogin.addEventFilter(MouseEvent.MOUSE_CLICKED, a -> {
-            try {
-                Parent p = FXMLLoader.load(getClass().getResource("/fxml/infoSinceLastLogin.fxml"));
-                Scene board = new Scene(p, 1100, 900);
-                Main.stage.setScene(board);
-                Main.stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-
 
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
@@ -93,6 +128,21 @@ public class HomeController {
             history.getChildren().add(l);
         });
 
+    }
+
+    public void setUsername(String user) {
+        this.welcomeUser.setText("Welcome, " + user);
+    }
+
+    public void setUserimage(String userimage) {
+        String image_path = Users.currentUser.image;
+        profile_image = new ImageView(image_path);
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+//        setUserimage(AccountController.getInstance().userImage());
+        setUsername(AccountController.getInstance().username());
     }
 
 }
