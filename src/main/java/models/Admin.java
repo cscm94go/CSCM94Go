@@ -4,7 +4,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class represents a user with administrator privileges.
@@ -48,28 +51,22 @@ public class Admin extends Users {
     /**
      * This method creates a list of users.
      */
-    public List getUsersList() {
-
-        File folder = new File("/users/");
-
-        File[] listOfFiles = folder.listFiles();
-
-        int counter =0;
-        for (
-                File file : listOfFiles) {
-            if (file.isFile()) {
-
-                String s = file.getName();
-
-                JSONObject object = new JSONObject(s);
-
-                String firstName = (String) object.get("firstName");
-
-                simpleUsersList[counter] = firstName; counter++;
-
-                usersList.put(object);
-            }
+    public static List<Users> getUsersList() {
+        List<Users> us = new ArrayList<>();
+        try {
+            us = Files.list(new File("users").toPath())
+                    .map(p -> {
+                        Users u = new Users();
+                        try {
+                            u = new Users(new String(Files.readAllBytes(p), "UTF-8"));
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        return u;
+                    }).collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return null;
+        return us;
     }
 }

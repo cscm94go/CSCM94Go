@@ -7,7 +7,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /**
@@ -127,31 +132,5 @@ public class Users {
 
     public Object [] simpleUsersList = new Object[100];
 
-    /**
-     * This method creates a list of users.
-     */
-    public List getUsersList() {
 
-        File folder = new File("users/");
-
-        File[] listOfFiles = folder.listFiles();
-
-        int counter =0;
-        for (
-                File file : listOfFiles) {
-            if (file.isFile()) {
-
-                String s = file.getName();
-
-                JSONObject object = new JSONObject(s);
-
-                String username = (String) object.get("username");
-
-                simpleUsersList[counter] = username; counter++;
-
-                usersList.put(object);
-            }
-        }
-        return null;
-    }
 }

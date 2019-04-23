@@ -9,6 +9,7 @@
 
 
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
 <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InfoSinceLastLogin">
     <children>
         <Label alignment="CENTER" prefHeight="95.0" prefWidth="350.0" style="-fx-background-color: #DED9B6; -fx-: 10 10 10 10;" text="Info Since Last login">
@@ -20,14 +21,18 @@
             </FlowPane.margin>
         </Label>
 <!--        <Label>position change:</Label>-->
-        <Label fx:id="positionChange" prefHeight="30.0" style="-fx-background-color: #DED9B6;">
-            <FlowPane.margin>
-                <Insets top="20"/>
-            </FlowPane.margin>
-            <font>
-                <Font size="20.0" />
-            </font>
-        </Label>
+        <FlowPane alignment="CENTER" orientation="HORIZONTAL">
+            <Label fx:id="positionChange" prefHeight="30.0" style="-fx-background-color: #DED9B6;">
+                <FlowPane.margin>
+                    <Insets top="20"/>
+                </FlowPane.margin>
+                <font>
+                    <Font size="20.0" />
+                </font>
+            </Label>
+            <Button onAction="#onBack">back</Button>
+        </FlowPane>
+
         <TableView fx:id="games" prefHeight="200.0" prefWidth="500.0">
             <columns>
 

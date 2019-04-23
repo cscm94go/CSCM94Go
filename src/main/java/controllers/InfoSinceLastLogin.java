@@ -1,33 +1,21 @@
 package controllers;
 
-import application.Main;
+import helpers.HelperMethods;
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
 import models.Record;
 import models.Users;
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import javax.swing.text.TabableView;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class InfoSinceLastLogin {
 
@@ -37,7 +25,6 @@ public class InfoSinceLastLogin {
     Label positionChange;
     @FXML
     TableView newPlayers;
-
 
     @FXML
     public void initialize() throws Exception{
@@ -53,8 +40,6 @@ public class InfoSinceLastLogin {
             column2.setText("Player1");
             column2.setPrefWidth(100);
             column2.setCellValueFactory(cell -> {
-//                Record record = cell.getValue();
-//                String opponent = record.player1.equals(Users.currentUser) ? record.player2 : record.player1;
                 return new ReadOnlyStringWrapper(cell.getValue().player1);
             });
 
@@ -62,8 +47,6 @@ public class InfoSinceLastLogin {
             column3.setText("Playe2");
             column3.setPrefWidth(100);
             column3.setCellValueFactory(cell -> {
-//                Record record = cell.getValue();
-//                String opponent = record.player1.equals(Users.currentUser) ? record.player2 : record.player1;
                 return new ReadOnlyStringWrapper(cell.getValue().player2);
             });
 
@@ -71,8 +54,6 @@ public class InfoSinceLastLogin {
             column4.setText("Winner");
             column4.setPrefWidth(100);
             column4.setCellValueFactory(cell -> {
-//                Record record = cell.getValue();
-//                String opponent = record.player1.equals(Users.currentUser) ? record.player2 : record.player1;
                 return new ReadOnlyStringWrapper(cell.getValue().winner);
             });
 
@@ -118,6 +99,8 @@ public class InfoSinceLastLogin {
             newPlayers.getColumns().add(column4);
         }
 
+
+
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
 
@@ -132,16 +115,10 @@ public class InfoSinceLastLogin {
             return Users.currentUser.lastLogin < r.timeStamp;
         }).forEach(r -> {
             games.getItems().add(r);
-//            Label l = new Label();
-//            l.setText(r.player1 + " played with " + r.player2 + ", and " + r.winner + " won, time: " + new Date(r.timeStamp).toLocaleString());
-//            games.getChildren().add(l);
         });
 
         int newPosition = LeadBoardController.sort(0).indexOf(Users.currentUser.username);
-
         positionChange.setText("position change from " + Users.currentUser.position + " to " + newPosition);
-
-//        positionChange
 
         try {
             Files.list(new File("users").toPath())
@@ -162,8 +139,13 @@ public class InfoSinceLastLogin {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
-
     }
 
+    public void onBack(ActionEvent actionEvent) {
+        try {
+            HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
