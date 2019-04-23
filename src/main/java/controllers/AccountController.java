@@ -6,17 +6,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Hyperlink;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 import models.Users;
 import javafx.fxml.FXML;
 import javafx.stage.Window;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import java.io.File;
 import java.io.IOException;
@@ -81,6 +77,11 @@ public class AccountController implements Initializable {
     public String username() {
         return  usernameField.getText();
     }
+
+    public Image userimage() {
+        Image image = new Image(Users.currentUser.image);
+        return image;
+    }
     /**
      *The user's image.
      */
@@ -120,10 +121,10 @@ public class AccountController implements Initializable {
 
     public Users loggedinUser(){
         try{
-        String user = usernameField.getText();
+            String user = usernameField.getText();
             userSearch(user);
         } catch (Exception e) {
-        System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return Users.currentUser;
     }
@@ -280,6 +281,12 @@ public class AccountController implements Initializable {
     @FXML
     private JFXButton registerButton;
 
+    @FXML
+    private Label welcomeUser;
+
+    @FXML
+    private ImageView profile_image;
+
     /**
      * Short one line description.
      * @param  event Description text text text.
@@ -296,7 +303,7 @@ public class AccountController implements Initializable {
             return;
         }
         else if (login(user) == true) {
-            LoadScene("/fxml/Home.fxml");
+            LoadScene("/fxml/HomeDashboard.fxml");
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Enter!",
                     "Welcome " + usernameField.getText());
         }
@@ -359,6 +366,7 @@ public class AccountController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
 
     }
 

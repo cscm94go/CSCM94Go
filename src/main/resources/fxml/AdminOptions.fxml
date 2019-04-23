@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
     <children>
         <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
             <center>
@@ -19,9 +19,9 @@
         </BorderPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane prefHeight="800.0" prefWidth="326.0" style="-fx-background-color: #DED9B6;">
+            <AnchorPane layoutX="338.0" prefHeight="800.0" prefWidth="326.0" style="-fx-background-color: #DED9B6;">
                <children>
-                  <JFXButton id="leaderboard" fx:id="leaderBoard" buttonType="RAISED" layoutX="2.0" layoutY="431.0" onAction="#handleLeaderboardButtonAction" prefHeight="83.0" prefWidth="346.0" text="Leaderboard">
+                  <JFXButton id="my_stats" fx:id="my_stats" buttonType="RAISED" layoutX="2.0" layoutY="434.0" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="346.0" text="My Stats">
                      <ripplerFill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -34,7 +34,7 @@
                         <Font name="Dubai Medium" size="26.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="my_stats" fx:id="my_stats" buttonType="RAISED" layoutX="2.0" layoutY="348.0" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="346.0" text="My Stats">
+                  <JFXButton id="log_out" fx:id="backtoDashboard" buttonType="RAISED" layoutY="536.0" onAction="#handleDashboardButtonAction" prefHeight="83.0" prefWidth="346.0" text="Back to Dashboard">
                      <ripplerFill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -47,33 +47,7 @@
                         <Font name="Dubai Medium" size="26.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="infoSinceLastLogin" fx:id="infoSinceLastLogin" buttonType="RAISED" layoutX="2.0" layoutY="514.0" onAction="#handleInfoButtonAction" prefHeight="83.0" prefWidth="346.0" text="Info Since Last Login">
-                     <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop color="BLACK" />
-                              <Stop color="WHITE" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </ripplerFill>
-                     <font>
-                        <Font name="Dubai Medium" size="26.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton id="log_out" fx:id="logout" buttonType="RAISED" layoutY="607.0" onAction="#handleLogoutButtonAction" prefHeight="83.0" prefWidth="346.0" text="Log Out">
-                     <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop color="BLACK" />
-                              <Stop color="WHITE" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </ripplerFill>
-                     <font>
-                        <Font name="Dubai Medium" size="26.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton id="play" fx:id="play" buttonType="RAISED" layoutX="2.0" layoutY="265.0" onAction="#handlePlayButtonAction" prefHeight="83.0" prefWidth="346.0" text="Play">
+                  <JFXButton id="makeAdmin" fx:id="makeanAdmin" buttonType="RAISED" layoutX="2.0" layoutY="351.0" onAction="#handleMakeAdminButtonAction" prefHeight="83.0" prefWidth="346.0" text="Make admin">
                      <font>
                         <Font name="Dubai Medium" size="26.0" />
                      </font>
@@ -87,11 +61,19 @@
                      </ripplerFill>
                   </JFXButton>
                   <ImageView id="profile_image" fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="welcomeUser" layoutX="59.0" layoutY="181.0" prefHeight="62.0" prefWidth="200.0" text="Username">
+                  <JFXButton id="admin" fx:id="createUser" buttonType="RAISED" layoutY="268.0" onAction="#handleCreateUserButtonAction" prefHeight="83.0" prefWidth="346.0" text="Create a new user">
                      <font>
-                        <Font name="Dubai Medium" size="23.0" />
+                        <Font name="Dubai Medium" size="26.0" />
                      </font>
-                  </Label>
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
                </children>
             </AnchorPane>
          </children>

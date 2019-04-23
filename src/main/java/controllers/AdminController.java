@@ -3,6 +3,9 @@ import com.jfoenix.controls.JFXButton;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import models.Admin;
 import models.Users;
@@ -24,7 +27,22 @@ import java.io.IOException;
  * @author Hector
  * @version 1.0
  */
-public class AdminController {
+public class AdminController implements Initializable {
+    private static AdminController instance;
+
+    //Constructor for Admin Controller
+    public AdminController() {
+        instance = this;
+    }
+
+    //Instance method for Admin Controller
+    public static AdminController getInstance()
+    {
+        return instance;
+    }
+    public Admin admin;
+
+
     /**
      * This gives administration privileges to a user.
      * @param  user The user to be administrator.
@@ -77,6 +95,10 @@ public class AdminController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private TableView tableView;
+
     @FXML
     private ImageView profile_image;
 
@@ -115,11 +137,14 @@ public class AdminController {
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        TableColumn users = new TableColumn("Username");
+        TableColumn checkAdmin = new TableColumn("Make Admin");
+        users.setPrefWidth(500);
+        checkAdmin.setPrefWidth(200);
 
-
-
-
-
-
+        tableView.getColumns().addAll(users, checkAdmin);
+    }
 
 }

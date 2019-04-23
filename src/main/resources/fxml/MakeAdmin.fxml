@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
+    <children>
+        <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
+            <center>
+                <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" BorderPane.alignment="CENTER">
+                </AnchorPane>
+            </center>
+        </BorderPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <AnchorPane layoutX="338.0" prefHeight="800.0" prefWidth="326.0" style="-fx-background-color: #DED9B6;">
+               <children>
+                  <JFXButton id="my_stats" fx:id="my_stats" buttonType="RAISED" layoutX="2.0" layoutY="434.0" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="346.0" text="My Stats">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="log_out" fx:id="backtoDashboard" buttonType="RAISED" layoutY="536.0" onAction="#handleDashboardButtonAction" prefHeight="83.0" prefWidth="346.0" text="Back to Dashboard">
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                     <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton id="makeAdmin" fx:id="makeanAdmin" buttonType="RAISED" layoutX="2.0" layoutY="351.0" onAction="#handleMakeAdminButtonAction" prefHeight="83.0" prefWidth="346.0" text="Make admin">
+                     <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                     </font>
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
+                  <ImageView id="profile_image" fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+                  <JFXButton id="admin" fx:id="createUser" buttonType="RAISED" layoutY="268.0" onAction="#handleCreateUserButtonAction" prefHeight="83.0" prefWidth="346.0" text="Create a new user">
+                     <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                     </font>
+                     <ripplerFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="BLACK" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </ripplerFill>
+                  </JFXButton>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

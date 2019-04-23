@@ -1,33 +1,24 @@
 package controllers;
 
 import application.Main;
-import javafx.beans.property.ReadOnlyDoubleWrapper;
-import javafx.beans.property.ReadOnlyIntegerWrapper;
-import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import models.Record;
-import models.Users;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * Short one line description.
@@ -68,7 +59,7 @@ public class LeadBoardController {
         back.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_CLICKED, a -> {
 
                 try {
-                    Parent p = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+                    Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
                     Scene board = new Scene(p, 1100, 900);
                     Main.stage.setScene(board);
                     Main.stage.show();

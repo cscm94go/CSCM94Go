@@ -78,7 +78,7 @@ public class GameController {
 
         finishBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             try {
-                Parent p = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+                Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
                 Scene board = new Scene(p, 1100, 900);
                 Main.stage.setScene(board);
                 Main.stage.show();
@@ -116,7 +116,7 @@ public class GameController {
                                 "you surrender");
 
                         try {
-                            Parent p = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+                            Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
                             Scene board = new Scene(p, 1100, 900);
                             Main.stage.setScene(board);
                             Main.stage.show();
@@ -178,7 +178,7 @@ public class GameController {
                                         "you lose");
                             }
                             try {
-                                Parent p = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+                                Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
                                 Scene board = new Scene(p, 1100, 900);
                                 Main.stage.setScene(board);
                                 Main.stage.show();
@@ -236,7 +236,7 @@ public class GameController {
                                                         game.meWin() ? "yo win": "you lose"
                                                 );
 
-                                                Parent p = FXMLLoader.load(getClass().getResource("/fxml/Home.fxml"));
+                                                Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
                                                 Scene board = new Scene(p, 1100, 900);
                                                 Main.stage.setScene(board);
                                                 Main.stage.show();

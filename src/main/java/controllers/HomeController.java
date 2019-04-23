@@ -114,8 +114,6 @@ public class HomeController implements Initializable {
 
     @FXML
     public void initialize() throws Exception{
-        setUserimage();
-        setUsername(AccountController.getInstance().username());
 
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
@@ -144,8 +142,9 @@ public class HomeController implements Initializable {
     }
 
     public void setUsername(String user) {
-        this.welcomeUser.setText("Welcome, " + user);
+        this.welcomeUser.setText("Welcome, " + user + "!");
     }
+
 
     public void setUserimage() {
         profile_image.setImage(new Image(Users.currentUser.image));
@@ -153,7 +152,8 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+//        setUserimage();          <---- get null pointer exception error
+        setUsername(AccountController.getInstance().username());
     }
 
 }
