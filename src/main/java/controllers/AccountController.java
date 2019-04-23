@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -116,6 +117,7 @@ public class AccountController implements Initializable {
             userSearch(user);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
         }
         return true;
     }
@@ -135,7 +137,7 @@ public class AccountController implements Initializable {
      */
     private void userSearch(String user) throws IOException {
         Path thePath = Files.list(new File("users").toPath())
-                .filter(path -> path.toString().equals("users/" + user + ".json")).findFirst().get();
+                .filter(path -> path.equals(Paths.get("users", user + ".json"))).findFirst().get();
         String content = new String(Files.readAllBytes(thePath), "UTF-8");
         Users u = new Users(content);
         Users.currentUser = u;
