@@ -103,10 +103,10 @@ public class AccountController implements Initializable {
 
     public Users loggedinUser(){
         try{
-        String user = usernameField.getText();
+            String user = usernameField.getText();
             userSearch(user);
         } catch (Exception e) {
-        System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
         return Users.currentUser;
     }
