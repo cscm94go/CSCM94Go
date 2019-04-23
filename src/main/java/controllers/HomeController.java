@@ -141,7 +141,6 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        setUserimage();        <---- get null pointer exception error
         setUserimage();
         setUsername(AccountController.getInstance().username());
     }
