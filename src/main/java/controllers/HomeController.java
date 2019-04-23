@@ -136,11 +136,12 @@ public class HomeController implements Initializable {
 
 
     public void setUserimage() {
-        profile_image.setImage(new Image(Users.currentUser.image));
+        profile_image.setImage(new Image(Users.currentUser.image));            // <---- causing null pointer
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+//        setUserimage();        <---- get null pointer exception error
         setUserimage();
         setUsername(AccountController.getInstance().username());
     }

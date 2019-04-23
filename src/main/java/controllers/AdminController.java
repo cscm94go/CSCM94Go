@@ -157,6 +157,7 @@ public class AdminController implements Initializable {
         users.setCellValueFactory(
                 new PropertyValueFactory<Users,JSONObject>("username")
         );
+
         checkAdmin.setCellValueFactory(
                 new PropertyValueFactory<Users,String>("makeAdmin")
         );
