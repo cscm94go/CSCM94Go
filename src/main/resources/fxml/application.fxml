@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controllers.AccountController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AccountController">
    <children>
       <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
          <center>
@@ -28,7 +29,7 @@
                            </font>
                         </Label>
                         <Separator layoutX="66.0" layoutY="103.0" prefWidth="200.0" />
-                        <Hyperlink fx:id="registerLink" layoutX="81.0" layoutY="288.0" onAction="#handleClickAction" prefHeight="29.0" prefWidth="257.0" text="Create a new user ?" />
+                        <JFXButton fx:id="registerButton" layoutX="81.0" layoutY="292.0" onAction="#handleRegisterButton" prefHeight="31.0" prefWidth="171.0" style="-fx-background-color: #F7F7E3;" text="Create a new user ?" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
