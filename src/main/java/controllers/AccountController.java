@@ -1,6 +1,7 @@
 package controllers;
 import application.Main;
 import com.jfoenix.controls.JFXButton;
+import helpers.HelperMethods;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -298,17 +299,17 @@ public class AccountController implements Initializable {
         String user= usernameField.getText();
         login(user);
         if(usernameField.getText().isEmpty()) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!",
+            HelperMethods.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!",
                     "Please enter your name");
             return;
         }
         else if (login(user) == true) {
-            LoadScene("/fxml/HomeDashboard.fxml");
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Enter!",
+            HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
+            HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Enter!",
                     "Welcome " + usernameField.getText());
         }
         else
-            AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "User can not be found! Try again.");
+            HelperMethods.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "User can not be found! Try again.");
     }
     /**
      * Short one line description.
@@ -317,9 +318,9 @@ public class AccountController implements Initializable {
      */
     public void handleRegisterButton(ActionEvent actionEvent) throws IOException {
         Window owner = registerButton.getScene().getWindow();
-        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Create a User!",
+        HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, owner, "Create a User!",
                 "Enter User details");
-        LoadScene("/fxml/registerUser.fxml");
+        HelperMethods.LoadScene("/fxml/registerUser.fxml");
     }
     /**
      * Short one line description.
@@ -327,12 +328,12 @@ public class AccountController implements Initializable {
      * @return Description text text text.
      * @throws IOException
      */
-    private void LoadScene(String resource) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(resource));
-        Scene home = new Scene(parent , 1100, 900);
-        Main.stage.setScene(home);
-        Main.stage.show();
-    }
+//    private void LoadScene(String resource) throws IOException {
+//        Parent parent = FXMLLoader.load(getClass().getResource(resource));
+//        Scene home = new Scene(parent , 1100, 900);
+//        Main.stage.setScene(home);
+//        Main.stage.show();
+//    }
     /**
      * Short one line description.
      * @param  event Description text text text.
@@ -344,17 +345,17 @@ public class AccountController implements Initializable {
         String lastName = last_name.getText();
         String username = user_name.getText();
         registerUser(firstName, lastName, username);
-        LoadScene("/fxml/application.fxml");
+        HelperMethods.LoadScene("/fxml/application.fxml");
         if(firstName.isEmpty() || lastName.isEmpty() || username.isEmpty()) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "Please ensure all fields are right!");
+            HelperMethods.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "Please ensure all fields are right!");
             return;
         }
         else if (registerUser(firstName, lastName, username) == true) {
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Registration Success!",
+            HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Registration Success!",
                     "New user " + user_name.getText() + " has been created.");
         }
         else  {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Registration Failure, user exists!",
+            HelperMethods.showAlert(Alert.AlertType.ERROR, Main.stage, "Registration Failure, user exists!",
                     "Please enter a unique username");
         }
     }
@@ -368,6 +369,10 @@ public class AccountController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
 
+    }
+
+    public void handleBackButtonAction(ActionEvent actionEvent) throws IOException {
+        HelperMethods.LoadScene("/fxml/application.fxml");
     }
 
 

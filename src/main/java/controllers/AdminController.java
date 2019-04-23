@@ -1,23 +1,23 @@
 package controllers;
+import application.Main;
 import com.jfoenix.controls.JFXButton;
-import javafx.beans.property.SimpleObjectProperty;
+import helpers.HelperMethods;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import models.Admin;
 import models.Users;
-import org.javalite.activejdbc.Model;
 
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
-import java.util.Date;
-import java.sql.*;
 import java.util.ResourceBundle;
-import org.json.JSONObject;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -123,8 +123,8 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    void handleDashboardButtonAction(ActionEvent event) {
-
+    void handleDashboardButtonAction(ActionEvent event) throws IOException {
+        HelperMethods.LoadScene("/fxml/AdminDashboard.fxml");
     }
 
     @FXML
@@ -145,6 +145,7 @@ public class AdminController implements Initializable {
         checkAdmin.setPrefWidth(200);
 
         tableView.getColumns().addAll(users, checkAdmin);
+
     }
 
 }

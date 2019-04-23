@@ -19,9 +19,9 @@
         </BorderPane>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <AnchorPane layoutX="338.0" prefHeight="800.0" prefWidth="326.0" style="-fx-background-color: #DED9B6;">
+            <AnchorPane layoutX="189.0" prefHeight="800.0" prefWidth="634.0" style="-fx-background-color: #DED9B6;">
                <children>
-                  <JFXButton id="my_stats" fx:id="my_stats" buttonType="RAISED" layoutX="2.0" layoutY="434.0" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="346.0" text="My Stats">
+                  <JFXButton id="log_out" fx:id="backtoDashboard" buttonType="RAISED" layoutX="-2.0" layoutY="703.0" onAction="#handleDashboardButtonAction" prefHeight="96.0" prefWidth="634.0" text="Back to Dashboard">
                      <ripplerFill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -34,46 +34,7 @@
                         <Font name="Dubai Medium" size="26.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="log_out" fx:id="backtoDashboard" buttonType="RAISED" layoutY="536.0" onAction="#handleDashboardButtonAction" prefHeight="83.0" prefWidth="346.0" text="Back to Dashboard">
-                     <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop color="BLACK" />
-                              <Stop color="WHITE" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </ripplerFill>
-                     <font>
-                        <Font name="Dubai Medium" size="26.0" />
-                     </font>
-                  </JFXButton>
-                  <JFXButton id="makeAdmin" fx:id="makeanAdmin" buttonType="RAISED" layoutX="2.0" layoutY="351.0" onAction="#handleMakeAdminButtonAction" prefHeight="83.0" prefWidth="346.0" text="Make admin">
-                     <font>
-                        <Font name="Dubai Medium" size="26.0" />
-                     </font>
-                     <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop color="BLACK" />
-                              <Stop color="WHITE" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </ripplerFill>
-                  </JFXButton>
-                  <ImageView id="profile_image" fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
-                  <JFXButton id="admin" fx:id="createUser" buttonType="RAISED" layoutY="268.0" onAction="#handleCreateUserButtonAction" prefHeight="83.0" prefWidth="346.0" text="Create a new user">
-                     <font>
-                        <Font name="Dubai Medium" size="26.0" />
-                     </font>
-                     <ripplerFill>
-                        <LinearGradient endX="1.0" endY="1.0">
-                           <stops>
-                              <Stop color="BLACK" />
-                              <Stop color="WHITE" offset="1.0" />
-                           </stops>
-                        </LinearGradient>
-                     </ripplerFill>
-                  </JFXButton>
+                  <TableView fx:id="tableView" layoutY="6.0" prefHeight="689.0" prefWidth="669.0" />
                </children>
             </AnchorPane>
          </children>

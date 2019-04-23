@@ -1,6 +1,7 @@
 package controllers;
 
 import application.Main;
+import helpers.HelperMethods;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -112,7 +113,7 @@ public class GameController {
             alert.showAndWait()
                     .filter(response -> response == ButtonType.YES)
                     .ifPresent(r -> {
-                        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Game over!",
+                        HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Game over!",
                                 "you surrender");
 
                         try {
@@ -171,10 +172,10 @@ public class GameController {
                         @Override
                         public void run() {
                             if (record.winner.equals(Users.currentUser.username)){
-                                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Game over!",
+                                HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Game over!",
                                         "you win");
                             } else {
-                                AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Game over!",
+                                HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Game over!",
                                         "you lose");
                             }
                             try {
@@ -229,7 +230,7 @@ public class GameController {
                                                 writer2.write(playerRecordsJSON.toString());
                                                 writer2.close();
 
-                                                AlertHelper.showAlert(
+                                                HelperMethods.showAlert(
                                                         Alert.AlertType.CONFIRMATION,
                                                         Main.stage,
                                                         "Game over!",

@@ -1,17 +1,11 @@
 package controllers;
-import application.Main;
 import com.jfoenix.controls.JFXButton;
+import helpers.HelperMethods;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
@@ -21,8 +15,6 @@ import models.Users;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import javax.jws.soap.SOAPBinding;
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -30,8 +22,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Stream;
-
 
 
 /**
@@ -79,38 +69,37 @@ public class HomeController implements Initializable {
 
     @FXML
     protected void handleLeaderboardButtonAction(ActionEvent event) throws IOException {
-        LoadScene("/fxml/LeadBoard.fxml");
+        HelperMethods.LoadScene("/fxml/Leaderboard.fxml");
     }
 
     @FXML
     protected void handleMyStatsButtonAction(ActionEvent event) throws IOException {
-        LoadScene("/fxml/MyProfile.fxml");
+        HelperMethods.LoadScene("/fxml/MyProfile.fxml");
     }
 
     @FXML
     protected void handleInfoButtonAction(ActionEvent event) throws IOException {
-        LoadScene("/fxml/infoSinceLastLogin.fxml");
+        HelperMethods.LoadScene("/fxml/infoSinceLastLogin.fxml");
     }
 
     @FXML
     protected void handlePlayButtonAction(ActionEvent event) throws IOException {
-        LoadScene("/fxml/GameBoard.fxml");
+        HelperMethods.LoadScene("/fxml/GameBoard.fxml");
     }
 
     @FXML
     protected void handleLogoutButtonAction(ActionEvent event) throws IOException {
         Window owner = logout.getScene().getWindow();
-        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Logged out",
+        HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, owner, "Logged out",
                 "Logged out successfully!");
-        LoadScene("/fxml/application.fxml");
+        HelperMethods.LoadScene("/fxml/application.fxml");
     }
 
-    private void LoadScene(String resource) throws IOException {
-        Parent parent = FXMLLoader.load(getClass().getResource(resource));
-        Scene home = new Scene(parent , 1100, 900);
-        Main.stage.setScene(home);
-        Main.stage.show();
+    @FXML
+    void handleAdminButtonAction(ActionEvent event) throws IOException {
+        HelperMethods.LoadScene("/fxml/AdminOptions.fxml");
     }
+
 
     @FXML
     public void initialize() throws Exception{

@@ -21,7 +21,7 @@
             <children>
                 <AnchorPane prefHeight="800.0" prefWidth="326.0" style="-fx-background-color: #DED9B6;">
                     <children>
-                        <JFXButton id="leaderboard" buttonType="RAISED" layoutX="2.0" layoutY="431.0" prefHeight="83.0" prefWidth="346.0" text="Leaderboard">
+                        <JFXButton id="leaderboard" fx:id="leaderBoard" buttonType="RAISED" layoutX="2.0" layoutY="431.0" onAction="#handleLeaderboardButtonAction" prefHeight="83.0" prefWidth="346.0" text="Leaderboard">
                             <ripplerFill>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
@@ -34,7 +34,7 @@
                                 <Font name="Dubai Medium" size="26.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton id="my_stats" buttonType="RAISED" layoutX="2.0" layoutY="348.0" prefHeight="83.0" prefWidth="346.0" text="My Stats">
+                        <JFXButton id="my_stats" fx:id="my_stats" buttonType="RAISED" layoutX="2.0" layoutY="348.0" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="346.0" text="My Stats">
                             <ripplerFill>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
@@ -47,7 +47,7 @@
                                 <Font name="Dubai Medium" size="26.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton id="infoSinceLastLogin" fx:id="infoSinceLastLogin" buttonType="RAISED" layoutX="2.0" layoutY="514.0" prefHeight="83.0" prefWidth="346.0" text="Info Since Last Login">
+                        <JFXButton id="infoSinceLastLogin" fx:id="infoSinceLastLogin" buttonType="RAISED" layoutX="2.0" layoutY="514.0" onAction="#handleInfoButtonAction" prefHeight="83.0" prefWidth="346.0" text="Info Since Last Login">
                             <ripplerFill>
                                 <LinearGradient endX="1.0" endY="1.0">
                                     <stops>
@@ -73,7 +73,7 @@
                                 <Font name="Dubai Medium" size="26.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton id="play" buttonType="RAISED" layoutX="2.0" layoutY="265.0" prefHeight="83.0" prefWidth="346.0" text="Play">
+                        <JFXButton id="play" fx:id="play" buttonType="RAISED" layoutX="2.0" layoutY="265.0" onAction="#handlePlayButtonAction" prefHeight="83.0" prefWidth="346.0" text="Play">
                             <font>
                                 <Font name="Dubai Medium" size="26.0" />
                             </font>
