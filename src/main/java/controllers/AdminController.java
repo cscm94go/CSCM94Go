@@ -2,6 +2,8 @@ package controllers;
 import application.Main;
 import com.jfoenix.controls.JFXButton;
 import helpers.HelperMethods;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,13 +12,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import models.Admin;
 import models.Users;
+import org.json.JSONObject;
 
 import java.awt.*;
 import java.io.*;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -146,6 +151,17 @@ public class AdminController implements Initializable {
 
         tableView.getColumns().addAll(users, checkAdmin);
 
+        final ObservableList<String> data = FXCollections.observableArrayList(
+                new Users().usersList.toString());
+
+        users.setCellValueFactory(
+                new PropertyValueFactory<Users,JSONObject>("username")
+        );
+        checkAdmin.setCellValueFactory(
+                new PropertyValueFactory<Users,String>("makeAdmin")
+        );
+
+        tableView.setItems(data);
     }
 
 }

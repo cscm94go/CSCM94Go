@@ -1,13 +1,9 @@
 package models;
 
-import com.mysql.cj.xdevapi.JsonArray;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.sql.Array;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +16,7 @@ public class Admin extends Users {
      * This attribute denotes that the user is administrator.
      */
     private static final boolean isAdminRole = true;
+
 
     public JSONArray usersList = new JSONArray();
 
@@ -35,6 +32,10 @@ public class Admin extends Users {
         super(user.toJson());
     }
 
+    public Admin() {
+
+    }
+
     /**
      * This method checks the admintrator's privileges.
      *
@@ -47,7 +48,7 @@ public class Admin extends Users {
     /**
      * This method creates a list of users.
      */
-    public void getUsersList() {
+    public List getUsersList() {
 
         File folder = new File("/users/");
 
@@ -69,5 +70,6 @@ public class Admin extends Users {
                 usersList.put(object);
             }
         }
+        return null;
     }
 }

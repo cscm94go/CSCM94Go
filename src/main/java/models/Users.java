@@ -1,9 +1,13 @@
 package models;
 
+import javafx.scene.control.CheckBox;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -46,6 +50,11 @@ public class Users {
      */
     public long position;
 
+    private CheckBox makeAdmin;
+
+    public Users() {
+
+    }
 
     /**
      * This gives the information of the user.
@@ -81,7 +90,24 @@ public class Users {
     /**
      * Default Users class constructor.
      */
-    public Users() {}
+    public Users(String firstname, String lastname, String username, String image, long lastLogin, long registerTime, long position) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.username = username;
+        this.image = image;
+        this.lastLogin = lastLogin;
+        this.registerTime = registerTime;
+        this.position = position;
+        this.makeAdmin = new CheckBox();
+    }
+
+    public CheckBox getMakeAdmin() {
+        return makeAdmin;
+    }
+
+    public void setMakeAdmin(CheckBox makeAdmin) {
+        this.makeAdmin = makeAdmin;
+    }
 
     /**
      * Save user to local file
@@ -95,5 +121,37 @@ public class Users {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public JSONArray usersList = new JSONArray();
+
+    public Object [] simpleUsersList = new Object[100];
+
+    /**
+     * This method creates a list of users.
+     */
+    public List getUsersList() {
+
+        File folder = new File("users/");
+
+        File[] listOfFiles = folder.listFiles();
+
+        int counter =0;
+        for (
+                File file : listOfFiles) {
+            if (file.isFile()) {
+
+                String s = file.getName();
+
+                JSONObject object = new JSONObject(s);
+
+                String username = (String) object.get("username");
+
+                simpleUsersList[counter] = username; counter++;
+
+                usersList.put(object);
+            }
+        }
+        return null;
     }
 }
