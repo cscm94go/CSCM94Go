@@ -18,8 +18,9 @@ public class Admin extends Users {
     /**
      * This attribute denotes that the user is administrator.
      */
-    private static final boolean isAdminRole = true;
+    private final boolean isAdminRole = true;
 
+    private int adminNumber;
 
     public JSONArray usersList = new JSONArray();
 
@@ -47,6 +48,20 @@ public class Admin extends Users {
      */
     public boolean Role(Admin admin) {
         return admin.isAdminRole;
+    }
+    /**
+     * This method set the admintrator's number.
+     * @param adminNumber The administrator number.
+     */
+    public void setAdminNumber(int adminNumber) {
+        this.adminNumber = adminNumber;
+    }
+    /**
+     * This method gets the admintrator's number.
+     * @return the administrator number.
+     */
+    public int getAdminNumber(){
+        return adminNumber;
     }
     /**
      * This method creates a list of users.
