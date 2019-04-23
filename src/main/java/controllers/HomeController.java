@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Button;
@@ -35,7 +36,7 @@ import java.util.stream.Stream;
 
 /**
  * Short one line description.
- * @author Zak
+ * @author Zakariye Ali
  * @version
  *
  */
@@ -113,6 +114,8 @@ public class HomeController implements Initializable {
 
     @FXML
     public void initialize() throws Exception{
+        setUserimage();
+        setUsername(AccountController.getInstance().username());
 
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
@@ -150,8 +153,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setUserimage();
-        setUsername(AccountController.getInstance().username());
+
     }
 
 }

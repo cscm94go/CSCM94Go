@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -87,37 +88,8 @@ public class AccountController implements Initializable {
 
     String username_exist="false";
     Boolean login_success =false;
-    /**
-     * Short one line description.
-     * @param  scene Description text text text.
-     */
-    public void setFirstScene(Scene scene) {
-        firstScene = scene;
-    }
-    /**
-     * Short one line description.
-     * @param  scene Description text text text.
-     */
-    public void setSecondScene(Scene scene) {
-        secondScene = scene;
-    }
-    /**
-     * Short one line description.
-     * @param actionEvent Description text text text.
-     */
-    public void openFirstScene(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(firstScene);
-    }
-    /**
-     * Short one line description.
-     * @param  actionEvent Description text text text.
-     */
-    public void openSecondScene(ActionEvent actionEvent) {
-        Stage primaryStage = (Stage) ((Node)actionEvent.getSource()).getScene().getWindow();
-        primaryStage.setScene(secondScene);
 
-    }
+
     /**
      * Short one line description.
      */
@@ -268,6 +240,7 @@ public class AccountController implements Initializable {
         String imagePath = "images/avataaars9.png";
         setUserImage(imagePath);
     }
+
     /**
      * Short one line description.
      */
@@ -303,6 +276,10 @@ public class AccountController implements Initializable {
      */
     @FXML
     private JFXButton log_out;
+
+    @FXML
+    private JFXButton registerButton;
+
     /**
      * Short one line description.
      * @param  event Description text text text.
@@ -319,13 +296,23 @@ public class AccountController implements Initializable {
             return;
         }
         else if (login(user) == true) {
-
             LoadScene("/fxml/Home.fxml");
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Enter!",
                     "Welcome " + usernameField.getText());
         }
         else
             AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "User can not be found! Try again.");
+    }
+    /**
+     * Short one line description.
+     * @param  actionEvent Description text text text.
+     * @return Description text text text.
+     */
+    public void handleRegisterButton(ActionEvent actionEvent) throws IOException {
+        Window owner = registerButton.getScene().getWindow();
+        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Create a User!",
+                "Enter User details");
+        LoadScene("/fxml/registerUser.fxml");
     }
     /**
      * Short one line description.
@@ -341,37 +328,26 @@ public class AccountController implements Initializable {
     }
     /**
      * Short one line description.
-     * @param  actionEvent Description text text text.
-     * @return Description text text text.
-     */
-    @FXML
-    protected void handleClickAction(ActionEvent actionEvent) {
-        System.out.println("Register a new user!");
-        openSecondScene(actionEvent);
-    }
-    /**
-     * Short one line description.
      * @param  event Description text text text.
      * @return Description text text text.
      */
     @FXML
-    protected void handleCreateButtonAction(ActionEvent event) {
+    protected void handleCreateButtonAction(ActionEvent event) throws IOException {
         String firstName = first_name.getText();
         String lastName = last_name.getText();
         String username = user_name.getText();
         registerUser(firstName, lastName, username);
-        Window owner = createButton.getScene().getWindow();
-        openFirstScene(event);
+        LoadScene("/fxml/application.fxml");
         if(firstName.isEmpty() || lastName.isEmpty() || username.isEmpty()) {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Form Error!", "Please ensure all fields are right!");
+            AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "Please ensure all fields are right!");
             return;
         }
         else if (registerUser(firstName, lastName, username) == true) {
-            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Registration Success!",
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Registration Success!",
                     "New user " + user_name.getText() + " has been created.");
         }
         else  {
-            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Registration Failure, user exists!",
+            AlertHelper.showAlert(Alert.AlertType.ERROR, Main.stage, "Registration Failure, user exists!",
                     "Please enter a unique username");
         }
     }
@@ -385,6 +361,7 @@ public class AccountController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
+
 
 //
 //    protected void handleSelectImageAction(ActionEvent actionEvent) {
