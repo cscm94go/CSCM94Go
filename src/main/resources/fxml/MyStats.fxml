@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -42,18 +43,19 @@
                </font>
             </JFXButton>
             <Separator layoutX="481.0" layoutY="2.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="0.0" />
-            <Separator layoutX="6.0" layoutY="105.0" prefHeight="0.0" prefWidth="1014.0" style="-fx-background-color: #000000;" />
+            <Separator layoutX="-3.0" layoutY="103.0" prefHeight="5.0" prefWidth="1045.0" style="-fx-background-color: #000000;" />
             <TableView fx:id="myGames" layoutX="487.0" layoutY="108.0" prefHeight="697.0" prefWidth="552.0" />
-            <Label fx:id="winPercentage" layoutX="163.0" layoutY="332.0" text="Label">
+            <Label fx:id="winPercentage" layoutX="163.0" layoutY="315.0">
                <font>
                   <Font name="Dubai Medium" size="24.0" />
                </font>
             </Label>
-            <Text layoutX="130.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Win Percentage" wrappingWidth="200.0">
+            <Text layoutX="130.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Win Percentage" wrappingWidth="200.0">
                <font>
                   <Font name="Dubai Medium" size="22.0" />
                </font>
             </Text>
+            <PieChart layoutX="45.0" layoutY="351.0" prefHeight="290.0" prefWidth="400.0" />
                 </children>
             </AnchorPane>
     </children>

@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -98,6 +99,9 @@ public class MyStatsController implements Initializable {
     @FXML
     private Label winPercentage;
 
+    @FXML
+    private PieChart pieChart;
+
 
 
     @FXML
@@ -113,6 +117,15 @@ public class MyStatsController implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         setUserimage();
+        ObservableList<PieChart.Data> pieChartData
+                = FXCollections.observableArrayList(
+                new PieChart.Data("Wins", 1),
+                new PieChart.Data("Losses",1),
+                new PieChart.Data("Played",2));
+
+
+        pieChart.setData(pieChartData);
+        pieChart.setStartAngle(0);
     }
 
 
