@@ -11,4 +11,5 @@ how to run two applications simultaneously:
 2. Add multirun running config.
 3. Click run button twice.
 
-If can't run, pls contact (John 690657@swansea.ac.uk).
+If can't run, pls contact (John 690657@swansea.ac.uk)
+I can use Chrome Remote Desktop to help you make it work.
