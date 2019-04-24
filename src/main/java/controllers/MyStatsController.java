@@ -33,6 +33,7 @@ import models.Admin;
 import models.Users;
 import org.json.JSONObject;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.Date;
@@ -114,17 +115,15 @@ public class MyStatsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         setUserimage();
+
+        int [] pieData = Users.getCurrentUserWinsAndLosesCount();
+
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
-                new PieChart.Data("Losses", 1),
-                new PieChart.Data("Wins", 1));
-
+                new PieChart.Data("Losses",pieData[1]),
+                new PieChart.Data("Wins",pieData[0]));
 
         pieChart.setData(pieChartData);
         pieChart.setStartAngle(0);
-
-
-
     }
-
 }
