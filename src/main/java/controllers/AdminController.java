@@ -110,7 +110,7 @@ public class AdminController implements Initializable {
         if(file.delete()){
             System.out.println(user.username + " deleted");
         }else System.out.println(user.username +" doesn't exist");
-    };
+    }
     /**
      * Save the administrator users to local file.
      */
@@ -170,7 +170,6 @@ public class AdminController implements Initializable {
 
     @FXML
     private TextField first_name;
-
 
 
     @FXML

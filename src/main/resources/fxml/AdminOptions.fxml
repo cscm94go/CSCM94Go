@@ -34,7 +34,8 @@
                         <Font name="Dubai Medium" size="26.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton id="makeAdmin" fx:id="makeanAdmin" buttonType="RAISED" layoutX="2.0" layoutY="351.0" onAction="#handleMakeAdminButtonAction" prefHeight="83.0" prefWidth="346.0" text="Make admin">
+                  <ImageView id="profile_image" fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+                  <JFXButton id="admin" fx:id="createUser" buttonType="RAISED" layoutY="268.0" onAction="#handleCreateUserButtonAction" prefHeight="83.0" prefWidth="346.0" text="Create a new user">
                      <font>
                         <Font name="Dubai Medium" size="26.0" />
                      </font>
@@ -47,8 +48,7 @@
                         </LinearGradient>
                      </ripplerFill>
                   </JFXButton>
-                  <ImageView id="profile_image" fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
-                  <JFXButton id="admin" fx:id="createUser" buttonType="RAISED" layoutY="268.0" onAction="#handleCreateUserButtonAction" prefHeight="83.0" prefWidth="346.0" text="Create a new user">
+                  <JFXButton id="makeAdmin" fx:id="makeanAdmin" buttonType="RAISED" layoutX="4.0" layoutY="351.0" onAction="#handleMakeAdminButtonAction" prefHeight="83.0" prefWidth="346.0" text="Assign an Admin">
                      <font>
                         <Font name="Dubai Medium" size="26.0" />
                      </font>
