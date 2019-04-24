@@ -57,24 +57,20 @@ import java.util.stream.Collectors;
 public class MyStatsController implements Initializable {
     /**
      * This
-     *
      */
     private static MyStatsController instance;
+
     /**
      * This
-     *
      */
     public MyStatsController() {
         instance = this;
     }
 
 
-    public static MyStatsController getInstance()
-    {
+    public static MyStatsController getInstance() {
         return instance;
     }
-
-
 
 
     @FXML
@@ -103,7 +99,6 @@ public class MyStatsController implements Initializable {
     private PieChart pieChart;
 
 
-
     @FXML
     void handleDashboardButtonAction(ActionEvent event) throws IOException {
         HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
@@ -114,19 +109,24 @@ public class MyStatsController implements Initializable {
     }
 
 
-    @FXML
-    public void initialize(URL location, ResourceBundle resources) {
+    public void setPieChart() {
         setUserimage();
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
                 new PieChart.Data("Wins", 1),
-                new PieChart.Data("Losses",1),
-                new PieChart.Data("Played",2));
+                new PieChart.Data("Losses", 1),
+                new PieChart.Data("Played", 2));
 
 
         pieChart.setData(pieChartData);
         pieChart.setStartAngle(0);
     }
 
+
+    @FXML
+    public void initialize(URL location, ResourceBundle resources) {
+
+
+    }
 
 }
