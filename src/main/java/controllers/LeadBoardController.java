@@ -16,6 +16,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -128,7 +129,10 @@ public class LeadBoardController {
         TableColumn<WinPercentage, String> column2 = new TableColumn<>("Win percentage");
         column2.setPrefWidth(150);
         column2.setCellValueFactory(cell -> {
-            return new ReadOnlyStringWrapper(cell.getValue().percentage.toString());
+            Double a = cell.getValue().percentage * 100;
+            DecimalFormat df = new DecimalFormat("0.0");
+
+            return new ReadOnlyStringWrapper(df.format(a) + "%");
         });
         TableColumn<WinPercentage, String> column3 = new TableColumn<>("Name");
         column3.setPrefWidth(250);

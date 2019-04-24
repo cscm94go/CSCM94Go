@@ -120,7 +120,7 @@ public class InfoSinceLastLogin {
             games.getItems().add(r);
         });
 
-        int newPosition = LeadBoardController.sort(0).indexOf(Users.currentUser.username);
+        int newPosition = LeadBoardController.sort(0).indexOf(Users.currentUser.username) + 1;
         positionChange.setText("Your position has changed from " + Users.currentUser.position + " to " + newPosition);
 
         try {

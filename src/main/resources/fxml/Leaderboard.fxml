@@ -11,7 +11,7 @@
 
 <FlowPane alignment="CENTER" columnHalignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LeadBoardController">
     <children>
-        <Label alignment="CENTER" prefHeight="95.0" prefWidth="228.0" style="-fx-background-color: #DED9B6; -fx-: 10 10 10 10;" text="Leaderboard">
+        <Label alignment="CENTER" prefHeight="75.0" prefWidth="228.0" style="-fx-background-color: #DED9B6; -fx-: 10 10 10 10;" text="Leaderboard">
             <font>
                 <Font size="27.0" />
             </font>
@@ -21,9 +21,23 @@
         </Label>
         <HBox alignment="center" style="-fx-padding: 0 20 0 20">
            <children>
-               <Button fx:id="btn1">by win percentage</Button>
-               <Button fx:id="btn2">by overall winnings</Button>
-               <Button fx:id="back">back</Button>
+               <Button prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #F7F7E3;" fx:id="btn1">
+                   by win percentage
+                   <HBox.margin>
+                   <Insets>
+                       <right>10</right>
+                   </Insets>
+               </HBox.margin>
+               </Button>
+               <Button prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #F7F7E3;" fx:id="btn2">
+                   by overall winnings
+                   <HBox.margin>
+                       <Insets>
+                           <right>10</right>
+                       </Insets>
+                   </HBox.margin>
+               </Button>
+               <Button prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #F7F7E3;" fx:id="back">back</Button>
            </children>
                         <FlowPane.margin>
                             <Insets bottom="20.0" top="20.0" />
