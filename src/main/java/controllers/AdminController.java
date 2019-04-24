@@ -87,12 +87,12 @@ public class AdminController implements Initializable {
      * @param fname The user first name.
      * @param lname The user last name.
      */
-    public boolean newUser(String name,String fname, String lname) throws IOException {
+    public boolean newUser(String fname,String lname, String userName) throws IOException {
         long count = Files.list(new File("users").toPath()).count();
         Users user = new Users();
-        user.username = name;
         user.firstname = fname;
         user.lastname = lname;
+        user.username = userName;
         user.image = selectedImagePath;
         user.lastLogin = 0;
         user.registerTime = new Date().getTime();
