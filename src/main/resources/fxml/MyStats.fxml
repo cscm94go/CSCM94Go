@@ -52,7 +52,7 @@
                   <Font name="Dubai Medium" size="22.0" />
                </font>
             </Text>
-            <PieChart layoutX="45.0" layoutY="351.0" prefHeight="290.0" prefWidth="400.0" />
+            <PieChart fx:id="pieChart" layoutX="45.0" layoutY="351.0" prefHeight="290.0" prefWidth="400.0" />
                 </children>
             </AnchorPane>
     </children>
