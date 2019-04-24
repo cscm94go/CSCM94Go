@@ -2,10 +2,8 @@ package controllers;
 import application.Main;
 import com.jfoenix.controls.JFXButton;
 import helpers.HelperMethods;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -322,7 +320,7 @@ public class AccountController implements Initializable {
         Window owner = registerButton.getScene().getWindow();
         HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, owner, "Create a User!",
                 "Enter User details");
-        HelperMethods.LoadScene("/fxml/registerUser.fxml");
+        HelperMethods.LoadScene("/fxml/RegisterUser.fxml");
     }
     /**
      * Short one line description.
@@ -346,6 +344,7 @@ public class AccountController implements Initializable {
         String firstName = first_name.getText();
         String lastName = last_name.getText();
         String username = user_name.getText();
+
         registerUser(firstName, lastName, username);
         HelperMethods.LoadScene("/fxml/application.fxml");
         if(firstName.isEmpty() || lastName.isEmpty() || username.isEmpty()) {

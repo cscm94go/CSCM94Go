@@ -6,22 +6,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import models.Admin;
 import models.Users;
 import org.json.JSONObject;
 
-import java.awt.*;
 import java.io.*;
 import java.net.URL;
-import java.util.List;
+import java.nio.file.Files;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -65,16 +63,18 @@ public class AdminController implements Initializable {
      * @param fname The user first name.
      * @param lname The user last name.
      */
-    public void newUser(String name,String fname, String lname){
+    public boolean newUser(String name,String fname, String lname) throws IOException {
+        long count = Files.list(new File("users").toPath()).count();
         Users user = new Users();
         user.username = name;
         user.firstname = fname;
         user.lastname = lname;
         user.image = "";
         user.lastLogin = 0;
-        user.registerTime = 0;
-        user.position = 0;
+        user.registerTime = new Date().getTime();
+        user.position = count + 1;
         user.store();
+        return true;
     }
     /**
      * This deletes a user.
@@ -101,17 +101,13 @@ public class AdminController implements Initializable {
         }
     }
 
+    private void setUserImage(String imagePath) {
+        Image image = new Image(imagePath);
+        userImage.setImage(image);
+    }
+
     @FXML
     private TableView tableView;
-
-    @FXML
-    private ImageView profile_image;
-
-    @FXML
-    private JFXButton my_stats;
-
-    @FXML
-    private Label welcomeUser;
 
     @FXML
     private JFXButton createUser;
@@ -122,10 +118,24 @@ public class AdminController implements Initializable {
     @FXML
     private JFXButton makeAdmin;
 
-    @FXML
-    void handleMyStatsButtonAction(ActionEvent event) {
 
-    }
+    @FXML
+    private ImageView userImage;
+
+    @FXML
+    private TextField user_name;
+
+    @FXML
+    private TextField last_name;
+
+    @FXML
+    private Button createButton;
+
+
+    @FXML
+    private TextField first_name;
+
+
 
     @FXML
     void handleDashboardButtonAction(ActionEvent event) throws IOException {
@@ -133,14 +143,112 @@ public class AdminController implements Initializable {
     }
 
     @FXML
-    void handleMakeAdminButtonAction(ActionEvent event) {
-
+    void handleMakeAdminButtonAction(ActionEvent event) throws IOException {
+        HelperMethods.LoadScene("/fxml/MakeAdmin.fxml");
     }
 
     @FXML
-    void handleCreateUserButtonAction(ActionEvent event) {
+    void handleCreateUserButtonAction(ActionEvent event) throws IOException {
+        HelperMethods.LoadScene("/fxml/RegisterUser.fxml");
+    }
+
+    @FXML
+    void handleCreateButtonAction(ActionEvent event) throws IOException {
+        String firstName = first_name.getText();
+        String lastName = last_name.getText();
+        String username = user_name.getText();
+
+        newUser(firstName, lastName, username);
+//        HelperMethods.LoadScene("/fxml/application.fxml");
+        if(firstName.isEmpty() || lastName.isEmpty() || username.isEmpty()) {
+            HelperMethods.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "Please ensure all fields are right!");
+            return;
+        }
+        else if (newUser(firstName, lastName, username) == true) {
+            HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Registration Success!",
+                    "New user " + user_name.getText() + " has been created.");
+        }
+        else  {
+            HelperMethods.showAlert(Alert.AlertType.ERROR, Main.stage, "Registration Failure, user exists!",
+                    "Please enter a unique username");
+        }
 
     }
+
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
+    @FXML protected void avatar1Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars.png";
+        setUserImage(imagePath);
+    }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
+    @FXML protected void avatar2Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars2.png";
+        setUserImage(imagePath);
+    }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
+    @FXML protected void avatar3Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars3.png";
+        setUserImage(imagePath);
+    }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
+    @FXML protected void avatar4Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars4.png";
+        setUserImage(imagePath);
+    }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
+    @FXML protected void avatar5Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars5.png";
+        setUserImage(imagePath);
+    }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
+    @FXML protected void avatar6Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars6.png";
+        setUserImage(imagePath);
+    }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
+    @FXML protected void avatar7Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars7.png";
+        setUserImage(imagePath);
+    }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
+    @FXML protected void avatar8Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars8.png";
+        setUserImage(imagePath);
+    }
+    /**
+     * This sets the right image for the avatar clicked.
+     * @param  event The mouse click to choose the avatar.
+     */
+    @FXML protected void avatar9Clicked(MouseEvent event) {
+        String imagePath = "images/avataaars9.png";
+        setUserImage(imagePath);
+    }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -164,5 +272,9 @@ public class AdminController implements Initializable {
 
         tableView.setItems(data);
     }
+
+
+
+
 
 }

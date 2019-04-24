@@ -80,6 +80,13 @@
             <version>11-ea+25</version>
             <type>pom</type>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.json/json -->
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180813</version>
+        </dependency>
+
 
 
     </dependencies>
