@@ -22,8 +22,14 @@
 
         <Canvas fx:id="canvas" width="550" height="550" style="-fx-background-color: #DED9B6;"/>
         <HBox alignment="CENTER">
+            <Label fx:id="indicator" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: red;"/>
             <ImageView fitHeight="50.0" fitWidth="75.0" fx:id="myImg" preserveRatio="true">
                 <Image fx:id="myImgSource" url="@../images/avataaars.png" />
+                <HBox.margin>
+                <Insets>
+                    <left>10</left>
+                </Insets>
+            </HBox.margin>
             </ImageView>
             <Label fx:id="userNameLabel" textFill="white"/>
         </HBox>
@@ -43,9 +49,5 @@
                 </Insets>
             </VBox.margin>
         </HBox>
-        <Label>whoseTurn</Label>
-        <Label fx:id="whoseTurn"/>
-
     </VBox>
-
 </FlowPane>

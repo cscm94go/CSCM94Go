@@ -46,8 +46,7 @@ public class GameController {
     @FXML Button surrenderBtn;
     @FXML ImageView myImg;
     @FXML ImageView opponentImg;
-
-    
+    @FXML Label indicator;
 
     GraphicsContext gc;
     float width = 500;
@@ -388,7 +387,11 @@ public class GameController {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                whoseTurn.setText(game.isWhite ? "White" : "Black");
+                if (game.meTurn() && game.gameStart) {
+                    indicator.setStyle("-fx-background-color: green");
+                } else {
+                    indicator.setStyle("-fx-background-color: red");
+                }
                 opponentUserNameLabel.setText(game.isWhitePlayer ? game.blackPlayerUserName: game.whitePlayerUserName);
                 userNameLabel.setText(game.isWhitePlayer ? game.whitePlayerUserName : game.blackPlayerUserName);
 
