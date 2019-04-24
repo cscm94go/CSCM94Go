@@ -119,7 +119,7 @@ public class HomeController implements Initializable {
 
 
     public void setUserimage() {
-        profile_image.setImage(new Image(Users.currentUser.image));            // <---- causing null pointer
+        profile_image.setImage(new Image(Users.currentUser.image));
     }
 
     @FXML
