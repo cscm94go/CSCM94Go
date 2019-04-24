@@ -70,8 +70,37 @@ public class GameController {
             boolean canPut = canPutPiece(game.whitePieces, game.blackPieces, piece, game.isWhite);
             if (!canPut) return;
 
-            if (game.isWhite) game.whitePieces.add(piece);
-            else game.blackPieces.add(piece);
+
+            if (game.isWhite) {
+                game.whitePieces.add(piece);
+
+                List<Piece> is = new ArrayList<>();
+                for (int i = 0; i < game.blackPieces.size(); i++) {
+                    Piece p = game.blackPieces.get(i);
+                    if (!hasQi(p, p, getMatrix(), false)) {
+                        is.add(p);
+                    }
+                }
+                for (int i = 0; i < is.size(); i++) {
+                    game.blackPieces.remove(is.get(i));
+                }
+            } else {
+                game.blackPieces.add(piece);
+
+                List<Piece> is = new ArrayList<>();
+                for (int i = 0; i < game.whitePieces.size(); i++) {
+                    Piece p = game.whitePieces.get(i);
+                    if (!hasQi(p, p, getMatrix(), true)) {
+                        is.add(p);
+                    }
+                }
+                for (int i = 0; i < is.size(); i++) {
+                    game.whitePieces.remove(is.get(i));
+                }
+            }
+
+
+
             game.isWhite = !game.isWhite;
             drawBroad();
             updateFile();
@@ -128,7 +157,7 @@ public class GameController {
                             Record record = new Record(
                                     game.blackPlayerUserName,
                                     game.whitePlayerUserName,
-                                    game.isWhite ? game.blackPlayerUserName: game.whitePlayerUserName
+                                    game.isWhitePlayer ? game.blackPlayerUserName: game.whitePlayerUserName
                             );
                             json.put("gameRecord", record.toJSON());
                             BufferedWriter writer = new BufferedWriter(new FileWriter("game.json"));
@@ -323,6 +352,7 @@ public class GameController {
         List<Piece> selfPieces = isWhite ? whitePieces: blackPieces;
         List<Piece> opponentPieces = isWhite ? blackPieces: whitePieces;
         if (selfPieces.contains(newPiece) || opponentPieces.contains(newPiece)) return false;
+        if (!hasQi(newPiece, newPiece, getMatrix(), isWhite) ) return false;
         return true;
     }
     private List <Piece>[] adjustPiece(List<Piece> whitePieces, List<Piece> blackPieces, Piece newPiece, boolean isWhite){
@@ -369,6 +399,45 @@ public class GameController {
                 }
             }
         });
+    }
+
+    private boolean hasQi(Piece piece, Piece pre, int[][] ints, boolean isWhite) {
+        int x = piece.x;
+        int y = piece.y;
+        Piece piece1 = new Piece(x+1, y);
+        Piece piece2 = new Piece(x-1, y);
+        Piece piece3 = new Piece(x, y+1);
+        Piece piece4 = new Piece(x, y-1);
+        Piece pieces[] = new Piece[]{piece1, piece2, piece3, piece4};
+        boolean res = false;
+        for (int i = 0; i < pieces.length; i++) {
+            Piece thePiece = pieces[i];
+            if (thePiece.equals(pre)) continue;
+            if (thePiece.x < 0 || thePiece.x > 18 || thePiece.y < 0 || thePiece.y > 18) continue;
+            int value = ints[thePiece.x][thePiece.y];
+            if (value == 0) {
+                res = true;
+            } else if (!isWhite && value == -1) {
+                if (hasQi(thePiece, piece, ints, isWhite)) res = true;
+            } else if (isWhite && value == 1) {
+                if (hasQi(thePiece, piece, ints, isWhite)) res = true;
+            }
+        }
+        return res;
+    }
+
+    private int[][] getMatrix() {
+        int[][] ints = new int[19][19];
+
+        for (int i = 0; i < game.blackPieces.size(); i++) {
+            Piece p = game.blackPieces.get(i);
+            ints[p.x][p.y] = -1;
+        }
+        for (int i = 0; i < game.whitePieces.size(); i++) {
+            Piece p = game.whitePieces.get(i);
+            ints[p.x][p.y] = 1;
+        }
+        return ints;
     }
 }
 
