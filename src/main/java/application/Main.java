@@ -19,7 +19,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
-        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("/fxml/application.fxml"));
+        FXMLLoader firstPaneLoader = new FXMLLoader(getClass().getResource("/fxml/MakeAdmin.fxml"));
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane, 1100, 900);
 

@@ -1,13 +1,29 @@
 package controllers;
 import application.Main;
 import com.jfoenix.controls.JFXButton;
+import com.sun.org.apache.xml.internal.utils.res.StringArrayWrapper;
 import helpers.HelperMethods;
+import javafx.beans.property.ReadOnlyBooleanWrapper;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.CheckBoxTableCell;
+
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,15 +31,23 @@ import javafx.scene.input.MouseEvent;
 import models.Admin;
 import models.Users;
 import org.json.JSONObject;
-
 import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
 import java.util.Date;
+import java.awt.*;
+import java.io.*;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.stream.Collectors;
+
 /**
  * This class can create and delete users
  * or make administrator an existing user.
@@ -261,25 +285,71 @@ public class AdminController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TableColumn users = new TableColumn("Username");
-        TableColumn checkAdmin = new TableColumn("Make Admin");
-        users.setPrefWidth(500);
-        checkAdmin.setPrefWidth(200);
+        setTable();
+    }
 
-        tableView.getColumns().addAll(users, checkAdmin);
+    private void setTable(){
+        tableView.getItems().remove(0, tableView.getItems().size());
+        tableView.getColumns().remove(0, tableView.getColumns().size());
+        final List<Users> us = Admin.getUsersList();
 
-        final ObservableList<String> data = FXCollections.observableArrayList(
-                new Users().usersList.toString());
+        TableColumn<Object, String> column1 = new TableColumn<Object, String>();
+        column1.setCellValueFactory(cell->{
+            Users u = (Users) cell.getValue();
+            return new ReadOnlyStringWrapper (u.username);
+        });
 
-        users.setCellValueFactory(
-                new PropertyValueFactory<Users,JSONObject>("username")
-        );
+        TableColumn<Object, Boolean> column2 = new TableColumn<Object, Boolean>();
+        column2.setCellValueFactory(cell -> {
+            boolean isAdmin = cell.getValue() instanceof Admin;
+            return new ReadOnlyBooleanWrapper(isAdmin);
+        });
 
-        checkAdmin.setCellValueFactory(
-                new PropertyValueFactory<Users,String>("makeAdmin")
-        );
+        column2.setCellFactory(p -> {
+            CheckBoxTableCell cell = (CheckBoxTableCell) CheckBoxTableCell.forTableColumn(column2).call(p);
 
-        tableView.setItems(data);
+
+            cell.setOnMouseClicked(e -> {
+
+                try {
+                    int i = cell.getIndex();
+                    String u = us.get(i).username;
+                    Path path = Paths.get("users", u + ".json");
+                    String jsonString = new String(Files.readAllBytes(path));
+                    JSONObject json = new JSONObject(jsonString);
+                    if (json.has("isAdmin")) {
+                        json.remove("isAdmin");
+                        json.remove("adminNumber");
+                    } else {
+                        json.put("isAdmin", true);
+                        int max = 0;
+                        for (int j = 0; j < us.size(); j++) {
+                            if (us.get(j) instanceof Admin) {
+                                Admin a = (Admin) us.get(j);
+                                if (a.getAdminNumber() > max) max = a.getAdminNumber();
+                            }
+                        }
+                        json.put("adminNumber", max);
+                    }
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("users/" + u + ".json"));
+                    writer.write(json.toString());
+                    writer.close();
+                    setTable();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+            return cell;
+        });
+
+        tableView.getColumns().add(column1);
+        tableView.getColumns().add(column2);
+
+
+        for (int i = 0; i < us.size(); i++) {
+            Users u = us.get(i);
+            tableView.getItems().add(u);
+        }
     }
 
 

@@ -1,8 +1,10 @@
 package models;
 
+import com.sun.org.apache.xml.internal.utils.res.StringArrayWrapper;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.jws.soap.SOAPBinding;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.ArrayList;
@@ -34,6 +36,17 @@ public class Admin extends Users {
      */
     public Admin(Users user) {
         super(user.toJson());
+    }
+    public Admin(String jsonString) {
+        JSONObject json = new JSONObject(jsonString);
+            firstname = (String) json.get("firstname");
+            lastname = (String) json.get("lastname");
+            username = (String) json.get("username");
+            image = (String) json.get("image");
+            lastLogin =  json.getLong("lastLogin");
+            registerTime =  json.getLong("registerTime");
+            position =  json.getLong("position");
+        adminNumber = json.getInt("adminNumber");
     }
 
     public Admin() {
@@ -73,7 +86,13 @@ public class Admin extends Users {
                     .map(p -> {
                         Users u = new Users();
                         try {
-                            u = new Users(new String(Files.readAllBytes(p), "UTF-8"));
+                            String jsonString = new String(Files.readAllBytes(p));
+                            JSONObject json = new JSONObject(jsonString);
+                            if (json.has("isAdmin")) {
+                                u = new Admin(new String(Files.readAllBytes(p), "UTF-8"));
+                            } else {
+                                u = new Users(new String(Files.readAllBytes(p), "UTF-8"));
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
