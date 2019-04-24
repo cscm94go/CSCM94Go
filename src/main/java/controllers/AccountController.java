@@ -28,7 +28,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Short one line description.
+ * The controller for managing logging in, registering yourself as user.
  * @author Zakariye Ali
  * @version 1.0
  *
@@ -78,7 +78,7 @@ public class AccountController implements Initializable {
      * @return The user's name.
      */
     public String username() {
-        return  usernameField.getText();
+        return  user_name.getText();
     }
 
     public Image userimage() {
@@ -125,7 +125,7 @@ public class AccountController implements Initializable {
 
     public Users loggedinUser(){
         try{
-            String user = usernameField.getText();
+            String user = user_name.getText();
             userSearch(user);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -250,60 +250,61 @@ public class AccountController implements Initializable {
     }
 
     /**
-     * Short one line description.
+     * This is text field for first name
      */
     @FXML
     private  TextField first_name;
     /**
-     * Short one line description.
+     * This is text field for last name
      */
     @FXML
     private TextField last_name;
     /**
-     * Short one line description.
+     * This is text field for username
      */
     @FXML
     private  TextField user_name;
     /**
-     * Short one line description.
-     */
-    @FXML
-    private TextField usernameField;
-    /**
-     * Short one line description.
+     * This is the log-in button.
      */
     @FXML
     private Button submitButton;
     /**
-     * Short one line description.
+     * This is the create button after new user details have been entered.
      */
     @FXML
     private Button createButton;
     /**
-     * Short one line description.
+     * The log-out button
      */
     @FXML
     private JFXButton log_out;
-
+    /**
+     * To get to register user screen use Register Button.
+     */
     @FXML
     private JFXButton registerButton;
-
+    /**
+     * Label displaying welcome user followed by that user's name
+     */
     @FXML
     private Label welcomeUser;
-
+    /**
+     * The profile image of currently logged in user
+     */
     @FXML
     private ImageView profile_image;
 
     /**
-     * Short one line description.
-     * @param  event Description text text text.
+     * Log in to dashboard
+     * @param  event Return Home Dashboard scene
      * @throws IOException
      */
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
-        String user= usernameField.getText();
+        String user= user_name.getText();
         login(user);
-        if(usernameField.getText().isEmpty()) {
+        if(user_name.getText().isEmpty()) {
             HelperMethods.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!",
                     "Please enter your name");
             return;
@@ -316,14 +317,14 @@ public class AccountController implements Initializable {
 //            }
 
             HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Enter!",
-                    "Welcome " + usernameField.getText());
+                    "Welcome " + user_name.getText());
         }
         else
             HelperMethods.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!", "User can not be found! Try again.");
     }
     /**
-     * Short one line description.
-     * @param  actionEvent Description text text text.
+     * Handles the button to navigate to Register User from Home.
+     * @param  actionEvent Returns Register User scene
      */
     public void handleRegisterButton(ActionEvent actionEvent) throws IOException {
         Window owner = registerButton.getScene().getWindow();
@@ -331,21 +332,10 @@ public class AccountController implements Initializable {
                 "Enter User details");
         HelperMethods.LoadScene("/fxml/RegisterUser.fxml");
     }
+
     /**
-     * Short one line description.
-     * @param  resource Description text text text.
-     * @return Description text text text.
-     * @throws IOException
-     */
-//    private void LoadScene(String resource) throws IOException {
-//        Parent parent = FXMLLoader.load(getClass().getResource(resource));
-//        Scene home = new Scene(parent , 1100, 900);
-//        Main.stage.setScene(home);
-//        Main.stage.show();
-//    }
-    /**
-     * Short one line description.
-     * @param  event Description text text text.
+     * Handles the create a user button during register.
+     * @param  event If registration successful, return to Log in.
      */
     @FXML
     protected void handleCreateButtonAction(ActionEvent event) throws IOException {
@@ -369,19 +359,19 @@ public class AccountController implements Initializable {
         }
     }
     /**
-     * Short one line description.
-     * @param location Description text text text.
-     * @param resources
+     * Handle click back button event
+     */
+    public void handleBackButtonAction(ActionEvent actionEvent) throws IOException {
+        HelperMethods.LoadScene("/fxml/application.fxml");
+    }
+    /**
+     * Initializer
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-
     }
 
-    public void handleBackButtonAction(ActionEvent actionEvent) throws IOException {
-        HelperMethods.LoadScene("/fxml/application.fxml");
-    }
 
 
 //

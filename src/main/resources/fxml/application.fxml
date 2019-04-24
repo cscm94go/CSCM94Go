@@ -16,7 +16,7 @@
                <children>
                   <AnchorPane layoutX="656.0" layoutY="191.0" prefHeight="440.0" prefWidth="342.0" style="-fx-background-color: #DED9B6;">
                      <children>
-                        <TextField fx:id="usernameField" layoutX="77.0" layoutY="155.0" promptText="username">
+                        <TextField fx:id="user_name" layoutX="77.0" layoutY="155.0" promptText="username">
                            <font>
                               <Font size="21.0" />
                            </font>
