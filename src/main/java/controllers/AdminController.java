@@ -79,13 +79,14 @@ public class AdminController implements Initializable {
         Admin admin = new Admin(user);
         storeAdmin(admin);
         delUser(user);
+
     }
     /**
      * This creates a new user, with no image,
      * and default values to 0.
-     * @param name The user name.
      * @param fname The user first name.
      * @param lname The user last name.
+     * @param userName The user name.
      */
     public boolean newUser(String fname,String lname, String userName) throws IOException {
         long count = Files.list(new File("users").toPath()).count();
