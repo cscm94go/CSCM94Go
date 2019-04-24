@@ -93,7 +93,7 @@ public class AdminController implements Initializable {
         user.username = name;
         user.firstname = fname;
         user.lastname = lname;
-        user.image = "";
+        user.image = selectedImagePath;
         user.lastLogin = 0;
         user.registerTime = new Date().getTime();
         user.position = count + 1;
@@ -125,7 +125,10 @@ public class AdminController implements Initializable {
         }
     }
 
+    private String selectedImagePath = "images/avataaars.png";
+
     private void setUserImage(String imagePath) {
+        selectedImagePath = imagePath;
         Image image = new Image(imagePath);
         userImage.setImage(image);
     }
