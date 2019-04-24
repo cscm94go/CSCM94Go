@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,6 +60,30 @@ public class Users {
 
     public Users() {
 
+    }
+
+    public static int[] getCurrentUserWinsAndLosesCount(){
+        int[] winsAndLoses = new int[2];
+        if (Files.exists(Paths.get("playerRecords.json"))) {
+            try {
+                String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
+                JSONArray jsonArray = new JSONArray(content);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject json = (JSONObject) jsonArray.get(i);
+                    Record r = new Record(json);
+                    if (r.player1.equals(currentUser.username) || r.player2.equals(currentUser.username)){
+                        if (r.winner.equals(currentUser.username)) {
+                            winsAndLoses[0] ++;
+                        }else {
+                            winsAndLoses[1] ++;
+                        }
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return winsAndLoses;
     }
 
     /**
