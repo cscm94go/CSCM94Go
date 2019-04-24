@@ -35,33 +35,12 @@ import java.util.ResourceBundle;
  */
 public class AccountController implements Initializable {
     /**
-     * Short one line description.
-     */
-    private Scene firstScene;
-    /**
-     * Short one line description.
-     */
-    private Scene secondScene;
-    /**
-     * Short one line description.
-     */
-    private Node node;
-    /**
-     * Short one line description.
-     */
-    private Boolean register_success =false;
-    /**
-     * Short one line description.
-     */
-    private List<String> list = new ArrayList<String>();
-    /**
-     * Short one line description.
+     * Instantiate AccountController
      */
     private static AccountController instance;
 
-    //Constructor for Account Controller
     /**
-     * Short one line description.
+     * Constructor for Account Controller
      */
     public AccountController() {
         instance = this;
@@ -89,10 +68,6 @@ public class AccountController implements Initializable {
      *The user's image.
      */
     @FXML private ImageView userImage;
-
-    String username_exist="false";
-    Boolean login_success =false;
-
 
     /**
      * Short one line description.
@@ -123,15 +98,6 @@ public class AccountController implements Initializable {
         return true;
     }
 
-    public Users loggedinUser(){
-        try{
-            String user = user_name.getText();
-            userSearch(user);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return Users.currentUser;
-    }
     /**
      *
      * @param  user User to be found.
@@ -147,9 +113,6 @@ public class AccountController implements Initializable {
         }
     }
 
-//    public String userImage() {
-//        return loggedinUser().image;
-//    }
     /**
      * Short one line description.
      * @param firstName The user's first name.
@@ -285,17 +248,6 @@ public class AccountController implements Initializable {
     @FXML
     private JFXButton registerButton;
     /**
-     * Label displaying welcome user followed by that user's name
-     */
-    @FXML
-    private Label welcomeUser;
-    /**
-     * The profile image of currently logged in user
-     */
-    @FXML
-    private ImageView profile_image;
-
-    /**
      * Log in to dashboard
      * @param  event Return Home Dashboard scene
      * @throws IOException
@@ -310,12 +262,7 @@ public class AccountController implements Initializable {
             return;
         }
         else if (login(user) == true) {
-//            if (Admin.currentUser != null) {
-//                HelperMethods.LoadScene("/fxml/AdminDashboard.fxml");
-//            } else {
                 HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
-//            }
-
             HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Enter!",
                     "Welcome " + user_name.getText());
         }
@@ -371,11 +318,4 @@ public class AccountController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
     }
-
-
-
-//
-//    protected void handleSelectImageAction(ActionEvent actionEvent) {
-//
-//    }
 }
