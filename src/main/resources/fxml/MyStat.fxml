@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MyStatsController">
+    <children>
+        <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
+            <center>
+                <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" BorderPane.alignment="CENTER" />
+            </center>
+        </BorderPane>
+        <AnchorPane prefHeight="649.0" prefWidth="366.0" style="-fx-background-color: #DED9B6;">
+            <children>
+                <Text layoutX="106.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Profile">
+                    <font>
+                        <Font name="Dubai Medium" size="36.0" />
+                    </font>
+                </Text>
+                <ImageView fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="117.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true" />
+                <Text layoutX="642.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Game History">
+                    <font>
+                        <Font name="Dubai Medium" size="36.0" />
+                    </font>
+                </Text>
+                <JFXButton fx:id="backtoDashboard" buttonType="RAISED" layoutX="63.0" layoutY="651.0" onAction="#handleDashboardButtonAction" prefHeight="93.0" prefWidth="364.0" style="-fx-background-color: #ffffff;" text="Back to Dashboard">
+                    <font>
+                        <Font name="Dubai Medium" size="26.0" />
+                    </font>
+                </JFXButton>
+                <Separator layoutX="481.0" layoutY="2.0" orientation="VERTICAL" prefHeight="800.0" prefWidth="0.0" />
+                <Separator layoutX="-3.0" layoutY="103.0" prefHeight="5.0" prefWidth="1045.0" style="-fx-background-color: #000000;" />
+                <TableView fx:id="myGames" layoutX="487.0" layoutY="108.0" prefHeight="697.0" prefWidth="552.0" />
+                <Label fx:id="winPercentage" layoutX="163.0" layoutY="315.0">
+                    <font>
+                        <Font name="Dubai Medium" size="24.0" />
+                    </font>
+                </Label>
+                <Text layoutX="130.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Win Percentage" wrappingWidth="200.0">
+                    <font>
+                        <Font name="Dubai Medium" size="22.0" />
+                    </font>
+                </Text>
+                <PieChart layoutX="45.0" layoutY="351.0" prefHeight="290.0" prefWidth="400.0" />
+            </children>
+        </AnchorPane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>

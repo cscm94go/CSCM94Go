@@ -111,7 +111,7 @@
                   </HBox>
                   <HBox layoutX="2.0" layoutY="363.0" prefHeight="93.0" prefWidth="229.0">
                      <children>
-                        <JFXButton id="log_out" fx:id="stats" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="347.0" text="My Record">
+                        <JFXButton id="my_stats" fx:id="my_stats" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="347.0" text="My Stats">
                            <font>
                               <Font name="Dubai Medium" size="26.0" />
                            </font>
