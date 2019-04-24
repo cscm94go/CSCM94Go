@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -47,7 +48,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.stream.Collectors;
-
+import javafx.scene.chart.PieChart;
 /**
  * This class can ...
  * @author Hector
@@ -91,6 +92,10 @@ public class MyStatsController implements Initializable {
     @FXML
     private JFXButton backtoDashboard;
 
+    @FXML
+    public  PieChart pieChart;
+
+
 
     @FXML
     void handleDashboardButtonAction(ActionEvent event) throws IOException {
@@ -100,11 +105,20 @@ public class MyStatsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ObservableList<PieChart.Data> pieChartData
+                = FXCollections.observableArrayList(
+                        new PieChart.Data("Wins", 1),
+                        new PieChart.Data("Losses",1),
+                        new PieChart.Data("Played",2));
 
+
+        pieChart.setData(pieChartData);
+        pieChart.setStartAngle(0);
 
 
 
     }
+
 
 
 }

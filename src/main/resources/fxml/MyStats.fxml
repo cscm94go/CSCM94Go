@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -50,6 +51,7 @@
                            </font>
                         </Text>
                         <Separator layoutX="-365.0" layoutY="80.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="923.0" style="-fx-background-color: #000000;" />
+                        <PieChart fx:id="MyPieChart" layoutY="83.0" title="My Stats" />
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
