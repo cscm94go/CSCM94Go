@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+    <children>
+        <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
+            <center>
+                <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutX="52.0" layoutY="60.0" prefHeight="681.0" prefWidth="366.0" style="-fx-background-color: #DED9B6;">
+                     <children>
+                        <Text layoutX="106.0" layoutY="67.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Profile">
+                           <font>
+                              <Font name="Dubai Medium" size="36.0" />
+                           </font>
+                        </Text>
+                        <ImageView fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="83.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="416.0" layoutY="60.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="681.0" prefWidth="557.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <Text layoutX="148.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="My Game History">
+                           <font>
+                              <Font name="Dubai Medium" size="36.0" />
+                           </font>
+                        </Text>
+                        <Separator layoutX="-365.0" layoutY="80.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="2.0" prefWidth="923.0" style="-fx-background-color: #000000;" />
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            </center>
+        </BorderPane>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+    </rowConstraints>
+</GridPane>
