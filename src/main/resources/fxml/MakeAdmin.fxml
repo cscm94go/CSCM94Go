@@ -9,7 +9,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MakeAdminController">
     <children>
         <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
             <center>
@@ -21,7 +21,7 @@
          <children>
             <AnchorPane layoutX="189.0" prefHeight="800.0" prefWidth="634.0" style="-fx-background-color: #DED9B6;">
                <children>
-                  <JFXButton id="log_out" fx:id="backtoDashboard" buttonType="RAISED" layoutX="-2.0" layoutY="703.0" onAction="#handleDashboardButtonAction" prefHeight="96.0" prefWidth="634.0" text="Back to Dashboard">
+                  <JFXButton id="log_out" fx:id="backtoDashboard" buttonType="RAISED" layoutX="-2.0" layoutY="703.0" onAction="#handleBack" prefHeight="96.0" prefWidth="634.0" text="Go Back">
                      <ripplerFill>
                         <LinearGradient endX="1.0" endY="1.0">
                            <stops>
@@ -34,7 +34,7 @@
                         <Font name="Dubai Medium" size="26.0" />
                      </font>
                   </JFXButton>
-                  <TableView fx:id="tableView" layoutY="6.0" prefHeight="689.0" prefWidth="669.0" />
+                  <TableView fx:id="tableView" layoutX="59.5" layoutY="15.0" prefHeight="689.0" prefWidth="550.0" />
                </children>
             </AnchorPane>
          </children>

@@ -1,52 +1,33 @@
 package controllers;
+
 import application.Main;
 import com.jfoenix.controls.JFXButton;
-import com.sun.org.apache.xml.internal.utils.res.StringArrayWrapper;
 import helpers.HelperMethods;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.CheckBoxTableCell;
-
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Admin;
 import models.Users;
 import org.json.JSONObject;
-import java.io.*;
-import java.net.URL;
-import java.nio.file.Files;
-import java.util.Date;
-import java.awt.*;
-import java.io.*;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.stream.Collectors;
 
 /**
  * This class can create and delete users
@@ -54,16 +35,16 @@ import java.util.stream.Collectors;
  * @author Hector
  * @version 1.0
  */
-public class AdminController implements Initializable {
-    private static AdminController instance;
+public class MakeAdminController implements Initializable {
+    private static MakeAdminController instance;
 
     //Constructor for Admin Controller
-    public AdminController() {
+    public MakeAdminController() {
         instance = this;
     }
 
     //Instance method for Admin Controller
-    public static AdminController getInstance()
+    public static MakeAdminController getInstance()
     {
         return instance;
     }
@@ -172,7 +153,7 @@ public class AdminController implements Initializable {
 
     @FXML
     void handleDashboardButtonAction(ActionEvent event) throws IOException {
-        HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
+        HelperMethods.LoadScene("/fxml/AdminDashboard.fxml");
     }
 
     @FXML
@@ -276,16 +257,15 @@ public class AdminController implements Initializable {
      * This sets the right image for the avatar clicked.
      * @param  event The mouse click to choose the avatar.
      */
-    @FXML protected void avatar9Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars9.png";
-        setUserImage(imagePath);
+
+    @FXML
+    void handleBack(ActionEvent event) throws IOException {
+        HelperMethods.LoadScene("/fxml/AdminOptions.fxml");
     }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        setTable();
+        setTable();
     }
 
     private void setTable(){
@@ -293,20 +273,35 @@ public class AdminController implements Initializable {
         tableView.getColumns().remove(0, tableView.getColumns().size());
         final List<Users> us = Admin.getUsersList();
 
-        TableColumn<Object, String> column1 = new TableColumn<Object, String>();
+        TableColumn<Object, String> column1 = new TableColumn<Object, String>("User Name");
+        column1.setPrefWidth(150);
         column1.setCellValueFactory(cell->{
             Users u = (Users) cell.getValue();
             return new ReadOnlyStringWrapper (u.username);
         });
 
-        TableColumn<Object, Boolean> column2 = new TableColumn<Object, Boolean>();
-        column2.setCellValueFactory(cell -> {
+        TableColumn<Object, String> column2 = new TableColumn<Object, String>("First Name");
+        column2.setCellValueFactory(cell->{
+            Users u = (Users) cell.getValue();
+            return new ReadOnlyStringWrapper (u.firstname);
+        });
+        column2.setPrefWidth(150);
+
+        TableColumn<Object, String> column3 = new TableColumn<Object, String>("Last Name");
+        column3.setCellValueFactory(cell->{
+            Users u = (Users) cell.getValue();
+            return new ReadOnlyStringWrapper (u.lastname);
+        });
+        column3.setPrefWidth(150);
+
+        TableColumn<Object, Boolean> column4 = new TableColumn<Object, Boolean>("isAdmin");
+        column4.setCellValueFactory(cell -> {
             boolean isAdmin = cell.getValue() instanceof Admin;
             return new ReadOnlyBooleanWrapper(isAdmin);
         });
 
-        column2.setCellFactory(p -> {
-            CheckBoxTableCell cell = (CheckBoxTableCell) CheckBoxTableCell.forTableColumn(column2).call(p);
+        column4.setCellFactory(p -> {
+            CheckBoxTableCell cell = (CheckBoxTableCell) CheckBoxTableCell.forTableColumn(column4).call(p);
 
 
             cell.setOnMouseClicked(e -> {
@@ -344,6 +339,8 @@ public class AdminController implements Initializable {
 
         tableView.getColumns().add(column1);
         tableView.getColumns().add(column2);
+        tableView.getColumns().add(column3);
+        tableView.getColumns().add(column4);
 
 
         for (int i = 0; i < us.size(); i++) {
