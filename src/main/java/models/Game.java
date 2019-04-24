@@ -9,9 +9,7 @@ import java.nio.file.Paths;
 import java.util.*;
 /**
  * This class holds game data
- * @author
- *
- *
+ * @author John Li
  */
 public class Game {
     /**
@@ -59,12 +57,14 @@ public class Game {
     public JSONObject previousJSON;
     /**
      * Check is it my turn, if not cant put piece
+     * @return whether is my turn to put piece
      */
     public boolean meTurn(){
         return (isWhite && isWhitePlayer) || (!isWhite && !isWhitePlayer);
     }
     /**
-     * Use when game over, check whether I win, draw, or lose, 1 -> win, 0 -> draw, -1 lose
+     * Use when game over, check whether I win, draw, or lose, 1 - win, 0 - draw, - lose
+     * @return whether I win or not. 1 - win, 0 - draw, - lose
      */
     public boolean meWin(){
         return whitePieces.size() > blackPieces.size() && isWhitePlayer;

@@ -40,7 +40,6 @@ public class GameController {
     @FXML Canvas canvas;
     @FXML Label opponentUserNameLabel;
     @FXML Label userNameLabel;
-    @FXML Label whoseTurn;
     @FXML Button finishBtn;
     @FXML Button passBtn;
     @FXML Button surrenderBtn;
@@ -57,131 +56,38 @@ public class GameController {
     Game game = new Game();
     Timer timer;
 
-    @FXML
-    private void initialize() throws Exception{
-        gc = canvas.getGraphicsContext2D();
-        //Registering the event filter
-        canvas.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            if (!game.gameStart || !game.meTurn()) return;
-            Piece piece = calculatePiece(e.getX(), e.getY());
-            if (piece == null) return;
-
-            boolean canPut = canPutPiece(game.whitePieces, game.blackPieces, piece, game.isWhite);
-            if (!canPut) return;
-
-
-            if (game.isWhite) {
-                game.whitePieces.add(piece);
-
-                List<Piece> is = new ArrayList<>();
-                for (int i = 0; i < game.blackPieces.size(); i++) {
-                    Piece p = game.blackPieces.get(i);
-                    if (!hasQi(p, p, getMatrix(), false)) {
-                        is.add(p);
-                    }
-                }
-                for (int i = 0; i < is.size(); i++) {
-                    game.blackPieces.remove(is.get(i));
-                }
-            } else {
-                game.blackPieces.add(piece);
-
-                List<Piece> is = new ArrayList<>();
-                for (int i = 0; i < game.whitePieces.size(); i++) {
-                    Piece p = game.whitePieces.get(i);
-                    if (!hasQi(p, p, getMatrix(), true)) {
-                        is.add(p);
-                    }
-                }
-                for (int i = 0; i < is.size(); i++) {
-                    game.whitePieces.remove(is.get(i));
-                }
+    /**
+     * Calculate whether a piece has qi
+     */
+    protected boolean hasQi(Piece piece, Piece pre, int[][] ints, boolean isWhite) {
+        int x = piece.x;
+        int y = piece.y;
+        Piece piece1 = new Piece(x+1, y);
+        Piece piece2 = new Piece(x-1, y);
+        Piece piece3 = new Piece(x, y+1);
+        Piece piece4 = new Piece(x, y-1);
+        Piece pieces[] = new Piece[]{piece1, piece2, piece3, piece4};
+        boolean res = false;
+        for (int i = 0; i < pieces.length; i++) {
+            Piece thePiece = pieces[i];
+            if (thePiece.equals(pre)) continue;
+            if (thePiece.x < 0 || thePiece.x > 18 || thePiece.y < 0 || thePiece.y > 18) continue;
+            int value = ints[thePiece.x][thePiece.y];
+            if (value == 0) {
+                res = true;
+            } else if (!isWhite && value == -1) {
+                if (hasQi(thePiece, piece, ints, isWhite)) res = true;
+            } else if (isWhite && value == 1) {
+                if (hasQi(thePiece, piece, ints, isWhite)) res = true;
             }
-
-
-
-            game.isWhite = !game.isWhite;
-            drawBroad();
-            updateFile();
-        });
-
-        finishBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            try {
-                Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
-                Scene board = new Scene(p, 1100, 900);
-                Main.stage.setScene(board);
-                Main.stage.show();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        });
-
-        passBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure pass", ButtonType.YES, ButtonType.CANCEL);
-            alert.initOwner(Main.stage);
-            alert.showAndWait()
-                    .filter(response -> response == ButtonType.YES)
-                    .ifPresent(r -> {
-                        try {
-                            String content = new String(Files.readAllBytes( Paths.get("game.json")), "UTF-8");
-                            JSONObject json = new JSONObject(content);
-                            json.put("someonePassed", Users.currentUser.username);
-                            BufferedWriter writer = new BufferedWriter(new FileWriter("game.json"));
-                            writer.write(json.toString());
-                            writer.close();
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    });
-        });
-        
-        surrenderBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure surrender", ButtonType.YES, ButtonType.CANCEL);
-            alert.initOwner(Main.stage);
-            alert.showAndWait()
-                    .filter(response -> response == ButtonType.YES)
-                    .ifPresent(r -> {
-                        HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Game over!",
-                                "you surrender");
-
-                        try {
-                            Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
-                            Scene board = new Scene(p, 1100, 900);
-                            Main.stage.setScene(board);
-                            Main.stage.show();
-
-                            String content = new String(Files.readAllBytes( Paths.get("game.json")), "UTF-8");
-                            JSONObject json = new JSONObject(content);
-                            json.put("gameOver", true);
-                            Record record = new Record(
-                                    game.blackPlayerUserName,
-                                    game.whitePlayerUserName,
-                                    game.isWhitePlayer ? game.blackPlayerUserName: game.whitePlayerUserName
-                            );
-                            json.put("gameRecord", record.toJSON());
-                            BufferedWriter writer = new BufferedWriter(new FileWriter("game.json"));
-                            writer.write(json.toString());
-                            writer.close();
-
-                            String playerRecords = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
-                            JSONArray playerRecordsJSON = new JSONArray(playerRecords);
-                            playerRecordsJSON.put(record.toJSON());
-                            BufferedWriter writer2 = new BufferedWriter(new FileWriter("playerRecords.json"));
-                            writer2.write(playerRecordsJSON.toString());
-                            writer2.close();
-                        } catch (IOException ex) {
-                            ex.printStackTrace();
-                        }
-                    });
-        });
-
-        drawBroad();
-
-        timer = new Timer(true);
-        timer.schedule(new MyTask(), 500,1000);
+        }
+        return res;
     }
 
-    private class MyTask extends TimerTask {
+    /**
+     * Task to be run sync data with local file
+     */
+    protected class MyTask extends TimerTask {
         @Override
         public void run() {
 
@@ -319,6 +225,130 @@ public class GameController {
         }
     }
 
+    @FXML
+    private void initialize() throws Exception{
+        gc = canvas.getGraphicsContext2D();
+        //Registering the event filter
+        canvas.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            if (!game.gameStart || !game.meTurn()) return;
+            Piece piece = calculatePiece(e.getX(), e.getY());
+            if (piece == null) return;
+
+            boolean canPut = canPutPiece(game.whitePieces, game.blackPieces, piece, game.isWhite);
+            if (!canPut) return;
+
+
+            if (game.isWhite) {
+                game.whitePieces.add(piece);
+
+                List<Piece> is = new ArrayList<>();
+                for (int i = 0; i < game.blackPieces.size(); i++) {
+                    Piece p = game.blackPieces.get(i);
+                    if (!hasQi(p, p, getMatrix(), false)) {
+                        is.add(p);
+                    }
+                }
+                for (int i = 0; i < is.size(); i++) {
+                    game.blackPieces.remove(is.get(i));
+                }
+            } else {
+                game.blackPieces.add(piece);
+
+                List<Piece> is = new ArrayList<>();
+                for (int i = 0; i < game.whitePieces.size(); i++) {
+                    Piece p = game.whitePieces.get(i);
+                    if (!hasQi(p, p, getMatrix(), true)) {
+                        is.add(p);
+                    }
+                }
+                for (int i = 0; i < is.size(); i++) {
+                    game.whitePieces.remove(is.get(i));
+                }
+            }
+
+
+
+            game.isWhite = !game.isWhite;
+            drawBroad();
+            updateFile();
+        });
+
+        finishBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            try {
+                Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
+                Scene board = new Scene(p, 1100, 900);
+                Main.stage.setScene(board);
+                Main.stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        passBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure pass", ButtonType.YES, ButtonType.CANCEL);
+            alert.initOwner(Main.stage);
+            alert.showAndWait()
+                    .filter(response -> response == ButtonType.YES)
+                    .ifPresent(r -> {
+                        try {
+                            String content = new String(Files.readAllBytes( Paths.get("game.json")), "UTF-8");
+                            JSONObject json = new JSONObject(content);
+                            json.put("someonePassed", Users.currentUser.username);
+                            BufferedWriter writer = new BufferedWriter(new FileWriter("game.json"));
+                            writer.write(json.toString());
+                            writer.close();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+        });
+
+        surrenderBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure surrender", ButtonType.YES, ButtonType.CANCEL);
+            alert.initOwner(Main.stage);
+            alert.showAndWait()
+                    .filter(response -> response == ButtonType.YES)
+                    .ifPresent(r -> {
+                        HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Game over!",
+                                "you surrender");
+
+                        try {
+                            Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
+                            Scene board = new Scene(p, 1100, 900);
+                            Main.stage.setScene(board);
+                            Main.stage.show();
+
+                            String content = new String(Files.readAllBytes( Paths.get("game.json")), "UTF-8");
+                            JSONObject json = new JSONObject(content);
+                            json.put("gameOver", true);
+                            Record record = new Record(
+                                    game.blackPlayerUserName,
+                                    game.whitePlayerUserName,
+                                    game.isWhitePlayer ? game.blackPlayerUserName: game.whitePlayerUserName
+                            );
+                            json.put("gameRecord", record.toJSON());
+                            BufferedWriter writer = new BufferedWriter(new FileWriter("game.json"));
+                            writer.write(json.toString());
+                            writer.close();
+
+                            String playerRecords = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
+                            JSONArray playerRecordsJSON = new JSONArray(playerRecords);
+                            playerRecordsJSON.put(record.toJSON());
+                            BufferedWriter writer2 = new BufferedWriter(new FileWriter("playerRecords.json"));
+                            writer2.write(playerRecordsJSON.toString());
+                            writer2.close();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    });
+        });
+
+        drawBroad();
+
+        timer = new Timer(true);
+        timer.schedule(new MyTask(), 500,1000);
+    }
+
     private void updateFile(){
 
         try {
@@ -404,30 +434,7 @@ public class GameController {
         });
     }
 
-    private boolean hasQi(Piece piece, Piece pre, int[][] ints, boolean isWhite) {
-        int x = piece.x;
-        int y = piece.y;
-        Piece piece1 = new Piece(x+1, y);
-        Piece piece2 = new Piece(x-1, y);
-        Piece piece3 = new Piece(x, y+1);
-        Piece piece4 = new Piece(x, y-1);
-        Piece pieces[] = new Piece[]{piece1, piece2, piece3, piece4};
-        boolean res = false;
-        for (int i = 0; i < pieces.length; i++) {
-            Piece thePiece = pieces[i];
-            if (thePiece.equals(pre)) continue;
-            if (thePiece.x < 0 || thePiece.x > 18 || thePiece.y < 0 || thePiece.y > 18) continue;
-            int value = ints[thePiece.x][thePiece.y];
-            if (value == 0) {
-                res = true;
-            } else if (!isWhite && value == -1) {
-                if (hasQi(thePiece, piece, ints, isWhite)) res = true;
-            } else if (isWhite && value == 1) {
-                if (hasQi(thePiece, piece, ints, isWhite)) res = true;
-            }
-        }
-        return res;
-    }
+
 
     private int[][] getMatrix() {
         int[][] ints = new int[19][19];

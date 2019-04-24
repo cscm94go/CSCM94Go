@@ -6,7 +6,7 @@ import java.util.Date;
 
 /**
  * This is a game record
- * @author John
+ * @author John Li
  */
 public class Record {
     /**
@@ -38,6 +38,9 @@ public class Record {
     }
     /**
      * Initialize from a game data
+     * @param _player1 player1 username
+     * @param _player2 player2 username
+     * @param _winner winner username
      */
     public Record(String _player1, String _player2, String _winner){
         player1=_player1;
@@ -45,6 +48,10 @@ public class Record {
         winner=_winner;
         timeStamp=new Date().getTime();
     }
+    /**
+     * Convert record to be a json object
+     * @return a json object
+     */
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();
         json.put("player1", player1);
