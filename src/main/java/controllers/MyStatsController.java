@@ -75,12 +75,6 @@ public class MyStatsController implements Initializable {
 
 
 
-    @FXML
-    private TableView tableView;
-
-    @FXML
-    private JFXButton backtoDashboard;
-
 
     @FXML
     private ImageView userImage;
@@ -94,14 +88,14 @@ public class MyStatsController implements Initializable {
     @FXML
     private TextField first_name;
 
+    @FXML
+    private JFXButton backtoDashboard;
+
 
     @FXML
     void handleDashboardButtonAction(ActionEvent event) throws IOException {
         HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
     }
-
-
-
 
 
     @Override
