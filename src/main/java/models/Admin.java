@@ -20,6 +20,8 @@ public class Admin extends Users {
     /**
      * This attribute denotes that the user is administrator.
      */
+    public static Admin currentAdmin;
+
     private final boolean isAdminRole = true;
 
     private int adminNumber;

@@ -8,11 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import models.Admin;
 import models.Users;
 import javafx.fxml.FXML;
 import javafx.stage.Window;
 import javafx.event.ActionEvent;
 import javafx.scene.image.ImageView;
+import org.json.JSONObject;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -139,6 +142,9 @@ public class AccountController implements Initializable {
         String content = new String(Files.readAllBytes(thePath), "UTF-8");
         Users u = new Users(content);
         Users.currentUser = u;
+        if (new JSONObject(content).has("isAdmin")) {
+            Admin.currentAdmin = new Admin(content);
+        }
     }
 
 //    public String userImage() {
@@ -304,7 +310,12 @@ public class AccountController implements Initializable {
             return;
         }
         else if (login(user) == true) {
-            HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
+//            if (Admin.currentUser != null) {
+//                HelperMethods.LoadScene("/fxml/AdminDashboard.fxml");
+//            } else {
+                HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
+//            }
+
             HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Enter!",
                     "Welcome " + usernameField.getText());
         }

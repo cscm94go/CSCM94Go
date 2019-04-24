@@ -1,31 +1,19 @@
 package controllers;
 import com.jfoenix.controls.JFXButton;
 import helpers.HelperMethods;
-import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
 import javafx.stage.Window;
-import models.Record;
+import models.Admin;
 import models.Users;
-import org.json.JSONArray;
-import org.json.JSONObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 
@@ -81,6 +69,9 @@ public class HomeController implements Initializable {
     @FXML
     ImageView profile_image;
 
+    @FXML
+    Button adminBtn;
+
 
     @FXML
     protected void handleLeaderboardButtonAction(ActionEvent event) throws IOException {
@@ -110,6 +101,14 @@ public class HomeController implements Initializable {
         HelperMethods.LoadScene("/fxml/AdminOptions.fxml");
     }
 
+    @FXML
+    void handleInfoButtonAction(ActionEvent event) throws IOException {
+        HelperMethods.LoadScene("/fxml/AdminOptions.fxml");
+    }
+
+
+
+
 
 //    @FXML
 
@@ -126,6 +125,8 @@ public class HomeController implements Initializable {
     @FXML
     public void initialize (URL location, ResourceBundle resources) {
         setUserimage();
+
+        adminBtn.setVisible(Admin.currentAdmin != null);
         setUsername(AccountController.getInstance().username());
         try {
             InfoSinceLastLogin.RecentActivity(games, newPlayers, positionChange);
