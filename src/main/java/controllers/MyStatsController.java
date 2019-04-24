@@ -77,7 +77,7 @@ public class MyStatsController implements Initializable {
 
 
     @FXML
-    private ImageView userImage;
+    public ImageView profile_image;
 
     @FXML
     private TextField user_name;
@@ -89,7 +89,15 @@ public class MyStatsController implements Initializable {
     private TextField first_name;
 
     @FXML
-    private JFXButton backtoDashboard;
+    JFXButton backtoDashboard;
+
+    @FXML
+    private TableView<?> myGames;
+
+
+    @FXML
+    private Label winPercentage;
+
 
 
     @FXML
@@ -97,13 +105,14 @@ public class MyStatsController implements Initializable {
         HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
     }
 
+    public void setUserimage() {
+        profile_image.setImage(new Image(Users.currentUser.image));
+    }
 
-    @Override
+
+    @FXML
     public void initialize(URL location, ResourceBundle resources) {
-
-
-
-
+        setUserimage();
     }
 
 

@@ -67,7 +67,7 @@ public class HomeController implements Initializable {
     Label welcomeUser;
 
     @FXML
-    ImageView profile_image;
+    public ImageView profile_image;
 
     @FXML
     Button adminBtn;
@@ -125,7 +125,6 @@ public class HomeController implements Initializable {
     @FXML
     public void initialize (URL location, ResourceBundle resources) {
         setUserimage();
-
         adminBtn.setVisible(Admin.currentAdmin != null);
         setUsername(AccountController.getInstance().username());
         try {
