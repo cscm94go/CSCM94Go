@@ -34,7 +34,7 @@ public class Admin extends Users {
     /**
      * This method is the constructor.
      *
-     * @param user
+     * @param user object
      */
     public Admin(Users user) {
         super(user.toJson());
@@ -80,6 +80,7 @@ public class Admin extends Users {
     }
     /**
      * This method creates a list of users.
+     * @return the all users.
      */
     public static List<Users> getUsersList() {
         List<Users> us = new ArrayList<>();
