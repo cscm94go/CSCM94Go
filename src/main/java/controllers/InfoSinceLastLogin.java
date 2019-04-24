@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Display info since last login in.
+ * @author John Li
+ */
 public class InfoSinceLastLogin {
 
     @FXML
@@ -26,9 +30,22 @@ public class InfoSinceLastLogin {
     @FXML
     TableView newPlayers;
 
+    /**
+     * Initializer
+     */
     @FXML
     public void initialize() throws Exception{
         RecentActivity(games, newPlayers, positionChange);
+    }
+    /**
+     * Handle click back button event
+     */
+    public void onBack(ActionEvent actionEvent) {
+        try {
+            HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     static void RecentActivity(TableView games, TableView newPlayers, Label positionChange) throws IOException {
@@ -144,11 +161,5 @@ public class InfoSinceLastLogin {
         }
     }
 
-    public void onBack(ActionEvent actionEvent) {
-        try {
-            HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

@@ -297,7 +297,6 @@ public class AccountController implements Initializable {
     /**
      * Short one line description.
      * @param  event Description text text text.
-     * @return Description text text text.
      * @throws IOException
      */
     @FXML
@@ -325,7 +324,6 @@ public class AccountController implements Initializable {
     /**
      * Short one line description.
      * @param  actionEvent Description text text text.
-     * @return Description text text text.
      */
     public void handleRegisterButton(ActionEvent actionEvent) throws IOException {
         Window owner = registerButton.getScene().getWindow();
@@ -348,7 +346,6 @@ public class AccountController implements Initializable {
     /**
      * Short one line description.
      * @param  event Description text text text.
-     * @return Description text text text.
      */
     @FXML
     protected void handleCreateButtonAction(ActionEvent event) throws IOException {
@@ -375,7 +372,6 @@ public class AccountController implements Initializable {
      * Short one line description.
      * @param location Description text text text.
      * @param resources
-     * @return Description text text text.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {

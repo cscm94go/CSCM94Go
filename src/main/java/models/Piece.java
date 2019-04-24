@@ -3,7 +3,7 @@ package models;
 import org.json.JSONObject;
 /**
  * This represent a piece (stone) on board
- * @author John.
+ * @author John Li.
  */
 public class Piece {
     /**

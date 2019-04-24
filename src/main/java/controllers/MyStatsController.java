@@ -11,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -48,7 +47,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.stream.Collectors;
-import javafx.scene.chart.PieChart;
+
 /**
  * This class can ...
  * @author Hector
@@ -78,7 +77,7 @@ public class MyStatsController implements Initializable {
 
 
     @FXML
-    private ImageView userImage;
+    public ImageView profile_image;
 
     @FXML
     private TextField user_name;
@@ -90,10 +89,14 @@ public class MyStatsController implements Initializable {
     private TextField first_name;
 
     @FXML
-    private JFXButton backtoDashboard;
+    JFXButton backtoDashboard;
 
     @FXML
-    public  PieChart pieChart;
+    private TableView<?> myGames;
+
+
+    @FXML
+    private Label winPercentage;
 
 
 
@@ -102,23 +105,15 @@ public class MyStatsController implements Initializable {
         HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
     }
 
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<PieChart.Data> pieChartData
-                = FXCollections.observableArrayList(
-                        new PieChart.Data("Wins", 1),
-                        new PieChart.Data("Losses",1),
-                        new PieChart.Data("Played",2));
-
-
-        pieChart.setData(pieChartData);
-        pieChart.setStartAngle(0);
-
-
-
+    public void setUserimage() {
+        profile_image.setImage(new Image(Users.currentUser.image));
     }
 
+
+    @FXML
+    public void initialize(URL location, ResourceBundle resources) {
+        setUserimage();
+    }
 
 
 }
