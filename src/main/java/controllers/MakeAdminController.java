@@ -324,7 +324,7 @@ public class MakeAdminController implements Initializable {
                                 if (a.getAdminNumber() > max) max = a.getAdminNumber();
                             }
                         }
-                        json.put("adminNumber", max);
+                        json.put("adminNumber", max + 1);
                     }
                     BufferedWriter writer = new BufferedWriter(new FileWriter("users/" + u + ".json"));
                     writer.write(json.toString());
