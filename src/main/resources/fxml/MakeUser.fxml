@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 
 <GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
 <children>
@@ -25,20 +18,20 @@
                     <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="49.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" />
                   <AnchorPane layoutX="196.0" layoutY="3.0" prefHeight="800.0" prefWidth="587.0" style="-fx-background-color: #DED9B6;">
                      <children>
-                        <ImageView fx:id="userImage" fitHeight="148.0" fitWidth="161.0" layoutX="81.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="userImage" fitHeight="148.0" fitWidth="161.0" layoutX="105.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/avataaars.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="150.0" fitWidth="232.0" layoutX="328.0" layoutY="160.0" onMouseClicked="#avatar1Clicked" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/avataaars.png" />
-                           </image>
-                        </ImageView>
-                        <ScrollPane layoutX="315.0" layoutY="161.0" prefHeight="149.0" prefWidth="168.0">
+                        <ScrollPane layoutX="341.0" layoutY="161.0" prefHeight="149.0" prefWidth="168.0">
                            <content>
                               <VBox prefHeight="1186.0" prefWidth="65.0">
                                  <children>
+                                    <ImageView fitHeight="150.0" fitWidth="232.0" onMouseClicked="#avatar1Clicked" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/avataaars.png" />
+                                       </image>
+                                    </ImageView>
                                     <ImageView fitHeight="150.0" fitWidth="232.0" onMouseClicked="#avatar1Clicked" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/avataaars.png" />

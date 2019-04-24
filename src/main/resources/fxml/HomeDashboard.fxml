@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import com.jfoenix.controls.*?>
 <?import javafx.scene.control.*?>
@@ -19,81 +20,154 @@
         </BorderPane>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
-                <AnchorPane prefHeight="800.0" prefWidth="326.0" style="-fx-background-color: #DED9B6;">
+                <AnchorPane layoutY="-1.0" prefHeight="800.0" prefWidth="326.0" style="-fx-background-color: #DED9B6;">
                     <children>
-                        <JFXButton id="leaderboard" fx:id="leaderBoard" buttonType="RAISED" layoutX="2.0" layoutY="431.0" onAction="#handleLeaderboardButtonAction" prefHeight="83.0" prefWidth="346.0" text="Leaderboard">
-                            <ripplerFill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop color="BLACK" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </ripplerFill>
-                            <font>
-                                <Font name="Dubai Medium" size="26.0" />
-                            </font>
-                        </JFXButton>
-                        <JFXButton id="my_stats" fx:id="my_stats" buttonType="RAISED" layoutX="2.0" layoutY="348.0" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="346.0" text="My Stats">
-                            <ripplerFill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop color="BLACK" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </ripplerFill>
-                            <font>
-                                <Font name="Dubai Medium" size="26.0" />
-                            </font>
-                        </JFXButton>
-                        <JFXButton id="infoSinceLastLogin" fx:id="infoSinceLastLogin" buttonType="RAISED" layoutX="2.0" layoutY="514.0" onAction="#handleInfoButtonAction" prefHeight="83.0" prefWidth="346.0" text="Info Since Last Login">
-                            <ripplerFill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop color="BLACK" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </ripplerFill>
-                            <font>
-                                <Font name="Dubai Medium" size="26.0" />
-                            </font>
-                        </JFXButton>
-                        <JFXButton id="log_out" fx:id="logout" buttonType="RAISED" layoutY="607.0" onAction="#handleLogoutButtonAction" prefHeight="83.0" prefWidth="346.0" text="Log Out">
-                            <ripplerFill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop color="BLACK" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </ripplerFill>
-                            <font>
-                                <Font name="Dubai Medium" size="26.0" />
-                            </font>
-                        </JFXButton>
-                        <JFXButton id="play" fx:id="play" buttonType="RAISED" layoutX="2.0" layoutY="265.0" onAction="#handlePlayButtonAction" prefHeight="83.0" prefWidth="346.0" text="Play">
-                            <font>
-                                <Font name="Dubai Medium" size="26.0" />
-                            </font>
-                            <ripplerFill>
-                                <LinearGradient endX="1.0" endY="1.0">
-                                    <stops>
-                                        <Stop color="BLACK" />
-                                        <Stop color="WHITE" offset="1.0" />
-                                    </stops>
-                                </LinearGradient>
-                            </ripplerFill>
-                        </JFXButton>
-                        <ImageView id="profile_image" fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="74.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="welcomeUser" layoutX="59.0" layoutY="181.0" prefHeight="62.0" prefWidth="200.0" text="Username">
+                        <ImageView id="profile_image" fx:id="profile_image" fitHeight="150.0" fitWidth="200.0" layoutX="83.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="welcomeUser" layoutX="68.0" layoutY="181.0" prefHeight="62.0" prefWidth="200.0" text="Username">
                             <font>
                                 <Font name="Dubai Medium" size="23.0" />
                             </font>
                         </Label>
+                  <HBox layoutX="2.0" layoutY="607.0" prefHeight="93.0" prefWidth="229.0">
+                     <children>
+                              <JFXButton id="log_out" fx:id="logout" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLogoutButtonAction" prefHeight="83.0" prefWidth="347.0" text="Log Out">
+                                  <ripplerFill>
+                                      <LinearGradient endX="1.0" endY="1.0">
+                                          <stops>
+                                              <Stop color="BLACK" />
+                                              <Stop color="WHITE" offset="1.0" />
+                                          </stops>
+                                      </LinearGradient>
+                                  </ripplerFill>
+                                  <font>
+                                      <Font name="Dubai Medium" size="26.0" />
+                                  </font>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" />
+                           </padding>
+                           <graphic>
+                              <ImageView fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/logout.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                              </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="3.0" layoutY="259.0" prefHeight="93.0" prefWidth="229.0">
+                     <children>
+                        <JFXButton id="log_out" fx:id="play" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handlePlayButtonAction" prefHeight="83.0" prefWidth="347.0" text="Play">
+                           <font>
+                              <Font name="Dubai Medium" size="26.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/play.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" />
+                           </padding>
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="2.0" layoutY="363.0" prefHeight="93.0" prefWidth="229.0">
+                     <children>
+                        <JFXButton id="log_out" fx:id="stats" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleMyStatsButtonAction" prefHeight="83.0" prefWidth="347.0" text="My Record">
+                           <font>
+                              <Font name="Dubai Medium" size="26.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/stats.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" />
+                           </padding>
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox layoutX="1.0" layoutY="469.0" prefHeight="93.0" prefWidth="229.0">
+                     <children>
+                        <JFXButton id="log_out" fx:id="leaderboard" buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleLeaderboardButtonAction" prefHeight="83.0" prefWidth="347.0" text="Leaderboard">
+                           <font>
+                              <Font name="Dubai Medium" size="26.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="59.0" fitWidth="59.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/leaderboard.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" />
+                           </padding>
+                           <ripplerFill>
+                              <LinearGradient endX="1.0" endY="1.0">
+                                 <stops>
+                                    <Stop color="BLACK" />
+                                    <Stop color="WHITE" offset="1.0" />
+                                 </stops>
+                              </LinearGradient>
+                           </ripplerFill>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                     </children>
                 </AnchorPane>
+            <AnchorPane layoutX="348.0" layoutY="-1.0" prefHeight="800.0" prefWidth="675.0">
+               <children>
+                  <HBox layoutY="14.0" prefHeight="100.0" prefWidth="675.0">
+                     <children>
+                        <Text fill="WHITE" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Activity" textAlignment="CENTER" wrappingWidth="675.6708984375">
+                           <font>
+                              <Font name="Dubai Medium" size="36.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="newPlayers" layoutX="99.0" layoutY="506.0" prefHeight="260.0" prefWidth="496.0" />
+                  <TableView fx:id="games" layoutX="99.0" layoutY="211.0" prefHeight="260.0" prefWidth="496.0" />
+                  <Label fx:id="positionChange" layoutX="99.0" layoutY="114.0" text="Label" textFill="WHITE">
+                     <font>
+                        <Font name="Dubai Medium" size="20.0" />
+                     </font>
+                  </Label>
+                  <Text fill="WHITE" layoutX="99.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Latest games" textAlignment="CENTER" wrappingWidth="496.0">
+                     <font>
+                        <Font name="Dubai Medium" size="18.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="99.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Users" textAlignment="CENTER" wrappingWidth="496.0">
+                     <font>
+                        <Font name="Dubai Medium" size="18.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
             </children>
             <effect>
                 <DropShadow />

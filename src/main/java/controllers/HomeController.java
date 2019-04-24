@@ -1,10 +1,13 @@
 package controllers;
 import com.jfoenix.controls.JFXButton;
 import helpers.HelperMethods;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -15,11 +18,13 @@ import models.Users;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -47,13 +52,23 @@ public class HomeController implements Initializable {
     }
 
     @FXML
+    TableView games;
+
+    @FXML
+    Label positionChange;
+
+    @FXML
+    TableView newPlayers;
+
+    @FXML
     JFXButton play;
+
     @FXML
     JFXButton leaderBoard;
+
     @FXML
     JFXButton my_stats;
-    @FXML
-    JFXButton infoSinceLastLogin;
+
     @FXML
     VBox history;
 
@@ -78,11 +93,6 @@ public class HomeController implements Initializable {
     }
 
     @FXML
-    protected void handleInfoButtonAction(ActionEvent event) throws IOException {
-        HelperMethods.LoadScene("/fxml/infoSinceLastLogin.fxml");
-    }
-
-    @FXML
     protected void handlePlayButtonAction(ActionEvent event) throws IOException {
         HelperMethods.LoadScene("/fxml/GameBoard.fxml");
     }
@@ -101,34 +111,8 @@ public class HomeController implements Initializable {
     }
 
 
-    @FXML
-    public void initialize() throws Exception{
+//    @FXML
 
-        String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
-        JSONArray json = new JSONArray(content);
-
-        List<Record> rs = new ArrayList<Record>();
-        json.forEach(e -> {
-            JSONObject j = (JSONObject) e;
-            Record r = new Record(j);
-            rs.add(r);
-        });
-
-        rs.stream().filter(r ->
-            r.player1.equals(Users.currentUser.username) || r.player2.equals(Users.currentUser.username)
-        ).forEach(r -> {
-            Label l = new Label();
-            String opponentUserName = r.player1 == Users.currentUser.username
-                    ? r.player2
-                    : r.player1;
-            String status = r.winner.equals(Users.currentUser.username)
-                    ? "won"
-                    : "lost";
-            l.setText("played with " + opponentUserName + ", and " + status);
-            history.getChildren().add(l);
-        });
-
-    }
 
     public void setUsername(String user) {
         this.welcomeUser.setText("Welcome, " + user + "!");
@@ -139,10 +123,16 @@ public class HomeController implements Initializable {
         profile_image.setImage(new Image(Users.currentUser.image));            // <---- causing null pointer
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    @FXML
+    public void initialize (URL location, ResourceBundle resources) {
         setUserimage();
         setUsername(AccountController.getInstance().username());
+        try {
+            InfoSinceLastLogin.RecentActivity(games, newPlayers, positionChange);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
 }

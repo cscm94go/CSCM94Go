@@ -107,6 +107,15 @@ public class AdminController implements Initializable {
     }
 
     @FXML
+    TableView games;
+
+    @FXML
+    Label positionChange;
+
+    @FXML
+    TableView newPlayers;
+
+    @FXML
     private TableView tableView;
 
     @FXML

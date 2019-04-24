@@ -28,6 +28,10 @@ public class InfoSinceLastLogin {
 
     @FXML
     public void initialize() throws Exception{
+        RecentActivity(games, newPlayers, positionChange);
+    }
+
+    static void RecentActivity(TableView games, TableView newPlayers, Label positionChange) throws IOException {
         {
             TableColumn<Record, String> column1 = new TableColumn<Record, String>();
             column1.setText("Time");
@@ -100,7 +104,6 @@ public class InfoSinceLastLogin {
         }
 
 
-
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
 
@@ -118,7 +121,7 @@ public class InfoSinceLastLogin {
         });
 
         int newPosition = LeadBoardController.sort(0).indexOf(Users.currentUser.username);
-        positionChange.setText("position change from " + Users.currentUser.position + " to " + newPosition);
+        positionChange.setText("Your position has changed from " + Users.currentUser.position + " to " + newPosition);
 
         try {
             Files.list(new File("users").toPath())
