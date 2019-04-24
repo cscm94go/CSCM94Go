@@ -109,22 +109,22 @@ public class MyStatsController implements Initializable {
     }
 
 
-    public void setPieChart() {
+    @FXML
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+        setUserimage();
         ObservableList<PieChart.Data> pieChartData
                 = FXCollections.observableArrayList(
-                new PieChart.Data("Wins", 1),
                 new PieChart.Data("Losses", 1),
-                new PieChart.Data("Played", 2));
+                new PieChart.Data("Wins", 1));
 
 
         pieChart.setData(pieChartData);
         pieChart.setStartAngle(0);
-    }
 
 
-    @FXML
-    public void initialize(URL location, ResourceBundle resources) {
-        setUserimage();
+
     }
 
 }
