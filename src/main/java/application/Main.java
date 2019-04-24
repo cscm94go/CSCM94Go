@@ -14,8 +14,15 @@ import java.io.IOException;
  */
 public class Main extends Application {
 
+    /**
+     * Store the window object for easily change scene
+     */
     public static Stage stage;
 
+    /**
+     * Start method
+     * @param primaryStage main stage
+     */
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
@@ -41,6 +48,9 @@ public class Main extends Application {
         });
     }
 
+    /**
+     * Main method
+     */
     public static void main(String[] args) {
         launch(args);
     }
