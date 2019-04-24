@@ -80,7 +80,7 @@ public class HomeController implements Initializable {
 
     @FXML
     protected void handleMyStatsButtonAction(ActionEvent event) throws IOException {
-        HelperMethods.LoadScene("/fxml/MyStat.fxml");
+        HelperMethods.LoadScene("/fxml/MyStats.fxml");
     }
 
     @FXML
