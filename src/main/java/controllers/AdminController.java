@@ -182,7 +182,7 @@ public class AdminController implements Initializable {
 
     @FXML
     void handleCreateUserButtonAction(ActionEvent event) throws IOException {
-        HelperMethods.LoadScene("/fxml/RegisterUser.fxml");
+        HelperMethods.LoadScene("/fxml/MakeUser.fxml");
     }
 
     @FXML

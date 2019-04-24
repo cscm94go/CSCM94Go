@@ -104,7 +104,7 @@
                            </font>
                         </Label>
                         <Button fx:id="createButton" layoutX="210.0" layoutY="647.0" onAction="#handleCreateButtonAction" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #F7F7E3;" text="Create" />
-                        <JFXButton id="log_out" fx:id="backtoDashboard" buttonType="RAISED" layoutX="2.0" layoutY="705.0" onAction="#handleDashboardButtonAction" prefHeight="96.0" prefWidth="630.0" style="-fx-background-color: #ced6e0;" text="Back to Dashboard">
+                        <JFXButton id="log_out" fx:id="backtoDashboard" buttonType="RAISED" layoutX="2.0" layoutY="705.0" onAction="#handleDashboardButtonAction" prefHeight="96.0" prefWidth="630.0" style="-fx-background-color: #ced6e0;" text="Back to Admin Dashboard">
                            <font>
                               <Font name="Dubai Medium" size="26.0" />
                            </font>
