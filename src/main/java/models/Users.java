@@ -106,6 +106,7 @@ public class Users {
      * This initializes user from a json string.
      * @param jsonString Takes the user information.
      */
+    //Users
     public Users(String jsonString) {
         JSONObject json = new JSONObject(jsonString);
         firstname = (String) json.get("firstname");
