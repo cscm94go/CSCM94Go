@@ -7,28 +7,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<VBox fx:controller="controllers.GameController"
-      xmlns:fx="http://javafx.com/fxml" alignment="center" style="-fx-background-color: gray;">
+<?import javafx.scene.layout.FlowPane?>
+<FlowPane fx:controller="controllers.GameController"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" columnHalignment="CENTER" orientation="VERTICAL" >
+    <VBox prefWidth="1024" prefHeight="800" alignment="CENTER" style="-fx-background-color: #3E3429;">
+        <Button fx:id="finishBtn" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #F7F7E3;">finish game</Button>
+        <HBox alignment="CENTER">
+            <ImageView fitHeight="50.0" fitWidth="75.0" fx:id="opponentImg" preserveRatio="true">
+                <image>
+                </image>
+            </ImageView>
+            <Label fx:id="opponentUserNameLabel" textFill="white"/>
+        </HBox>
 
-    <Button fx:id="finishBtn">finish game</Button>
-    <HBox alignment="CENTER">
-        <ImageView fitHeight="50.0" fitWidth="75.0" fx:id="opponentImg" preserveRatio="true">
-            <image>
-            </image>
-        </ImageView>
-        <Label fx:id="opponentUserNameLabel"/>
-    </HBox>
-    <Canvas fx:id="canvas" width="550" height="550"/>
-    <HBox alignment="CENTER">
-        <ImageView fitHeight="50.0" fitWidth="75.0" fx:id="myImg" preserveRatio="true">
-            <Image fx:id="myImgSource" url="@../images/avataaars.png" />
-        </ImageView>
-        <Label fx:id="userNameLabel"/>
-    </HBox>
-    <HBox alignment="CENTER"  style="-fx-padding: 0 10 0 0;">
-        <Button fx:id="passBtn">pass</Button>
-        <Button fx:id="surrenderBtn">surrender</Button>
-    </HBox>
-    <Label>whoseTurn</Label>
-    <Label fx:id="whoseTurn"/>
-</VBox>
+        <Canvas fx:id="canvas" width="550" height="550" style="-fx-background-color: #DED9B6;"/>
+        <HBox alignment="CENTER">
+            <ImageView fitHeight="50.0" fitWidth="75.0" fx:id="myImg" preserveRatio="true">
+                <Image fx:id="myImgSource" url="@../images/avataaars.png" />
+            </ImageView>
+            <Label fx:id="userNameLabel" textFill="white"/>
+        </HBox>
+        <HBox alignment="CENTER"  style="-fx-padding: 0 10 0 0;">
+            <Button fx:id="passBtn" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #F7F7E3;">pass</Button>
+            <Button fx:id="surrenderBtn" prefHeight="31.0" prefWidth="100.0" style="-fx-background-color: #F7F7E3;">
+                surrender
+            <HBox.margin>
+                <Insets>
+                    <left>10</left>
+                </Insets>
+            </HBox.margin>
+            </Button>
+            <VBox.margin>
+                <Insets>
+                    <top>10</top>
+                </Insets>
+            </VBox.margin>
+        </HBox>
+        <Label>whoseTurn</Label>
+        <Label fx:id="whoseTurn"/>
+
+    </VBox>
+
+</FlowPane>
