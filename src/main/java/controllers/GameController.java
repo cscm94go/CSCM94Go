@@ -33,7 +33,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * This is the controller to control the running of the game
+ * This is the controller to control the running of the game.
+ * The game is multiple users game, a local file "game.json" is used to communicate.
+ * So there is a class MyTask to handle the state sync. MyTask will runs every 500ms.
  */
 public class GameController {
 
@@ -90,15 +92,16 @@ public class GameController {
     protected class MyTask extends TimerTask {
         @Override
         public void run() {
-
             try {
                 String content = new String(Files.readAllBytes( Paths.get("game.json")), "UTF-8");
                 JSONObject json = new JSONObject(content);
+                // Check whether local file changed. If no, return.
                 if (game.previousJSON != null && game.previousJSON.toString().equals(json.toString())) {
                     return;
                 } else {
                     game.previousJSON = json;
                 }
+                // Check whether local file changed. If game over, hint user and return.
                 boolean gameOver = json.getBoolean("gameOver");
                 if (gameOver) {
                     Record record = new Record(json.getJSONObject("gameRecord"));
@@ -124,16 +127,18 @@ public class GameController {
                     });
                     return;
                 }
+                // Handle the go pass rule. If two users both pass, game is over.
                 if (json.has("someonePassed") && !json.getString("someonePassed").equals(Users.currentUser.username)) {
-
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
+                            // Hint user
                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Opponent passed, do you want pass, if so, game is over", ButtonType.YES, ButtonType.CANCEL);
                             alert.initOwner(Main.stage);
                             alert.showAndWait()
                                     .ifPresent(r -> {
                                         if (r == ButtonType.YES) {
+                                            // Both pass, game over, create new record
                                             json.put("gameOver", true);
                                             Record record;
                                             if (game.meWin()) {
@@ -180,6 +185,7 @@ public class GameController {
                                             }
 
                                         } else {
+                                            // Not both, game continue.
                                             json.remove("someonePassed");
                                             try {
                                                 BufferedWriter writer = new BufferedWriter(new FileWriter("game.json"));
@@ -192,14 +198,11 @@ public class GameController {
                                     });
                         }
                     });
-
-                     return;
+                    return;
                 }
-
-
+                // Code below is for syncing state
                 List<Object> ws = json.getJSONArray("whitePieces").toList();
                 List<Object> bs = json.getJSONArray("blackPieces").toList();
-
                 game.whitePieces = ws.stream().map(s -> {
                     int x = (int) ((HashMap) s).get("x");
                     int y = (int) ((HashMap) s).get("y");
@@ -210,37 +213,37 @@ public class GameController {
                     int y = (int) ((HashMap) s).get("y");
                     return new Piece(x, y);
                 }).collect(Collectors.toList());
-
                 if (json.has("whitePlayer")) game.whitePlayerUserName = json.getString("whitePlayer");
                 if (json.has("blackPlayer")) game.blackPlayerUserName = json.getString("blackPlayer");
                 if (json.has("whitePlayerImage")) game.whitePlayerImage = json.getString("whitePlayerImage");
                 if (json.has("blackPlayerImage")) game.blackPlayerImage = json.getString("blackPlayerImage");
                 game.gameStart = json.getBoolean("gameStart");
                 game.isWhite = json.getBoolean("isWhite");
-
                 drawBroad();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
-
+    /**
+     * Initializer
+     */
     @FXML
     private void initialize() throws Exception{
         gc = canvas.getGraphicsContext2D();
-        //Registering the event filter
+        
+        // add click event so that know where to put new piece
         canvas.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             if (!game.gameStart || !game.meTurn()) return;
             Piece piece = calculatePiece(e.getX(), e.getY());
             if (piece == null) return;
 
+            // Check the whether the position can put a piece
             boolean canPut = canPutPiece(game.whitePieces, game.blackPieces, piece, game.isWhite);
             if (!canPut) return;
-
-
+            // Check hasQi for pieces to decide which pieces should be removed
             if (game.isWhite) {
                 game.whitePieces.add(piece);
-
                 List<Piece> is = new ArrayList<>();
                 for (int i = 0; i < game.blackPieces.size(); i++) {
                     Piece p = game.blackPieces.get(i);
@@ -253,7 +256,6 @@ public class GameController {
                 }
             } else {
                 game.blackPieces.add(piece);
-
                 List<Piece> is = new ArrayList<>();
                 for (int i = 0; i < game.whitePieces.size(); i++) {
                     Piece p = game.whitePieces.get(i);
@@ -265,14 +267,12 @@ public class GameController {
                     game.whitePieces.remove(is.get(i));
                 }
             }
-
-
-
             game.isWhite = !game.isWhite;
             drawBroad();
             updateFile();
         });
 
+        // Response to user click finish button, go to home dashboard
         finishBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             try {
                 Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
@@ -284,6 +284,7 @@ public class GameController {
             }
         });
 
+        // Response user click pass button, warn user
         passBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure pass", ButtonType.YES, ButtonType.CANCEL);
             alert.initOwner(Main.stage);
@@ -302,16 +303,17 @@ public class GameController {
                         }
                     });
         });
-
+        
+        // Response user click surrender button, warn user, 
         surrenderBtn.addEventFilter(MouseEvent.MOUSE_CLICKED, e -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure surrender", ButtonType.YES, ButtonType.CANCEL);
             alert.initOwner(Main.stage);
             alert.showAndWait()
                     .filter(response -> response == ButtonType.YES)
                     .ifPresent(r -> {
+                        // Handle user click yes button, then game over, create new game record
                         HelperMethods.showAlert(Alert.AlertType.CONFIRMATION, Main.stage, "Game over!",
                                 "you surrender");
-
                         try {
                             Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
                             Scene board = new Scene(p, 1100, 900);
@@ -343,14 +345,18 @@ public class GameController {
                     });
         });
 
+        // First draw board and update ui
         drawBroad();
-
+        
+        // Create a timer to sync the local game file every 500 ms.
         timer = new Timer(true);
-        timer.schedule(new MyTask(), 500,1000);
+        timer.schedule(new MyTask(), 500, 1000);
     }
 
+    /**
+     * OverWrite local game file with current game state
+     */
     private void updateFile(){
-
         try {
             String content = new String(Files.readAllBytes( Paths.get("game.json")), "UTF-8");
             JSONObject json = new JSONObject(content);
@@ -364,7 +370,9 @@ public class GameController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Use the cordinate x, y to calculate the Piece postion.
+     */
     private Piece calculatePiece(double x, double  y){
         double  minX = left - unitWidth / 2;
         double  maxX = left + width + unitWidth / 2;
@@ -376,7 +384,9 @@ public class GameController {
         int b = (int) Math.round((y - top) / unitWidth);
         return new Piece(a,b);
     }
-
+    /**
+     * Check whether user is able to put piece on certain  position
+     */
     private boolean canPutPiece(List<Piece> whitePieces, List<Piece> blackPieces, Piece newPiece, boolean isWhite){
         List<Piece> selfPieces = isWhite ? whitePieces: blackPieces;
         List<Piece> opponentPieces = isWhite ? blackPieces: whitePieces;
@@ -384,29 +394,19 @@ public class GameController {
         if (!hasQi(newPiece, newPiece, getMatrix(), isWhite) ) return false;
         return true;
     }
-    private List <Piece>[] adjustPiece(List<Piece> whitePieces, List<Piece> blackPieces, Piece newPiece, boolean isWhite){
-        List<Piece> selfPieces = isWhite ? whitePieces: blackPieces;
-        List<Piece> opponentPieces = isWhite ? blackPieces: whitePieces;
-
-//        opponentPieces
-        return null;
-    }
-
-
+    /**
+     * Drawing board and update ui with current game state.
+     */
     private void drawBroad(){
+        // Draw game board use canvas
         gc.clearRect(0, 0, width, width);
-
         gc.setStroke(Color.BLACK);
         gc.setLineWidth(2);
-
         gc.setFill(Color.GRAY);
         gc.fillRect(2,2, width + 36, width + 36);
-
         for (int i = 0; i < 18; i++)
             for (int j = 0; j < 18; j++)
                 gc.strokeRect(left + i * unitWidth,top + j * unitWidth, unitWidth, unitWidth);
-
-
         float l = left - r / 2;
         float b = top - r / 2;
         gc.setFill(Color.BLACK);
@@ -414,6 +414,7 @@ public class GameController {
         gc.setFill(Color.WHITE);
         game.whitePieces.forEach(piece -> gc.fillOval( l + piece.x * unitWidth, b + piece.y * unitWidth, r, r));
 
+        // Update ui
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -433,9 +434,9 @@ public class GameController {
             }
         });
     }
-
-
-
+    /**
+     * Get a 19x19 to represent a board with blackPieces List and whitePieces List
+     */
     private int[][] getMatrix() {
         int[][] ints = new int[19][19];
 
