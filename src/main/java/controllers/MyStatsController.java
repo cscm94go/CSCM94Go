@@ -30,7 +30,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import models.Admin;
-import models.Record;
 import models.Users;
 import org.json.JSONObject;
 import java.io.*;
@@ -91,7 +90,7 @@ public class MyStatsController implements Initializable {
     JFXButton backtoDashboard;
 
     @FXML
-    private TableView<Record> myGames;
+    private TableView<?> myGames;
 
 
     @FXML
@@ -136,36 +135,5 @@ public class MyStatsController implements Initializable {
 
         pieChart.setData(pieChartData);
         pieChart.setStartAngle(0);
-
-        TableColumn<Record, String> c1 = new TableColumn<>("Opponent");
-        c1.setPrefWidth(100);
-        c1.setCellValueFactory(cell -> {
-            Record r = cell.getValue();
-            String opponent = r.player1.equals(Users.currentUser.username) ? r.player2 : r.player1;
-            return new ReadOnlyStringWrapper(opponent);
-        });
-        TableColumn<Record, String> c2 = new TableColumn<>("Result");
-        c2.setPrefWidth(100);
-        c2.setCellValueFactory(cell -> {
-            Record r = cell.getValue();
-            String res = r.winner.equals(Users.currentUser.username) ? "Won" : "Lost";
-            return new ReadOnlyStringWrapper(res);
-        });
-        TableColumn<Record, String> c3 = new TableColumn<>("Time");
-        c3.setPrefWidth(200);
-        c3.setCellValueFactory(cell -> {
-            Record r = cell.getValue();
-            String time = new Date(r.timeStamp).toLocaleString();
-            return new ReadOnlyStringWrapper(time);
-        });
-        myGames.getColumns().add(c1);
-        myGames.getColumns().add(c2);
-        myGames.getColumns().add(c3);
-
-        List<Record> rs = Users.getCurrentUserGameRecord();
-        for (int i = 0; i < rs.size(); i++) {
-            myGames.getItems().add(rs.get(i));
-        }
-
     }
 }
