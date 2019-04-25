@@ -1,4 +1,4 @@
-#94Go
+# 94Go
 How to run:
 
 1. Download maven from http://maven.apache.org/download.cgi.
