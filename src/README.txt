@@ -1,15 +1,14 @@
-how to run:
+How to run:
 
-1. Download and run the intelliJ IDE.
-2. Using maven install all needed packages.
-3. The Main class is on the application package.
-4. Run main class.
+1. Download maven from http://maven.apache.org/download.cgi.
+2. Unzip it.
+3. Set environment Path.
+4. Change directory to Project folder.
+5. run command: mvn compile
+6. run command: mvn exec:java -xec.mainClass=application.Main
 
-how to run two applications simultaneously:
+For two users, pls run the command "mvn exec:java -xec.mainClass=application.Main" twice,
+then two users can play the game go.
 
-1. Install multirun plugin in intelliJ.
-2. Add multirun running config.
-3. Click run button twice.
-
-If can't run, pls contact (John 690657@swansea.ac.uk)
+Note: If can't run sucessefully, pls contact (John 690657@swansea.ac.uk)
 I can use Chrome Remote Desktop to help you make it work.
