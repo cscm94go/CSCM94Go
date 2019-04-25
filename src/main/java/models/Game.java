@@ -86,7 +86,7 @@ public class Game {
                 json = new JSONObject();
             }
 
-            if (!json.has("whitePlayer")) {
+            if (!json.has("whitePlayer") || json.getString("whitePlayer").equals(Users.currentUser.username)) {
                 json.put("whitePieces", new ArrayList<>());
                 json.put("blackPieces", new ArrayList<>());
                 json.put("whitePlayer", Users.currentUser.username);
