@@ -37,14 +37,15 @@ public class LeadBoardController {
     Button btn2;
     @FXML
     Button back;
-//    @FXML
-//    Button leaderBoard;
     @FXML TableView table;
 
+    /**
+     * Initializer
+     */
     @FXML
     public void initialize() throws Exception{
         firstSort();
-
+        // Response to user click by win percentage
         btn1.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_CLICKED, a -> {
             try {
                 firstSort();
@@ -52,6 +53,7 @@ public class LeadBoardController {
                 ex.printStackTrace();
             }
         });
+        // Response to user click by totoal wins
         btn2.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_CLICKED, a -> {
             try {
                 secondSort();
@@ -59,8 +61,8 @@ public class LeadBoardController {
                 ex.printStackTrace();
             }
         });
+        // Response to user click back button, back to dashboard
         back.addEventFilter(javafx.scene.input.MouseEvent.MOUSE_CLICKED, a -> {
-
                 try {
                     Parent p = FXMLLoader.load(getClass().getResource("/fxml/HomeDashboard.fxml"));
                     Scene board = new Scene(p, 1100, 900);
@@ -69,11 +71,12 @@ public class LeadBoardController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
         });
 
     }
-
+    /**
+     * Sort helper method, 0 - win percentage, 1 - total win
+     */
     public static List<String> sort(int type){
         String content = null;
         try {
@@ -82,20 +85,17 @@ public class LeadBoardController {
             e.printStackTrace();
         }
         JSONArray json = new JSONArray(content);
-
         List<Record> rs = new ArrayList<Record>();
         json.forEach(e -> {
             JSONObject j = (JSONObject) e;
             Record r = new Record(j);
             rs.add(r);
         });
-
         HashSet<String> users = new HashSet<>();
         rs.stream().forEach(r -> {
             users.add(r.player1);
             users.add(r.player2);
         });
-
         List<String> us = users.stream().collect(Collectors.toList());
         us.sort((u1, u2) -> {
             AtomicInteger win = new AtomicInteger();
@@ -119,7 +119,9 @@ public class LeadBoardController {
         });
         return us;
     }
-
+    /**
+     * sort by win percentage
+     */
     void firstSort() throws IOException {
         table.getColumns().remove(0, table.getColumns().size());
         table.getItems().remove(0, table.getItems().size());
@@ -144,23 +146,19 @@ public class LeadBoardController {
         table.getColumns().add(column1);
         table.getColumns().add(column2);
         table.getColumns().add(column3);
-
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
-
         List<Record> rs = new ArrayList<Record>();
         json.forEach(e -> {
             JSONObject j = (JSONObject) e;
             Record r = new Record(j);
             rs.add(r);
         });
-
         HashSet<String> users = new HashSet<>();
         rs.stream().forEach(r -> {
             users.add(r.player1);
             users.add(r.player2);
         });
-
         List<String> us = sort(0);
         for (int i = 0; i < us.size(); i++) {
             String u = us.get(i);
@@ -177,30 +175,9 @@ public class LeadBoardController {
             table.getItems().add(new WinPercentage(percentage, i + 1, u));
         }
     }
-
-    private class WinPercentage {
-        Double percentage;
-        Integer rank;
-        String name;
-        public WinPercentage(double p, int r, String n){
-            percentage=new Double(p);
-            rank=new Integer(r);
-            name=n;
-        }
-    }
-
-    private class TotalWin {
-        Integer winCount;
-        Integer rank;
-        String name;
-        public TotalWin(int c, int r, String n){
-            winCount=new Integer(c);
-            rank=new Integer(r);
-            name=n;
-        }
-    }
-
-
+    /**
+     * Sort by total wins
+     */
     void secondSort() throws IOException {
         table.getColumns().remove(0, table.getColumns().size());
         table.getItems().remove(0, table.getItems().size());
@@ -222,23 +199,19 @@ public class LeadBoardController {
         table.getColumns().add(column1);
         table.getColumns().add(column2);
         table.getColumns().add(column3);
-
         String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
         JSONArray json = new JSONArray(content);
-
         List<Record> rs = new ArrayList<Record>();
         json.forEach(e -> {
             JSONObject j = (JSONObject) e;
             Record r = new Record(j);
             rs.add(r);
         });
-
         HashSet<String> users = new HashSet<>();
         rs.stream().forEach(r -> {
             users.add(r.player1);
             users.add(r.player2);
         });
-
         List<String> us = sort(1);
         for (int i = 0; i < users.size(); i++) {
             String u  = us.get(i);
@@ -248,8 +221,32 @@ public class LeadBoardController {
             });
             table.getItems().add(new TotalWin(win.get(),i + 1, u));
         }
-
-
+    }
+    /**
+     * Class for WinPercentage table column
+     */
+    private class WinPercentage {
+        Double percentage;
+        Integer rank;
+        String name;
+        public WinPercentage(double p, int r, String n){
+            percentage=new Double(p);
+            rank=new Integer(r);
+            name=n;
+        }
+    }
+    /**
+     * Class for total wins table column
+     */
+    private class TotalWin {
+        Integer winCount;
+        Integer rank;
+        String name;
+        public TotalWin(int c, int r, String n){
+            winCount=new Integer(c);
+            rank=new Integer(r);
+            name=n;
+        }
     }
 
 }
