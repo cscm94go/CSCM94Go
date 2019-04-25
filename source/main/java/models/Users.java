@@ -90,6 +90,28 @@ public class Users {
         }
         return winsAndLoses;
     }
+    /**
+     * Get game records for currently logged in user
+     */
+    public static List<Record> getCurrentUserGameRecord(){
+        List<Record> rs = new ArrayList<>();
+        if (Files.exists(Paths.get("playerRecords.json"))) {
+            try {
+                String content = new String(Files.readAllBytes( Paths.get("playerRecords.json")), "UTF-8");
+                JSONArray jsonArray = new JSONArray(content);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject json = (JSONObject) jsonArray.get(i);
+                    Record r = new Record(json);
+                    if (r.player1.equals(currentUser.username) || r.player2.equals(currentUser.username)){
+                        rs.add(r);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return rs;
+    }
 
     /**
      * Get win percentage for currently logged in player
