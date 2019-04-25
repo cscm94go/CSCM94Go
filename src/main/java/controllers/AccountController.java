@@ -1,19 +1,20 @@
 package controllers;
+
 import application.Main;
 import com.jfoenix.controls.JFXButton;
 import helpers.HelperMethods;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Window;
 import models.Admin;
 import models.Users;
-import javafx.fxml.FXML;
-import javafx.stage.Window;
-import javafx.event.ActionEvent;
-import javafx.scene.image.ImageView;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -22,9 +23,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 /**
