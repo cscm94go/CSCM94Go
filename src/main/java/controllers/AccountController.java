@@ -139,6 +139,7 @@ public class AccountController implements Initializable {
 
         return true;
     }
+
     /**
      * This sets the right image for the avatar clicked.
      * @param  event The mouse click to choose the avatar.

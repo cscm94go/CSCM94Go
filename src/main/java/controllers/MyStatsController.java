@@ -99,6 +99,12 @@ public class MyStatsController implements Initializable {
     @FXML
     private PieChart pieChart;
 
+    @FXML
+    private Label myUsername;
+
+    public void setUsername(String user) {
+        this.myUsername.setText(user);
+    }
 
     @FXML
     void handleDashboardButtonAction(ActionEvent event) throws IOException {
@@ -113,7 +119,11 @@ public class MyStatsController implements Initializable {
     @FXML
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        setUsername(AccountController.getInstance().username());
 
+        double win_percentage = Users.getCurrentUserWinPercentage();
+        String yourWinP = ("Your win perentage = " + win_percentage + " %");
+        this.winPercentage.setText(yourWinP);
         setUserimage();
 
         int [] pieData = Users.getCurrentUserWinsAndLosesCount();

@@ -3,17 +3,19 @@ package models;
 import javafx.scene.control.CheckBox;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static controllers.LeadBoardController.sort;
 
 
 /**
@@ -62,6 +64,9 @@ public class Users {
 
     }
 
+    /**
+     * Get wins and losses for the currently logged in user
+     */
     public static int[] getCurrentUserWinsAndLosesCount(){
         int[] winsAndLoses = new int[2];
         if (Files.exists(Paths.get("playerRecords.json"))) {
@@ -85,6 +90,44 @@ public class Users {
         }
         return winsAndLoses;
     }
+
+    /**
+     * Get win percentage for currently logged in player
+     */
+    public static double getCurrentUserWinPercentage() {
+        double winPercentage = 0;
+        if (Files.exists(Paths.get("playerRecords.json"))) {
+            try {
+                String content = new String(Files.readAllBytes(Paths.get("playerRecords.json")), "UTF-8");
+                JSONArray json = new JSONArray(content);
+                List<Record> rs = new ArrayList<Record>();
+                json.forEach(e -> {
+                    JSONObject j = (JSONObject) e;
+                    Record r = new Record(j);
+                    rs.add(r);
+                });
+                HashSet<String> users = new HashSet<>();
+                rs.stream().forEach(r -> {
+                    users.add(r.player1);
+                    users.add(r.player2);
+                });
+                String u = currentUser.username;
+                AtomicInteger win = new AtomicInteger();
+                AtomicInteger lose = new AtomicInteger();
+                rs.stream().forEach(r -> {
+                  if (r.player1.equals(u) || r.player2.equals(u)) {
+                    if (r.winner.equals(u)) win.getAndIncrement();
+                      else lose.getAndIncrement();
+                  }
+                });
+                winPercentage = win.doubleValue() / (win.doubleValue() + lose.doubleValue());
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return winPercentage * 100;
+    }
+
 
     /**
      * This gives the information of the user.
