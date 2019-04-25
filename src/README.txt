@@ -12,5 +12,3 @@ How to run:
 For two users, pls run the command "mvn exec:java -xec.mainClass=application.Main" twice,
 then two users can play the game go.
 
-Note: If can't run successfully, pls contact (John 690657@swansea.ac.uk)
-I can use Chrome Remote Desktop to help you make it work.
