@@ -1,4 +1,7 @@
 # 94Go
+
+A university project to design a board game from scratch
+Using Java with Java FX 
 How to run:
 
 1. Download maven from http://maven.apache.org/download.cgi.
