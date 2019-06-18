@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Window;
+import models.Users;
 
 import java.io.IOException;
 import java.net.URL;
@@ -44,12 +45,19 @@ public class HomeController implements Initializable {
      */
     @FXML
     Label welcomeUser;
-    /**
-     * Display current user's profile image.
-     */
 
+    /**
+     * This is the label to show firstname of current user
+     */
     @FXML
-    Button adminBtn;
+    Label firstnameLabel;
+
+    /**
+     * This is the label to show lastname of current user
+     */
+    @FXML
+    Label lastnameLabel;
+
 
     /**
      * Return log in screen after log out.
@@ -75,13 +83,26 @@ public class HomeController implements Initializable {
         this.welcomeUser.setText("Welcome, " + user + "!");
     }
 
+    public void setFirstnameLabel() {
+        String firstName = Users.currentUser.firstname;
+        this.firstnameLabel.setText(firstName);
+    }
+
+    public void setLastnameLabel() {
+        String lastName = Users.currentUser.lastname;
+        this.lastnameLabel.setText(lastName);
+    }
+
+
+
     /**
      * Set profile image to current user's.
      */
     @FXML
     public void initialize (URL location, ResourceBundle resources) {
         setUsername(AccountController.getInstance().username());
-
+        setFirstnameLabel();
+        setLastnameLabel();
     }
 
 

@@ -16,11 +16,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="CSCM94Go" />
+        <module name="ProgrammingTest" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="CSCM94Go" target="8" />
+      <module name="ProgrammingTest" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

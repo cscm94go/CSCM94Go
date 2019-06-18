@@ -12,9 +12,9 @@
    <children>
       <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
          <center>
-            <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" BorderPane.alignment="CENTER">
+            <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #9ba380;" BorderPane.alignment="CENTER">
                <children>
-                  <AnchorPane layoutX="32.0" layoutY="25.0" prefHeight="740.0" prefWidth="958.0" style="-fx-background-color: #DED9B6;">
+                  <AnchorPane layoutX="32.0" layoutY="25.0" prefHeight="740.0" prefWidth="958.0" style="-fx-background-color: #eff2e6;">
                      <children>
                         <TextField fx:id="user_name" layoutX="349.0" layoutY="336.0" promptText="username">
                            <font>

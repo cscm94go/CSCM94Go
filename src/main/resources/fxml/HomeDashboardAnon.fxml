@@ -57,16 +57,6 @@
                               </ImageView>
                            </graphic>
                               </JFXButton>
-                        <Label fx:id="firstnameLabel" layoutX="215.0" layoutY="242.0" text="Label">
-                           <font>
-                              <Font name="Arial Nova" size="27.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lastnameLabel" layoutX="219.0" layoutY="335.0" text="Label">
-                           <font>
-                              <Font name="Arial Nova Cond" size="27.0" />
-                           </font>
-                        </Label>
                           </children>
                       </AnchorPane>
                </children>

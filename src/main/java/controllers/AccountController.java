@@ -152,7 +152,7 @@ public class AccountController implements Initializable {
         String user= username();
         login(user);
         if(user_name.getText().isEmpty()) {
-            HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
+            HelperMethods.LoadScene("/fxml/HomeDashboardAnon.fxml");
             return;
         }
         else if (login(user) == true) {
@@ -210,6 +210,5 @@ public class AccountController implements Initializable {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

@@ -11,9 +11,9 @@
     <children>
         <BorderPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0">
             <center>
-                <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" BorderPane.alignment="CENTER">
+                <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #9ba380;" BorderPane.alignment="CENTER">
                     <children>
-                        <AnchorPane layoutX="263.0" layoutY="97.0" prefHeight="620.0" prefWidth="359.0" style="-fx-background-color: #DED9B6;">
+                        <AnchorPane layoutX="263.0" layoutY="97.0" prefHeight="620.0" prefWidth="359.0" style="-fx-background-color: #eff2e6;">
                             <children>
 
                                 <Label alignment="CENTER" layoutX="33.0" layoutY="47.0" prefHeight="39.0" prefWidth="292.0" text="Register">
