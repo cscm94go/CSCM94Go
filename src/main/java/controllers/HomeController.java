@@ -45,23 +45,10 @@ public class HomeController implements Initializable {
      */
     @FXML
     Label welcomeUser;
-
-    /**
-     * This is the label to show firstname of current user
-     */
     @FXML
     Label firstnameLabel;
-
-    /**
-     * This is the label to show lastname of current user
-     */
     @FXML
     Label lastnameLabel;
-
-
-    /**
-     * Return log in screen after log out.
-     */
     @FXML
     protected void handleLogoutButtonAction(ActionEvent event) throws IOException {
         Window owner = logout.getScene().getWindow();
@@ -69,16 +56,10 @@ public class HomeController implements Initializable {
                 "Logged out successfully!");
         HelperMethods.LoadScene("/fxml/application.fxml");
     }
-    /**
-     * Load admin options
-     */
     @FXML
     void handleAdminButtonAction(ActionEvent event) throws IOException {
         HelperMethods.LoadScene("/fxml/AdminOptions.fxml");
     }
-    /**
-     * Set label to username of current user
-     */
     public void setUsername(String user) {
         this.welcomeUser.setText("Welcome, " + user + "!");
     }
@@ -93,11 +74,6 @@ public class HomeController implements Initializable {
         this.lastnameLabel.setText(lastName);
     }
 
-
-
-    /**
-     * Set profile image to current user's.
-     */
     @FXML
     public void initialize (URL location, ResourceBundle resources) {
         setUsername(AccountController.getInstance().username());
