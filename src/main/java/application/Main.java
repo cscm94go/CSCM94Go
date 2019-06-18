@@ -31,21 +31,10 @@ public class Main extends Application {
         Parent firstPane = firstPaneLoader.load();
         Scene firstScene = new Scene(firstPane, 1100, 900);
 
-        primaryStage.setTitle("Go");
+        primaryStage.setTitle("Log In System");
         primaryStage.setScene(firstScene);
         primaryStage.show();
         firstPane.addEventFilter(KeyEvent.KEY_PRESSED, key  ->  {
-            if (key.getText().equals("g")) {
-                Scene board = null;
-                try {
-                    Parent p = FXMLLoader.load(getClass().getResource("/fxml/GameBoard.fxml"));
-                    board = new Scene(p, 600, 600);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                primaryStage.setScene(board);
-                primaryStage.show();
-            }
         });
     }
 

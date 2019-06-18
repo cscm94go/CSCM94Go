@@ -9,11 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Window;
-import models.Admin;
 import models.Users;
 import org.json.JSONObject;
 
@@ -59,33 +55,7 @@ public class AccountController implements Initializable {
         return  user_name.getText();
     }
 
-    public Image userimage() {
-        Image image = new Image(Users.currentUser.image);
-        return image;
-    }
-    /**
-     *The user's image.
-     */
-    @FXML private ImageView userImage;
 
-    /**
-     * Short one line description.
-     */
-    private String selectedImagePath = "images/avataaars.png";
-    /**
-     * Short one line description.
-     * @param  imagePath Description text text text.
-     */
-    private void setUserImage(String imagePath) {
-        selectedImagePath = imagePath;
-        Image image = new Image(imagePath);
-        userImage.setImage(image);
-    }
-    /**
-     * Short one line description.
-     * @param  user Description text text text.
-     * @return True if the user exists.
-     */
     public boolean login(String user) {
 
         try {
@@ -107,9 +77,6 @@ public class AccountController implements Initializable {
         String content = new String(Files.readAllBytes(thePath), "UTF-8");
         Users u = new Users(content);
         Users.currentUser = u;
-        if (new JSONObject(content).has("isAdmin")) {
-            Admin.currentAdmin = new Admin(content);
-        }
     }
 
     /**
@@ -127,10 +94,6 @@ public class AccountController implements Initializable {
             u.firstname = firstName;
             u.lastname = lastName;
             u.username = userName;
-            u.image = selectedImagePath;
-            u.lastLogin = 0;
-            u.registerTime = new Date().getTime();
-            u.position = count + 1;
             u.store();
         } catch (IOException e) {
             e.printStackTrace();
@@ -143,74 +106,6 @@ public class AccountController implements Initializable {
      * This sets the right image for the avatar clicked.
      * @param  event The mouse click to choose the avatar.
      */
-    @FXML protected void avatar1Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars.png";
-        setUserImage(imagePath);
-    }
-    /**
-     * This sets the right image for the avatar clicked.
-     * @param  event The mouse click to choose the avatar.
-     */
-    @FXML protected void avatar2Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars2.png";
-        setUserImage(imagePath);
-    }
-    /**
-     * This sets the right image for the avatar clicked.
-     * @param  event The mouse click to choose the avatar.
-     */
-    @FXML protected void avatar3Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars3.png";
-        setUserImage(imagePath);
-    }
-    /**
-     * This sets the right image for the avatar clicked.
-     * @param  event The mouse click to choose the avatar.
-     */
-    @FXML protected void avatar4Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars4.png";
-        setUserImage(imagePath);
-    }
-    /**
-     * This sets the right image for the avatar clicked.
-     * @param  event The mouse click to choose the avatar.
-     */
-    @FXML protected void avatar5Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars5.png";
-        setUserImage(imagePath);
-    }
-    /**
-     * This sets the right image for the avatar clicked.
-     * @param  event The mouse click to choose the avatar.
-     */
-    @FXML protected void avatar6Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars6.png";
-        setUserImage(imagePath);
-    }
-    /**
-     * This sets the right image for the avatar clicked.
-     * @param  event The mouse click to choose the avatar.
-     */
-    @FXML protected void avatar7Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars7.png";
-        setUserImage(imagePath);
-    }
-    /**
-     * This sets the right image for the avatar clicked.
-     * @param  event The mouse click to choose the avatar.
-     */
-    @FXML protected void avatar8Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars8.png";
-        setUserImage(imagePath);
-    }
-    /**
-     * This sets the right image for the avatar clicked.
-     * @param  event The mouse click to choose the avatar.
-     */
-    @FXML protected void avatar9Clicked(MouseEvent event) {
-        String imagePath = "images/avataaars9.png";
-        setUserImage(imagePath);
-    }
 
     /**
      * This is text field for first name
@@ -254,11 +149,10 @@ public class AccountController implements Initializable {
      */
     @FXML
     protected void handleSubmitButtonAction(ActionEvent event) throws IOException {
-        String user= user_name.getText();
+        String user= username();
         login(user);
         if(user_name.getText().isEmpty()) {
-            HelperMethods.showAlert(Alert.AlertType.ERROR, Main.stage, "Form Error!",
-                    "Please enter your name");
+            HelperMethods.LoadScene("/fxml/HomeDashboard.fxml");
             return;
         }
         else if (login(user) == true) {

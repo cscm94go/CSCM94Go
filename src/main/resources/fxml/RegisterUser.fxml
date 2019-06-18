@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.image.*?>
@@ -12,7 +13,7 @@
             <center>
                 <AnchorPane maxHeight="800.0" maxWidth="1024.0" prefHeight="800.0" prefWidth="1024.0" style="-fx-background-color: #3E3429;" BorderPane.alignment="CENTER">
                     <children>
-                        <AnchorPane layoutX="651.0" layoutY="112.0" prefHeight="620.0" prefWidth="359.0" style="-fx-background-color: #DED9B6;">
+                        <AnchorPane layoutX="263.0" layoutY="97.0" prefHeight="620.0" prefWidth="359.0" style="-fx-background-color: #DED9B6;">
                             <children>
 
                                 <Label alignment="CENTER" layoutX="33.0" layoutY="47.0" prefHeight="39.0" prefWidth="292.0" text="Register">
@@ -21,82 +22,23 @@
                                     </font>
                                 </Label>
                                 <Separator layoutX="60.0" layoutY="85.0" prefHeight="3.0" prefWidth="238.0" />
-                                <TextField fx:id="first_name" layoutX="48.0" layoutY="310.0" promptText="First Name">
+                                <TextField fx:id="first_name" layoutX="48.0" layoutY="149.0" promptText="First Name">
                                 <font>
                                 <Font size="21.0" />
                                 </font>
                                 </TextField>
-                                <TextField fx:id="last_name" layoutX="49.0" layoutY="376.0" promptText="Last Name">
+                                <TextField fx:id="last_name" layoutX="50.0" layoutY="239.0" promptText="Last Name">
                                     <font>
                                         <Font size="21.0" />
                                     </font>
                                 </TextField>
-                                <TextField fx:id="user_name" layoutX="49.0" layoutY="440.0" promptText="Username">
+                                <TextField fx:id="user_name" layoutX="50.0" layoutY="318.0" promptText="Username">
                                     <font>
                                         <Font size="21.0" />
                                     </font>
                                 </TextField>
-                                <Button fx:id="createButton" layoutX="96.0" layoutY="515.0" onAction="#handleCreateButtonAction" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #F7F7E3;" text="Create" />
-                        <Text layoutX="93.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select your avatar" textAlignment="CENTER" wrappingWidth="175.6708984375" />
-                        <ScrollPane layoutX="185.0" layoutY="105.0" prefHeight="149.0" prefWidth="168.0">
-                           <content>
-                              <VBox prefHeight="1186.0" prefWidth="65.0">
-                                 <children>
-                                    <ImageView fitHeight="150.0" fitWidth="232.0" onMouseClicked="#avatar1Clicked" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../images/avataaars.png" />
-                                            </image>
-                                    </ImageView>
-                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar2Clicked" preserveRatio="true">
-                                         <image>
-                                             <Image url="@../images/avataaars2.png" />
-                                         </image>
-                                     </ImageView>
-                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar3Clicked" preserveRatio="true">
-                                         <image>
-                                             <Image url="@../images/avataaars3.png" />
-                                         </image>
-                                     </ImageView>
-                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar4Clicked" preserveRatio="true">
-                                         <image>
-                                             <Image url="@../images/avataaars4.png" />
-                                         </image>
-                                     </ImageView>
-                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar5Clicked" preserveRatio="true">
-                                         <image>
-                                             <Image url="@../images/avataaars5.png" />
-                                         </image>
-                                     </ImageView>
-                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar6Clicked" preserveRatio="true">
-                                         <image>
-                                             <Image url="@../images/avataaars6.png" />
-                                         </image>
-                                     </ImageView>
-                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar7Clicked" preserveRatio="true">
-                                         <image>
-                                             <Image url="@../images/avataaars7.png" />
-                                         </image>
-                                     </ImageView>
-                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar8Clicked" preserveRatio="true">
-                                         <image>
-                                             <Image url="@../images/avataaars8.png" />
-                                         </image>
-                                     </ImageView>
-                                     <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#avatar9Clicked" preserveRatio="true">
-                                         <image>
-                                             <Image url="@../images/avataaars9.png" />
-                                         </image>
-                                     </ImageView>
-                                 </children>
-                              </VBox>
-                           </content>
-                        </ScrollPane>
-                        <ImageView fx:id="userImage" fitHeight="148.0" fitWidth="161.0" layoutX="40.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/avataaars.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="backButton" layoutX="95.0" layoutY="563.0" onAction="#handleBackButtonAction" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #F7F7E3;" text="Back to Login" />
+                                <Button fx:id="createButton" layoutX="95.0" layoutY="405.0" onAction="#handleCreateButtonAction" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #F7F7E3;" text="Create" />
+                        <Button fx:id="backButton" layoutX="97.0" layoutY="494.0" onAction="#handleBackButtonAction" prefHeight="31.0" prefWidth="169.0" style="-fx-background-color: #F7F7E3;" text="Back to Login" />
 
                             </children>
                             <padding>
@@ -107,29 +49,6 @@
                             </opaqueInsets>
                         </AnchorPane>
                         <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="49.0" layoutY="326.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="480.0" fitWidth="614.0" layoutX="26.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/Go-img.jpg" />
-                            </image>
-                        </ImageView>
-                        <TilePane layoutX="343.0" layoutY="36.0" prefHeight="115.0" prefWidth="169.0" style="-fx-background-color: #DED9B6;">
-                            <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="围棋">
-                                    <font>
-                                        <Font size="83.0" />
-                                    </font>
-                                </Text>
-                            </children>
-                        </TilePane>
-                        <TilePane layoutX="512.0" layoutY="36.0" prefHeight="115.0" prefWidth="119.0" style="-fx-background-color: #000000;">
-                            <children>
-                                <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="GO">
-                                    <font>
-                                        <Font size="80.0" />
-                                    </font>
-                                </Text>
-                            </children>
-                        </TilePane>
                     </children>
                     <opaqueInsets>
                         <Insets />
